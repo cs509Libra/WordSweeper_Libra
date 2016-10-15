@@ -3,15 +3,15 @@ package client.controller;
 
 import xml.Message;
 import client.model.Model;
-import client.view.Application;
+import client.view.Log_in;
 
 public class JoinGameController {
 
-	Application app;
+	Log_in login;
 	Model model;
 
-	public JoinGameController(Application app, Model model) {
-		this.app = app;
+	public JoinGameController(Log_in login, Model model) {
+		this.login = login;
 		this.model = model;
 	}
 
@@ -24,6 +24,6 @@ public class JoinGameController {
 		// Request the lock (this might not succeed).
 	//	app.getRequestArea().append(m.toString());
 	//	app.getRequestArea().append("\n");
-		app.getServerAccess().sendRequest(m);
+		login.getServerAccess().sendRequest(m);
 	}
 }

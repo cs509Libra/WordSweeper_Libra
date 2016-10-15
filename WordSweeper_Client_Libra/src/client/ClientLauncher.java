@@ -2,7 +2,7 @@ package client;
 import client.ServerAccess;
 import client.controller.SampleClientMessageHandler;
 import client.model.Model;
-import client.view.Application;
+import client.view.Log_in;
 import xml.Message;
 
 /** Launch command-line Client to show minimal access needs. */
@@ -30,13 +30,13 @@ public class ClientLauncher {
 		
 		// Initialize the client application and its corresponding model
 		Model model = new Model();
-		Application app = new Application(model);
+		Log_in login = new Log_in(model);
 				
 		// try to connect to the server. Once connected, messages are going to be processed by 
 		// SampleClientMessageHandler. For now we just continue on with the initialization because
 		// no message is actually sent by the connect method.
 		ServerAccess sa = new ServerAccess(host, 11425);
-		if (!sa.connect(new SampleClientMessageHandler(app))) {
+		if (!sa.connect(new SampleClientMessageHandler(login))) {
 			System.out.println("Unable to connect to server (" + host + "). Exiting.");
 			System.exit(0);
 		}
@@ -45,7 +45,7 @@ public class ClientLauncher {
 		
 		// Should we on the client ever need to communicate with the server, we need this ServerAccess
 		// object.
-		app.setServerAccess(sa);
+		login.setServerAccess(sa);
 		
 		// send an introductory connect request now that we have created (but not made visible!)
 		// the GUI
@@ -54,6 +54,6 @@ public class ClientLauncher {
 		sa.sendRequest(m);
 		
 		// at this point, we need to make app visible, otherwise we would terminate application
-		app.setVisible(true);
+		login.setVisible(true);
 	} 
 }

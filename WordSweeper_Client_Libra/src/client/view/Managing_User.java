@@ -20,6 +20,7 @@ import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -27,10 +28,9 @@ import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
-import client.model.*;
+import client.model.Model;
 
-public class Player extends JFrame {
-
+public class Managing_User extends JFrame {
 	private JPanel contentPane;
 	private JTextField output;
 	private JTextField expectscore;
@@ -38,7 +38,7 @@ public class Player extends JFrame {
 	private JTextField myscore;
 	private JTextField gameid;
 	private JTextField current;
-	private JTextField managername;
+
 	/**
 	 * Launch the application.
 	 */
@@ -46,7 +46,7 @@ public class Player extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Player() {
+	public Managing_User(Model model) {
 		setTitle("wordsweeper");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 558, 500);
@@ -70,14 +70,24 @@ public class Player extends JFrame {
 		left.add(boardview);
 		boardview.setLayout(new GridLayout(4, 4, 0, 0));
 		
-		Board board=new Board();   
-		JButton[][] jbuttons= new JButton[4][4];
+	/*	JButton[][] jbuttons= new JButton[4][4];
 		for(int i=0;i<4;i++)
 			for(int j=0;j<4;j++)
 			{
 				jbuttons[i][j]=new JButton("unknown");
 				boardview.add(jbuttons[i][j]);
 			}
+	*/
+		ArrayList<JButton> jbuttons= new ArrayList<JButton>();
+		for(int i=0;i<16;i++)
+			jbuttons.add(new JButton(" "));
+		//System.out.println(jbuttons.size());
+		//int j=0;
+		for(JButton temp:jbuttons)
+		{
+	        temp.setText("unknown");
+			boardview.add(temp);
+		}
 		
 		JButton up = new JButton("U");
 		up.setBounds(147, 10, 76, 23);
@@ -168,28 +178,23 @@ public class Player extends JFrame {
 		manager_power.setLayout(null);
 		right.add(manager_power);
 		
-		JLabel good = new JLabel("Manager:");
-		good.setBounds(10, 10, 59, 15);
+		JLabel good = new JLabel("You are game manager!");
+		good.setBounds(10, 10, 136, 15);
 		manager_power.add(good);
 		
 		JButton lock = new JButton("Lock game");
 		lock.setBackground(Color.WHITE);
-		lock.setForeground(Color.GRAY);
+		lock.setForeground(Color.GREEN);
 		lock.setFont(new Font("ËÎÌו", Font.BOLD, 12));
 		lock.setBounds(20, 35, 101, 23);
 		manager_power.add(lock);
 		
 		JButton reset = new JButton("Reset game");
-		reset.setForeground(Color.GRAY);
+		reset.setForeground(Color.GREEN);
 		reset.setBackground(Color.WHITE);
 		reset.setFont(new Font("ËÎÌו", Font.BOLD, 12));
-		reset.setBounds(10, 68, 111, 23);
+		reset.setBounds(10, 73, 111, 23);
 		manager_power.add(reset);
-		
-		managername = new JTextField();
-		managername.setBounds(69, 7, 66, 21);
-		manager_power.add(managername);
-		managername.setColumns(10);
 		
 		JPanel all_info = new JPanel();
 		all_info.setBorder(new LineBorder(new Color(0, 0, 0)));

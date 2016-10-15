@@ -1,7 +1,7 @@
 package client.controller;
 import xml.Message;
 import client.IMessageHandler;
-import client.view.Application;
+import client.view.Log_in;
 
 /**
  * Sample implementation of a protocol handler to respond to messages received from the server.
@@ -11,10 +11,10 @@ import client.view.Application;
  */
 public class SampleClientMessageHandler implements IMessageHandler {
 
-	Application app;
+	Log_in login;
 	
-	public SampleClientMessageHandler(Application app) {
-		this.app = app;
+	public SampleClientMessageHandler(Log_in login) {
+		this.login = login;
 	}
 	
 	@Override
@@ -24,7 +24,7 @@ public class SampleClientMessageHandler implements IMessageHandler {
 		// process each response that comes in with its own controller.
 		if (type.equals ("boardResponse")) {
 			// What happens now that we are connected?
-			new BoardResponseController(app, app.model).process(response);
+			new BoardResponseController(login, login.model).process(response);
 		} else if (type.equals ("connectResponse")) {
 //			app.getResponseArea().append(response.toString() + "\n");
 		}

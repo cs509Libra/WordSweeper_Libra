@@ -27,10 +27,17 @@ import javax.swing.JPasswordField;
 import java.awt.Graphics;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+
+import client.ServerAccess;
+import client.controller.CreateGameController;
+import client.controller.JoinGameController;
 import client.model.*;
+import javax.swing.JTextArea;
 
 public class Log_in extends JFrame {
-	Model model;
+	public final Model model;
+	ServerAccess serverAccess;
+	
 	JPanel contentPane;
 	JButton Practice;
 	JButton Multiplay;
@@ -38,6 +45,8 @@ public class Log_in extends JFrame {
 	JTextField multi_PlayerName;
 	JTextField join_PlayerName;
 	JTextField join_gameid;
+//	JTextField indication1;
+//	JTextField indication2;
 	
 	/**
 	 * Launch the application.
@@ -66,19 +75,66 @@ public class Log_in extends JFrame {
 		menu.setLayout(null);
 		contentPane.add(menu);
 		
-		Practice = new JButton("Practice Mode");
-	//	btnNewButton.addActionListener(new ActionListener() {
-	//		public void actionPerformed(ActionEvent e) {
-	//		}
-	//	});
+		Practice = new JButton("Practice Game");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Practice.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new CreateGameController(Log_in.this, model).process(null);
+				Log_in.this.setVisible(false);
+				Practice practice= new Practice(model);
+				practice.setVisible(true);
+			}
+		});
 		Practice.setBounds(30, 35, 155, 52);
 		menu.add(Practice);
 		
-		Multiplay = new JButton("Multiplay Mode");
+		JTextField indication1 = new JTextField();
+		indication1.setText("Please click the \"Multiplay Game\"");
+		indication1.setBounds(263, 159, 213, 21);
+		contentPane.add(indication1);
+		indication1.setColumns(10);
+		
+		Multiplay = new JButton("Multiplay Game");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Multiplay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(multi_PlayerName.getText().length()!=0){
+				new CreateGameController(Log_in.this, model).process(multi_PlayerName.getText());	
+				Log_in.this.setVisible(false);
+				Managing_User multi= new Managing_User(model);
+				multi.setVisible(true);
+				}
+				else{
+				  indication1.setText("Please input your name!");
+				  indication1.setForeground(Color.RED);
+				}
+			}
+		});
 		Multiplay.setBounds(30, 140, 155, 52);
 		menu.add(Multiplay);
 		
-		Join = new JButton("Join Target");
+		JTextField indication2 = new JTextField();
+		indication2.setText("Please click the \"Join Game\"");
+		indication2.setBounds(263, 311, 220, 21);
+		contentPane.add(indication2);
+		indication2.setColumns(10);
+		
+		Join = new JButton("Join Game");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Join.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(join_gameid.getText().length()!=0&&join_PlayerName.getText().length()!=0){
+				new JoinGameController(Log_in.this, model).process(join_gameid.getText(),join_PlayerName.getText());
+				Log_in.this.setVisible(false);
+				Player join= new Player(model);
+				join.setVisible(true);
+				}
+				else{
+				  indication2.setText("Please input your name and game id!");
+				  indication2.setForeground(Color.RED);
+				}
+			}
+		});
 		Join.setBounds(30, 243, 155, 52);
 		menu.add(Join);
 		
@@ -103,6 +159,7 @@ public class Log_in extends JFrame {
 		multi.add(multi_Password);
 		
 		TextField multi_password = new TextField();
+		multi_password.setText("optional");
 		multi_password.setBounds(87, 37, 78, 23);
 		multi.add(multi_password);
 		
@@ -140,13 +197,14 @@ public class Log_in extends JFrame {
 		join_Passwordtext.setText("optional");
 		join_Passwordtext.setBounds(87, 59, 78, 23);
 		join.add(join_Passwordtext);
-		
-		JLabel indication1= new JLabel("Please click the \"Multiplay Mode\"");
-		indication1.setBounds(269, 161, 229, 21);
-		contentPane.add(indication1);
-		
-		JLabel indication2 = new JLabel("Please click the \"Join Target\"");
-		indication2.setBounds(269, 311, 231, 21);
-		contentPane.add(indication2);
+	}
+	/** Record the means to communicate with server. */
+	public void setServerAccess(ServerAccess access) {
+		this.serverAccess = access;
+	}
+	
+	/** Get the server access object. */
+	public ServerAccess getServerAccess() {
+		return serverAccess;
 	}
 }

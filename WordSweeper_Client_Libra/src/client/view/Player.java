@@ -21,7 +21,6 @@ import javax.swing.ListSelectionModel;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -29,9 +28,9 @@ import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
-import client.model.*;
+import client.model.Model;
 
-public class Practice extends JFrame {
+public class Player extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField output;
@@ -40,7 +39,7 @@ public class Practice extends JFrame {
 	private JTextField myscore;
 	private JTextField gameid;
 	private JTextField current;
-
+	private JTextField managername;
 	/**
 	 * Launch the application.
 	 */
@@ -48,7 +47,7 @@ public class Practice extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Practice() {
+	public Player(Model model) {
 		setTitle("wordsweeper");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 558, 500);
@@ -72,25 +71,23 @@ public class Practice extends JFrame {
 		left.add(boardview);
 		boardview.setLayout(new GridLayout(4, 4, 0, 0));
 		
-	/*	Board board=new Board();   
+		/*
 		JButton[][] jbuttons= new JButton[4][4];
 		for(int i=0;i<4;i++)
 			for(int j=0;j<4;j++)
 			{
-				jbuttons[i][j]=new JButton(board.getCells()[i][j].getLetter());
+				jbuttons[i][j]=new JButton("unknown");
 				boardview.add(jbuttons[i][j]);
 			}
-	*/
-		
-		Board board=new Board(); 
+		*/
 		ArrayList<JButton> jbuttons= new ArrayList<JButton>();
 		for(int i=0;i<16;i++)
 			jbuttons.add(new JButton(" "));
 		//System.out.println(jbuttons.size());
-		int j=0;
+		//int j=0;
 		for(JButton temp:jbuttons)
 		{
-	        temp.setText(board.getCell().get(j++).getLetter());
+	        temp.setText("unknown");
 			boardview.add(temp);
 		}
 		
@@ -179,27 +176,37 @@ public class Practice extends JFrame {
 		
 		JPanel manager_power = new JPanel();
 		manager_power.setBorder(new LineBorder(Color.ORANGE));
-		manager_power.setBounds(21, 174, 145, 105);
+		manager_power.setBounds(21, 303, 145, 106);
 		manager_power.setLayout(null);
 		right.add(manager_power);
 		
-		JLabel good = new JLabel("You are game manager!");
-		good.setBounds(10, 10, 136, 15);
+		JLabel good = new JLabel("Manager:");
+		good.setBounds(10, 10, 59, 15);
 		manager_power.add(good);
 		
 		JButton lock = new JButton("Lock game");
 		lock.setBackground(Color.WHITE);
-		lock.setForeground(Color.GREEN);
+		lock.setForeground(Color.GRAY);
 		lock.setFont(new Font("ËÎÌו", Font.BOLD, 12));
 		lock.setBounds(20, 35, 101, 23);
 		manager_power.add(lock);
 		
 		JButton reset = new JButton("Reset game");
-		reset.setForeground(Color.GREEN);
+		reset.setForeground(Color.GRAY);
 		reset.setBackground(Color.WHITE);
 		reset.setFont(new Font("ËÎÌו", Font.BOLD, 12));
-		reset.setBounds(10, 73, 111, 23);
+		reset.setBounds(10, 68, 111, 23);
 		manager_power.add(reset);
+		
+		managername = new JTextField();
+		managername.setBounds(69, 7, 66, 21);
+		manager_power.add(managername);
+		managername.setColumns(10);
+		
+		JPanel all_info = new JPanel();
+		all_info.setBorder(new LineBorder(new Color(0, 0, 0)));
+		all_info.setBounds(30, 81, 121, 201);
+		right.add(all_info);
 		
 		JLabel lblGameId = new JLabel("Game id:");
 		lblGameId.setBounds(28, 436, 84, 15);

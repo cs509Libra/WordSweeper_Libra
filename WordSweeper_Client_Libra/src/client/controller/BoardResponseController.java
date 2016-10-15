@@ -6,7 +6,7 @@ import org.w3c.dom.NodeList;
 
 import xml.Message;
 import client.model.Model;
-import client.view.Application;
+import client.view.Log_in;
 
 /**
  * Tells the client whether the model is locked or not BY SOME OTHER CLIENT. This will never be returned to a client
@@ -14,11 +14,11 @@ import client.view.Application;
  */
 public class BoardResponseController {
 
-	public Application app;
+	public Log_in login;
 	public Model model;
 	
-	public BoardResponseController(Application a, Model m) {
-		this.app = a;
+	public BoardResponseController(Log_in login, Model m) {
+		this.login = login;
 		this.model = m;
 	}
 	

@@ -1,18 +1,17 @@
 package client.model;
 
-import javax.swing.JButton;
-
-public class Cell extends JButton {   //可以考虑
+public class Cell{  
      int row;
      int colume;
      private String letter;
      boolean is_chosen;
      
-     public Cell()       //int[][] location,String letter
+     public Cell()      //row,colume,letter
      {
     	 this.is_chosen=false;
-    //	 this.location=location;
-     //  	 this.letter=letter;
+    //	 this.row=row;
+    //	 this.colume=colume;
+     //  this.letter=letter;
      }
      
      public void update(String letter,boolean is_chosen){
@@ -26,6 +25,4 @@ public class Cell extends JButton {   //可以考虑
 	public void setLetter(String letter) {
 		this.letter = letter;
 	}
-     
-     
 }

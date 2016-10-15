@@ -6,15 +6,15 @@ import xml.Message;
 import javax.security.auth.login.AppConfigurationEntry;
 
 import client.model.Model;
-import client.view.Application;
+import client.view.Log_in;
 
 public class CreateGameController {
 
-	Application app;
+	Log_in login;
 	Model model;
 
-	public CreateGameController(Application app, Model model) {
-		this.app = app;
+	public CreateGameController(Log_in login, Model model) {
+		this.login = login;
 		this.model = model;
 	}
 
@@ -24,6 +24,6 @@ public class CreateGameController {
 		String xmlString = Message.requestHeader() + "<createGameRequest name='"+name+"'/></request>";
 		Message m = new Message (xmlString);
         System.out.println(m);
-		app.getServerAccess().sendRequest(m);
+		login.getServerAccess().sendRequest(m);
 	}
 }
