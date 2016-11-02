@@ -12,9 +12,6 @@ public class ServerLauncher {
 	public static void main(String[] args) {
 		// FIRST thing to do is register the protocol being used. There will be a single class protocol
 		// that will be defined and which everyone will use. For now, demonstrate with skeleton protocol.
-
-		System.out.println("hello again from Q3");
-		System.out.println("hello again from Han");
 		if (!Message.configure("wordsweeper.xsd")) {
 			System.exit(0);
 		}
