@@ -3,48 +3,42 @@ package client.model;
 import java.util.ArrayList;
 
 public class Board {
-	//Cell[][] cells;
-	ArrayList<Cell> cells;
-	
-	public Board(){
-		/*
-		cells= new Cell[4][4];
-		String[] string = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Qu","R","S","T","U","V","W","X","Y","Z"};
-		for(int i=0;i<4;i++)
-			for(int j=0;j<4;j++)
-			{
-				cells[i][j]=new Cell();
-				String str=string[(int)(Math.random()*26)];
-				cells[i][j].setLetter(str);
-			}*/
+		ArrayList<Cell> cells;
 		
-		cells=new ArrayList<Cell>();
-		for(int i=0;i<16;i++)
-			cells.add(new Cell());
-		String[] string = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Qu","R","S","T","U","V","W","X","Y","Z"};
-		for(Cell temp:cells)
-		{
-			String str=string[(int)(Math.random()*26)];
-			temp.setLetter(str);
-			//System.out.println(temp.getLetter());
+		public Board(){
+			cells = new ArrayList<Cell>();
+			for(int i = 0; i < 16 ; i++)
+				cells.add(new Cell());
 		}
+
+		public ArrayList<Cell> getCells() {
+			updateBoard();
+			return cells;
+		}
+
+		public void setCells(ArrayList<Cell> cells) {
+			this.cells = cells;
+		}
+		
+		public void updateBoard(){
+			fillCellsWithCellInfo(generateRandomCellInfo());
+		}
+		
+		public String generateRandomCellInfo(){
+			String[] LetterSources = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Qu","R","S","T","U","V","W","X","Y","Z"};
+			String randomCellInfo = "";
+			for(int i=0; i<16; i++){
+				randomCellInfo += LetterSources[(int)(Math.random()*26)];
 			}
-
-	public ArrayList<Cell> getCells() {
-		return cells;
-	}
-
-	public void setCells(ArrayList<Cell> cells) {
-		this.cells = cells;
-	}
-
-/*
-	public Cell[][] getCells() {
-		return cells;
-	}
-
-	public void setCells(Cell[][] cells) {
-		this.cells = cells;
-	}
-*/
+			return randomCellInfo;
+		}
+		
+		public void fillCellsWithCellInfo(String cellInfo){
+			char[] cellInfoList = cellInfo.toCharArray();
+			for(int i = 0; i < 16; i++){
+				Character toBeAdd = (Character)(cellInfoList[i]);
+				this.cells.get(i).setLetter(toBeAdd.toString());
+			}
+		}
+		
 }

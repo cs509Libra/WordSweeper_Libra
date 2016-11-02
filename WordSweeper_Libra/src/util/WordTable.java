@@ -43,8 +43,7 @@ public class WordTable {
 				System.err.println("Word Table Not Yet Initialized!");
 				return false;
 			}
-		}
-		
+		}		
 		s = s.toLowerCase();
 		return table.containsKey(s);
 	}

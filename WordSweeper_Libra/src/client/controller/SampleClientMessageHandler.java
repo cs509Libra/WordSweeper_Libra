@@ -1,7 +1,7 @@
 package client.controller;
 import xml.Message;
 import client.IMessageHandler;
-import client.view.Log_in;
+import client.view.Application;
 
 /**
  * Sample implementation of a protocol handler to respond to messages received from the server.
@@ -11,27 +11,27 @@ import client.view.Log_in;
  */
 public class SampleClientMessageHandler implements IMessageHandler {
 
-	Log_in login;
+	Application app;
 	
-	public SampleClientMessageHandler(Log_in login) {
-		this.login = login;
+	// by default is the empty handler...
+	ControllerChain chain = new EmptyHandler();
+	
+	/**
+	 * Register new controller chain as occuring before existing chain.
+	 */
+	public void registerHandler(ControllerChain handler) {
+		handler.next = chain;
+		chain = handler;
 	}
+	
+	public SampleClientMessageHandler(Application app) {
+		this.app = app;
+	}
+	
 	
 	@Override
 	public void process(Message response) {
-		String type = response.contents.getFirstChild().getLocalName();
-
-		// process each response that comes in with its own controller.
-		if (type.equals ("boardResponse")) {
-			// What happens now that we are connected?
-			new BoardResponseController(login, login.model).process(response);
-		} else if (type.equals ("connectResponse")) {
-//			app.getResponseArea().append(response.toString() + "\n");
-		}
-		
-		// only here to show messages as they are received by the client
-		// this isn't needed.
-		System.out.println(response);
+		chain.process(response);
 	}
 
 }

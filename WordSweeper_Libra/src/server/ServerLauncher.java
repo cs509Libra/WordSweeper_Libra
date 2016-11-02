@@ -1,6 +1,7 @@
 package server;
-import java.io.IOException;
+import java.io.*;
 
+import server.Server;
 import server.controller.SampleProtocolHandler;
 import server.model.ServerModel;
 import xml.Message;

@@ -1,5 +1,4 @@
 package client.model;
-//import java.util.*;
 
 public class Player {
 	int row;

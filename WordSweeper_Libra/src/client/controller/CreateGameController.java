@@ -2,28 +2,28 @@ package client.controller;
 
 
 import xml.Message;
-
-import javax.security.auth.login.AppConfigurationEntry;
-
 import client.model.Model;
-import client.view.Log_in;
+import client.view.Application;
 
 public class CreateGameController {
 
-	Log_in login;
+	Application app;
 	Model model;
 
-	public CreateGameController(Log_in login, Model model) {
-		this.login = login;
+	public CreateGameController(Application app, Model model) {
+		this.app = app;
 		this.model = model;
 	}
 
 	/** Make the request on the server and wait for response. */
-	public void process(String name) {
+	public void process() {
 		// send the request to create the game.
-		String xmlString = Message.requestHeader() + "<createGameRequest name='"+name+"'/></request>";
+		String xmlString = Message.requestHeader() + "<createGameRequest name='samplePlayer'/></request>";
 		Message m = new Message (xmlString);
-        System.out.println(m);
-		login.getServerAccess().sendRequest(m);
+
+		// Request the lock (this might not succeed).
+		app.getRequestArea().append(m.toString());
+		app.getRequestArea().append("\n");
+		app.getServerAccess().sendRequest(m);
 	}
 }
