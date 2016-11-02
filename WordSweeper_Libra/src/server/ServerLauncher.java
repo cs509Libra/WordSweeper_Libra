@@ -14,6 +14,7 @@ public class ServerLauncher {
 		// that will be defined and which everyone will use. For now, demonstrate with skeleton protocol.
 
 		System.out.println("hello again from Q3");
+		System.out.println("hello again from Han");
 		if (!Message.configure("wordsweeper.xsd")) {
 			System.exit(0);
 		}
