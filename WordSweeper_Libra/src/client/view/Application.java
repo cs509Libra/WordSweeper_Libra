@@ -38,6 +38,24 @@ public class Application extends JFrame {
 	
 	JScrollPane clientRequests;
 	JScrollPane serverOutput;
+	
+	String playerName;
+	String password;
+	String gameNumber;
+	
+	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getGameNumber() {
+		return gameNumber;
+	}
+
+	public String getPlayerName() {
+		return playerName;
+	}
 
 	public Application(Model model) {
 		this.model = model;
@@ -63,30 +81,30 @@ public class Application extends JFrame {
 		gameNumberLabel.setBounds(45, 60, 133, 30);
 		contentPane.add(gameNumberLabel);
 		
-		JTextField gameNumber =  new JTextField(10);
-		gameNumber.setBounds(200, 60, 164, 30);
-		contentPane.add(gameNumber);
-		gameNumber.setColumns(10);
+		JTextField gameNumberField =  new JTextField(10);
+		gameNumberField.setBounds(200, 60, 164, 30);
+		contentPane.add(gameNumberField);
+		gameNumberField.setColumns(10);
 		
 		JLabel playerNameLabel = new JLabel("Player Name: ");
 		gameNumberLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		playerNameLabel.setBounds(95, 110, 133, 30);
 		contentPane.add(playerNameLabel);
 		
-		JTextField playerName =  new JTextField(10);
-		playerName.setBounds(200, 110, 164, 30);
-		contentPane.add(playerName);
-		playerName.setColumns(10);
+		JTextField playerNameField =  new JTextField(10);
+		playerNameField.setBounds(200, 110, 164, 30);
+		contentPane.add(playerNameField);
+		playerNameField.setColumns(10);
 		
 		JLabel passwordLabel = new JLabel("Password: ");
 		gameNumberLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		passwordLabel.setBounds(113, 160, 133, 30);
 		contentPane.add(passwordLabel);
 		
-		JPasswordField passWord = new JPasswordField();
-		passWord.setBounds(200, 160, 164, 30);
-		contentPane.add(passWord);
-		passWord.setColumns(10);
+		JPasswordField passWordField = new JPasswordField();
+		passWordField.setBounds(200, 160, 164, 30);
+		contentPane.add(passWordField);
+		passWordField.setColumns(10);
 		
 		JButton btnPractice = new JButton("Practice");
 		btnPractice.addActionListener(new ActionListener() {
@@ -102,9 +120,8 @@ public class Application extends JFrame {
 		JButton btnCreateGame = new JButton("Create Game");
 		btnCreateGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				String name = playerName.getText();
-				if(name.length() != 0){			
+				Application.this.playerName = playerNameField.getText();
+				if(playerName.length() != 0){			
 					MultiGame mg = new MultiGame(model, Application.this);
 					mg.setVisible(true);
 					new CreateGameController(Application.this, model).process();
@@ -118,9 +135,9 @@ public class Application extends JFrame {
 		JButton btnJoinGame = new JButton("Join Game");
 		btnJoinGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String name = playerName.getText();
-				String gameId = gameNumber.getText();
-				if(name.length()!=0 && gameId.length()!=0){
+				Application.this.playerName = playerNameField.getText();
+				Application.this.gameNumber = gameNumberField.getText();
+				if(playerName.length()!=0 && gameNumber.length()!=0){
 					new JoinGameController(Application.this, model).process(); 		
 				}	
 			}

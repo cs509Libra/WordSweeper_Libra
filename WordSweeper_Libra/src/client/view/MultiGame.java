@@ -59,7 +59,6 @@ public class MultiGame extends JFrame {
 		int indexOfThisBtnInAll = this.allCells.indexOf(tempBtn);
 		JButton previousChosenButton = this.chosenCells.get(this.chosenCells.size() - 1);
 		int indexOfPreviousBtnInAll = this.allCells.indexOf(previousChosenButton);
-		System.out.println(indexOfPreviousBtnInAll+ ":" + indexOfThisBtnInAll);
 		if(isAdjacent(indexOfPreviousBtnInAll, indexOfThisBtnInAll) && !hasBeenChosen(tempBtn)){
 			return true;
 		}else{
@@ -163,22 +162,18 @@ public class MultiGame extends JFrame {
 		
 		JButton btnUp = new JButton("^");
 		btnUp.setBounds(130, 5, 100, 40);
-		btnUp.setEnabled(false);
 		leftPanel.add(btnUp);
 		
 		JButton btnLeft = new JButton("<");
 		btnLeft.setBounds(10, 110, 45, 100);
-		btnLeft.setEnabled(false);
 		leftPanel.add(btnLeft);
 		
 		JButton btnRight = new JButton(">");
 		btnRight.setBounds(320, 110, 45, 100);
-		btnRight.setEnabled(false);
 		leftPanel.add(btnRight);
 		
 		JButton btnDown = new JButton("v");
 		btnDown.setBounds(130, 285, 100, 40);
-		btnDown.setEnabled(false);
 		leftPanel.add(btnDown);
 			
 		boardview = new JPanel();
@@ -322,7 +317,6 @@ public class MultiGame extends JFrame {
 		managerPower.add(managerName);
 
 		JButton lock = new JButton("Lock game");
-		lock.setEnabled(false);
 		lock.setBackground(Color.WHITE);
 		lock.setForeground(Color.GREEN);
 		lock.setFont(new Font("����", Font.BOLD, 12));
@@ -330,7 +324,6 @@ public class MultiGame extends JFrame {
 		managerPower.add(lock);
 		
 		JButton reset = new JButton("Reset game");
-		reset.setEnabled(false);
 		reset.setForeground(Color.GREEN);
 		reset.setBackground(Color.WHITE);
 		reset.setFont(new Font("����", Font.BOLD, 12));

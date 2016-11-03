@@ -43,6 +43,11 @@ public class Practice extends JFrame {
 		initiate();
 	}
 	
+	/**
+	 * Extract letters of chosenCells in order, and convert to string for display
+	 * @param chosenCells
+	 * @return
+	 */	
 	private String obtainChosenLettDisplay(ArrayList<JButton> chosenCells){
 		String lettDisplay = "";
 		for(JButton tempbtn : chosenCells){
@@ -52,6 +57,11 @@ public class Practice extends JFrame {
 		return lettDisplay;
 	}
 	
+	/**
+	 * Determine if a button clicked is valid.
+	 * @param tempBtn
+	 * @return
+	 */
 	private boolean isCellValidateToChoose(JButton tempBtn){
 		if(this.chosenCells.size() == 0){
 			return true;
@@ -59,7 +69,6 @@ public class Practice extends JFrame {
 		int indexOfThisBtnInAll = this.allCells.indexOf(tempBtn);
 		JButton previousChosenButton = this.chosenCells.get(this.chosenCells.size() - 1);
 		int indexOfPreviousBtnInAll = this.allCells.indexOf(previousChosenButton);
-		System.out.println(indexOfPreviousBtnInAll+ ":" + indexOfThisBtnInAll);
 		if(isAdjacent(indexOfPreviousBtnInAll, indexOfThisBtnInAll) && !hasBeenChosen(tempBtn)){
 			return true;
 		}else{
@@ -67,6 +76,12 @@ public class Practice extends JFrame {
 		}
 	}
 	
+	/**
+	 * One sub_method to determine if a button clicked is valid.
+	 * Determine if the clicked button has been chosen before or not.
+	 * @param tempBtn
+	 * @return
+	 */
 	private boolean hasBeenChosen(JButton tempBtn){
 		for (JButton previous : this.chosenCells){
 			if(tempBtn.equals(previous)){
@@ -76,6 +91,13 @@ public class Practice extends JFrame {
 		return false;
 	}
 	
+	/**
+	 * One sub_method to determine if a button clicked is valid.
+	 * Determine if the clicked button is adjacent to previous chosen one.
+	 * @param A
+	 * @param B
+	 * @return
+	 */
 	private boolean isAdjacent(int A, int B){
 		int[] arrayWithBorder = new int[] {-1, -1, -1, -1, -1, -1, 
 										   -1,  0,  1,  2,  3, -1, 
@@ -100,7 +122,10 @@ public class Practice extends JFrame {
 		}
 		return false;
 	}
-
+	
+	/**
+	 * UpdateBoard with with random generated cell information - for practice only
+	 */
 	private void updateBoard(){
         ActionListener cellChosenListener = new ActionListener() {
             @Override
@@ -140,6 +165,10 @@ public class Practice extends JFrame {
 		updateBoardView(allCells);
 	}
 	
+	/**
+	 * Update the display of board.
+	 * @param allCells
+	 */
 	private void updateBoardView(ArrayList<JButton> allCells){
 		this.boardview.removeAll();
 		for(int i=0; i<16; i++){
@@ -147,6 +176,10 @@ public class Practice extends JFrame {
 		}
 	}
 	
+	
+	/**
+	 * Initiate the GUI.
+	 */
 	private void initiate(){
 		
 		setTitle("wordsweeper Practice");		

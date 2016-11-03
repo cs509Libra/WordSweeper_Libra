@@ -18,7 +18,7 @@ public class JoinGameController {
 	/** Make the request on the server and wait for response. */
 	public void process() {
 		// send the request to create the game.
-		String xmlString = Message.requestHeader() + "<joinGameRequest gameId='somePlace' name='nextOne'/></request>";
+		String xmlString = Message.requestHeader() + String.format("<joinGameRequest gameId='%s' name='%s'/></request>", app.getGameNumber(), app.getPlayerName());
 		Message m = new Message (xmlString);
 
 		// Request the lock (this might not succeed).
