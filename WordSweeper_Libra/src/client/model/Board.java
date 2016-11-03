@@ -3,6 +3,7 @@ package client.model;
 import java.util.ArrayList;
 
 public class Board {
+	
 		ArrayList<Cell> cells;
 		
 		public Board(){
@@ -25,7 +26,7 @@ public class Board {
 		}
 		
 		public String generateRandomCellInfo(){
-			String[] LetterSources = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Qu","R","S","T","U","V","W","X","Y","Z"};
+			String[] LetterSources = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 			String randomCellInfo = "";
 			for(Cell temp:cells)                  
 			{

@@ -36,12 +36,57 @@ public class Practice extends JFrame {
 	private Application app;
 	private ArrayList<JButton> chosenCells;
 	private ArrayList<JButton> allCells;
+	private JButton cellBtn0; private JButton cellBtn1; private JButton cellBtn2; private JButton cellBtn3; private JButton cellBtn4; private JButton cellBtn5; 
+	private JButton cellBtn6; private JButton cellBtn7; private JButton cellBtn8; private JButton cellBtn9; private JButton cellBtn10; private JButton cellBtn11; 
+	private JButton cellBtn12; private JButton cellBtn13; private JButton cellBtn14; private JButton cellBtn15;
 
 	public Practice(Model model, Application app) {
 		this.model = model;
 		this.app = app;
 		initiate();
 	}
+	
+	
+	private void addAllCellsToList(){
+		cellBtn0 = new JButton(); cellBtn1 = new JButton();
+		cellBtn2 = new JButton(); cellBtn3 = new JButton();
+		cellBtn4 = new JButton(); cellBtn5 = new JButton();
+		cellBtn6 = new JButton(); cellBtn7 = new JButton();
+		cellBtn8 = new JButton(); cellBtn9 = new JButton();
+		cellBtn10 = new JButton(); cellBtn11 = new JButton();
+		cellBtn12 = new JButton(); cellBtn13 = new JButton();
+		cellBtn14 = new JButton(); cellBtn15 = new JButton();
+		this.allCells = new ArrayList<JButton>();
+		this.allCells.add(cellBtn0);this.allCells.add(cellBtn1);this.allCells.add(cellBtn2);this.allCells.add(cellBtn3);this.allCells.add(cellBtn4);this.allCells.add(cellBtn5);
+		this.allCells.add(cellBtn6);this.allCells.add(cellBtn7);this.allCells.add(cellBtn8);this.allCells.add(cellBtn9);this.allCells.add(cellBtn10);this.allCells.add(cellBtn11);
+		this.allCells.add(cellBtn12);this.allCells.add(cellBtn13);this.allCells.add(cellBtn14);this.allCells.add(cellBtn15);
+		
+        ActionListener cellChosenListener = new ActionListener(){
+        	@Override
+            public void actionPerformed(ActionEvent e) {
+                Object source = e.getSource(); 
+            	JButton chosenBtn = (JButton)source;  
+                if(!isCellValidateToChoose(chosenBtn)){
+                	Practice.this.messageLabel.setText("Cell chosen not valid!");
+                	return;
+                }
+                Practice.this.messageLabel.setText("");
+                chosenBtn.setBackground(Color.RED);
+                Practice.this.chosenCells.add(chosenBtn);
+                String lett = chosenBtn.getText();
+                String lettDisplay = obtainChosenLettDisplay(chosenCells);
+                Practice.this.submission.setText(lettDisplay);                 
+                String previousScore = Practice.this.expectscore.getText();
+                Integer currentScore = CalculateLocalScore.calculateLetterScore(lett); 
+                Integer newScore = currentScore + Integer.parseInt(previousScore);
+                Practice.this.expectscore.setText(newScore.toString());           
+            }
+        };       
+        for(JButton cellBtn : allCells){
+        	cellBtn.addActionListener(cellChosenListener);
+        }
+	}
+	
 	
 	/**
 	 * Extract letters of chosenCells in order, and convert to string for display
@@ -103,7 +148,7 @@ public class Practice extends JFrame {
 										   -1,  0,  1,  2,  3, -1, 
 										   -1,  4,  5,  6,  7, -1,
 										   -1,  8,  9,  10, 11, -1, 
-										   -1, 12,  13, 14, 15, -1
+										   -1, 12,  13, 14, 15, -1,
 										   -1, -1, -1, -1, -1, -1, };
 		ArrayList<Integer> arrayListWithBorder = new ArrayList<Integer>();
 		for(int i: arrayWithBorder){
@@ -123,60 +168,68 @@ public class Practice extends JFrame {
 		return false;
 	}
 	
-	/**
-	 * UpdateBoard with with random generated cell information - for practice only
-	 */
-	private void updateBoard(){
-        ActionListener cellChosenListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Object source = e.getSource();
-                if (source instanceof Component) {           	
-//                    ((Component)source).setBackground(Color.RED);
-                    JButton tempBtn = (JButton)source;                   
-                    if(!isCellValidateToChoose(tempBtn)){
-                    	Practice.this.messageLabel.setText("Cell chosen not valid!");
-                    	return;
-                    }
-                    Practice.this.messageLabel.setText("");
-                    tempBtn.setBackground(Color.RED);
-                    Practice.this.chosenCells.add(tempBtn);
-                    String lett = tempBtn.getText();
-                    String lettDisplay = obtainChosenLettDisplay(chosenCells);
-                    Practice.this.submission.setText(lettDisplay);                 
-                    String previousScore = Practice.this.expectscore.getText();
-                    Integer currentScore = CalculateLocalScore.calculateLetterScore(lett); 
-                    Integer newScore = currentScore + Integer.parseInt(previousScore);
-                    Practice.this.expectscore.setText(newScore.toString());
-                }  
-            }
-        };
-		this.allCells = new ArrayList<JButton>();		
+	private void removeCellsColors(){
+		for(int i=0 ; i<16 ; i++){
+			Component c = this.boardview.getComponent(i);
+			c.setBackground(Color.WHITE);
+		}
+		boardview.repaint();
+	}
+	
+	private void clearAllChosen(){
+		Practice.this.messageLabel.setText("");
+		Practice.this.expectscore.setText("0");
+		Practice.this.submission.setText("");
+		Practice.this.chosenCells.removeAll(chosenCells);
+		removeCellsColors();
+	}
+	
+	private void refreshBoard(){
 		String cellsInfo = this.model.getBoard().generateRandomCellInfo();
-		char[] cellsInfoArray = cellsInfo.toCharArray();
-		
+		char[] cellsInfoArray = cellsInfo.toCharArray();		
 		for(int i=0;i<16;i++){			
-			Character lettToBeAdd = (Character)cellsInfoArray[i];
-			JButton tmp = new JButton(lettToBeAdd.toString());
-			tmp.setBackground(Color.WHITE);
-			tmp.addActionListener(cellChosenListener);		
-			allCells.add(tmp);
+			Character lettToBeAddChar = (Character)cellsInfoArray[i];
+			String lettToBeAdd;
+			if(lettToBeAddChar.equals('Q')){
+				lettToBeAdd = "Qu";			
+			}else{
+				lettToBeAdd = lettToBeAddChar.toString();
+			}						
+			this.allCells.get(i).setText(lettToBeAdd);
 		}
-		updateBoardView(allCells);
-	}
-	
-	/**
-	 * Update the display of board.
-	 * @param allCells
-	 */
-	private void updateBoardView(ArrayList<JButton> allCells){
-		this.boardview.removeAll();
-		for(int i=0; i<16; i++){
-			this.boardview.add(allCells.get(i));
-		}
+		removeCellsColors();
+		boardview.repaint();
 	}
 	
 	
+	
+	private Integer calculateWordScoreFromLib(String word){
+		if(word.length() <= 1){
+			messageLabel.setText("Choose at least 2 letters");
+			return 0;
+		}				
+		Integer wordLength = chosenCells.size();
+		return CalculateLocalScore.calculateWordScore(word, wordLength);		
+	}
+	
+	private void submitPerformed(){
+		String word = submission.getText();
+		Integer expectedWordScore = calculateWordScoreFromLib(word);
+		if(expectedWordScore==0){
+			clearAllChosen();
+			messageLabel.setText("Oh, No! Choose again !");
+			return;
+		}
+		Integer currentScore = Integer.parseInt(myscore.getText());
+		Integer newScore = (Integer)(expectedWordScore+currentScore);
+		myscore.setText(newScore.toString());
+		model.getBoard().updateBoard();
+		chosenCells.removeAll(chosenCells);
+		submission.setText("");
+		expectscore.setText("0");
+		refreshBoard();
+	}
+
 	/**
 	 * Initiate the GUI.
 	 */
@@ -214,6 +267,19 @@ public class Practice extends JFrame {
 		btnDown.setBounds(130, 285, 100, 40);
 		btnDown.setEnabled(false);
 		leftPanel.add(btnDown);
+		
+		JButton btnRefresh = new JButton("Refresh");
+		btnRefresh.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Practice.this.clearAllChosen();
+				Practice.this.refreshBoard();		
+			}		
+		});
+		
+		btnRefresh.setBounds(250, 290, 100, 30);
+		btnRefresh.setEnabled(true);
+		leftPanel.add(btnRefresh);
 			
 		boardview = new JPanel();
 		boardview.setBackground(Color.WHITE);
@@ -221,13 +287,19 @@ public class Practice extends JFrame {
 		boardview.setBounds(70, 50, 230, 234);
 		leftPanel.add(boardview);
 		boardview.setLayout(new GridLayout(4, 4, 0, 0));
-
-		this.chosenCells = new ArrayList<JButton>();
-		updateBoard();
-	
+		
+		chosenCells = new ArrayList<JButton>();
+		addAllCellsToList();
+		for(int i=0; i<16; i++){
+			allCells.get(i).setBackground(Color.WHITE);
+			this.boardview.add(allCells.get(i));
+		}
+		
+		refreshBoard();
+		
 		messageLabel = new JLabel();
 		messageLabel.setFont(new Font("����", Font.BOLD, 12));
-		messageLabel.setBounds(100, 340, 150, 21);
+		messageLabel.setBounds(100, 340, 200, 21);
 		messageLabel.setText("");
 		messageLabel.setForeground(Color.RED);
 		leftPanel.add(messageLabel);
@@ -256,14 +328,8 @@ public class Practice extends JFrame {
 		clear.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Practice.this.expectscore.setText("0");
-				Practice.this.submission.setText("");
-				Practice.this.chosenCells.removeAll(chosenCells);
-				for(int i=0 ; i<16 ; i++){
-					Component c = Practice.this.boardview.getComponent(i);
-					c.setBackground(Color.WHITE);
-				}
-			}
+				Practice.this.clearAllChosen();
+			}			
 		});
 		clear.setBackground(Color.WHITE);
 		clear.setForeground(Color.RED);
@@ -276,17 +342,8 @@ public class Practice extends JFrame {
 		submit.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String word = Practice.this.submission.getText();
-				Integer expectedWordScore = CalculateLocalScore.calculateWordScore(word);
-				Integer currentScore = Integer.parseInt(Practice.this.myscore.getText());
-				Integer newScore = (Integer)(expectedWordScore+currentScore);
-				Practice.this.myscore.setText(newScore.toString());
-				Practice.this.model.getBoard().updateBoard();
-				Practice.this.chosenCells.removeAll(chosenCells);
-				Practice.this.submission.setText("");
-				Practice.this.expectscore.setText("0");
-				updateBoard();
-			}			
+				Practice.this.submitPerformed();
+			}	
 		});
 		submit.setToolTipText("submit the word you have chosen");
 		submit.setForeground(Color.GREEN);
