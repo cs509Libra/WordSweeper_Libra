@@ -201,8 +201,7 @@ public class Practice extends JFrame {
 		boardview.repaint();
 	}
 	
-	
-	
+		
 	private Integer calculateWordScoreFromLib(String word){
 		if(word.length() <= 1){
 			messageLabel.setText("Choose at least 2 letters");
