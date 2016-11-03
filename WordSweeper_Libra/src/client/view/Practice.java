@@ -51,15 +51,70 @@ public class Practice extends JFrame {
 		}
 		return lettDisplay;
 	}
+	
+	private boolean isCellValidateToChoose(JButton tempBtn){
+		if(this.chosenCells.size() == 0){
+			return true;
+		}		
+		int indexOfThisBtnInAll = this.allCells.indexOf(tempBtn);
+		JButton previousChosenButton = this.chosenCells.get(this.chosenCells.size() - 1);
+		int indexOfPreviousBtnInAll = this.allCells.indexOf(previousChosenButton);
+		System.out.println(indexOfPreviousBtnInAll+ ":" + indexOfThisBtnInAll);
+		if(isAdjacent(indexOfPreviousBtnInAll, indexOfThisBtnInAll) && !hasBeenChosen(tempBtn)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	private boolean hasBeenChosen(JButton tempBtn){
+		for (JButton previous : this.chosenCells){
+			if(tempBtn.equals(previous)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean isAdjacent(int A, int B){
+		int[] arrayWithBorder = new int[] {-1, -1, -1, -1, -1, -1, 
+										   -1,  0,  1,  2,  3, -1, 
+										   -1,  4,  5,  6,  7, -1,
+										   -1,  8,  9,  10, 11, -1, 
+										   -1, 12,  13, 14, 15, -1
+										   -1, -1, -1, -1, -1, -1, };
+		ArrayList<Integer> arrayListWithBorder = new ArrayList<Integer>();
+		for(int i: arrayWithBorder){
+			arrayListWithBorder.add((Integer)i);
+		}
+		int rankOfA = arrayListWithBorder.indexOf(A);
+		int[] aroundA = {
+						 arrayWithBorder[rankOfA-7],arrayWithBorder[rankOfA-6],arrayWithBorder[rankOfA-5],
+						 arrayWithBorder[rankOfA-1],                           arrayWithBorder[rankOfA+1], 
+						 arrayWithBorder[rankOfA+5],arrayWithBorder[rankOfA+6],arrayWithBorder[rankOfA+7]
+						};	
+		for(int i : aroundA){
+			if(B == i){
+				return true;
+			}
+		}
+		return false;
+	}
 
 	private void updateBoard(){
         ActionListener cellChosenListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Object source = e.getSource();
-                if (source instanceof Component) {
-                    ((Component)source).setBackground(Color.RED);
-                    JButton tempBtn = (JButton)source;
+                if (source instanceof Component) {           	
+//                    ((Component)source).setBackground(Color.RED);
+                    JButton tempBtn = (JButton)source;                   
+                    if(!isCellValidateToChoose(tempBtn)){
+                    	Practice.this.messageLabel.setText("Cell chosen not valid!");
+                    	return;
+                    }
+                    Practice.this.messageLabel.setText("");
+                    tempBtn.setBackground(Color.RED);
                     Practice.this.chosenCells.add(tempBtn);
                     String lett = tempBtn.getText();
                     String lettDisplay = obtainChosenLettDisplay(chosenCells);
@@ -139,7 +194,9 @@ public class Practice extends JFrame {
 	
 		messageLabel = new JLabel();
 		messageLabel.setFont(new Font("����", Font.BOLD, 12));
-		messageLabel.setText(" ");
+		messageLabel.setBounds(100, 340, 150, 21);
+		messageLabel.setText("");
+		messageLabel.setForeground(Color.RED);
 		leftPanel.add(messageLabel);
 		
 		JLabel expectscore = new JLabel("Expected Score:");

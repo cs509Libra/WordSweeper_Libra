@@ -105,10 +105,10 @@ public class Application extends JFrame {
 
 				String name = playerName.getText();
 				if(name.length() != 0){			
-					MultiGame mg = new MultiGame();
+					MultiGame mg = new MultiGame(model, Application.this);
 					mg.setVisible(true);
 					new CreateGameController(Application.this, model).process();
-					dispose();
+					Application.this.setVisible(false);
 				}
 			}
 		});
