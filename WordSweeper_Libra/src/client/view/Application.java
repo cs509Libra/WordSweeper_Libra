@@ -137,8 +137,9 @@ public class Application extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Application.this.playerName = playerNameField.getText();
 				Application.this.gameNumber = gameNumberField.getText();
-				if(playerName.length()!=0 && gameNumber.length()!=0){
-					new JoinGameController(Application.this, model).process(); 		
+				if(playerName.length()!=0 && gameNumber.length()!=0){                     //player.jframe
+					new JoinGameController(Application.this, model).process();
+					Application.this.setVisible(false);
 				}	
 			}
 		});
