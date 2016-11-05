@@ -1,50 +1,39 @@
 package client.model;
 
 public class Player {
-	int row;
-    int colume;
-    private String id;
     private String name;
-    private int score;
-    private boolean manager;
-      
-	public Player(boolean manager){
-		this.score=0;
-		this.manager=manager;
-	}
-	
-    public Player(String name,boolean manager){
-		this.name=name;
-		this.score=0;
-		this.manager=manager;
-	}
+    private long score;
+    private boolean isManager;
     
-    public void MoveLocation(String direction){
-         
-    }
-    
-	public int getScore() {
-		return score;
+	public Player(){
+		this.name = "";
+		this.score = 0;
+		this.isManager = false;
 	}
-	public void setScore(int score) {
-		this.score = score;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public boolean isManager() {
-		return manager;
-	}
-	public void setManager(boolean manager) {
-		this.manager = manager;
-	}
+
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public long getScore() {
+		return score;
+	}
+	public void setScore(long score) {
+		this.score = score;
+	}
+	
+	public boolean isManager() {
+		return isManager;
+	}
+	
+	public void setAsManager(){
+		this.isManager = true;
+	}
+	
+	
+
 }

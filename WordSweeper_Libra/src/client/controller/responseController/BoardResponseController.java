@@ -1,4 +1,4 @@
-package client.controller;
+package client.controller.responseController;
 
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -46,6 +46,20 @@ public class BoardResponseController extends ControllerChain {
 		// at this point, you would normally start processing this...
 		app.getResponseArea().append(response.toString());
 		app.getResponseArea().append("\n");
+		
+		// initateGame
+		Node player = boardResponse.getFirstChild();
+		NamedNodeMap playerMap = player.getAttributes();
+		String playerName = playerMap.getNamedItem("name").getNodeValue();
+		String boardInfo = playerMap.getNamedItem("board").getNodeValue();
+		String colRow = playerMap.getNamedItem("position").getNodeValue();
+		char[] corRowArray = colRow.toCharArray();
+		Integer globalStartingCol = Integer.valueOf(String.valueOf(corRowArray[0]));
+		Integer globalStaringRow = Integer.valueOf(String.valueOf(corRowArray[corRowArray.length - 1]));
+		Long score = Long.valueOf(playerMap.getNamedItem("score").getNodeValue());
+
+		app.model.updateInfo(gameId, "", playerName, (int)globalStartingCol, (int)globalStaringRow, boardInfo, score);
+		
 		return true;
 	}
 

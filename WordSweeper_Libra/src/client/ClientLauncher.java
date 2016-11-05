@@ -1,9 +1,11 @@
 package client;
 import javax.swing.UIManager;
 import javax.swing.plaf.metal.MetalLookAndFeel;
-import client.controller.BoardResponseController;
-import client.controller.ConnectResponseController;
-import client.controller.SampleClientMessageHandler;
+
+import client.controller.responseController.BoardResponseController;
+import client.controller.responseController.ConnectResponseController;
+import client.controller.responseController.JoinGameResponseController;
+import client.controller.responseController.SampleClientMessageHandler;
 import client.model.Model;
 import client.view.Application;
 import xml.Message;
@@ -39,7 +41,9 @@ public class ClientLauncher {
 		Application app = new Application(model);
 		
 		SampleClientMessageHandler handler = new SampleClientMessageHandler(app);
+		
 		handler.registerHandler(new BoardResponseController(app, model));
+		handler.registerHandler(new JoinGameResponseController(app, model));
 		handler.registerHandler(new ConnectResponseController(app, model));
 			
 		// try to connect to the server. Once connected, messages are going to be processed by 

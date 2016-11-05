@@ -34,8 +34,8 @@ public class MultiGame extends JFrame {
 	private JTextArea playersListArea;	
 	private Model model;
 	private Application app;
-	private ArrayList<JButton> chosenCells;
-	private ArrayList<JButton> allCells;
+	private ArrayList<JButton> chosenCellBtns;
+	private ArrayList<JButton> allCellBtns;
 	private JButton cellBtn0; private JButton cellBtn1; private JButton cellBtn2; private JButton cellBtn3; private JButton cellBtn4; private JButton cellBtn5; 
 	private JButton cellBtn6; private JButton cellBtn7; private JButton cellBtn8; private JButton cellBtn9; private JButton cellBtn10; private JButton cellBtn11; 
 	private JButton cellBtn12; private JButton cellBtn13; private JButton cellBtn14; private JButton cellBtn15;
@@ -47,20 +47,8 @@ public class MultiGame extends JFrame {
 	}
 	
 	
-	private void addAllCellsToList(){
-		cellBtn0 = new JButton(); cellBtn1 = new JButton();
-		cellBtn2 = new JButton(); cellBtn3 = new JButton();
-		cellBtn4 = new JButton(); cellBtn5 = new JButton();
-		cellBtn6 = new JButton(); cellBtn7 = new JButton();
-		cellBtn8 = new JButton(); cellBtn9 = new JButton();
-		cellBtn10 = new JButton(); cellBtn11 = new JButton();
-		cellBtn12 = new JButton(); cellBtn13 = new JButton();
-		cellBtn14 = new JButton(); cellBtn15 = new JButton();
-		this.allCells = new ArrayList<JButton>();
-		this.allCells.add(cellBtn0);this.allCells.add(cellBtn1);this.allCells.add(cellBtn2);this.allCells.add(cellBtn3);this.allCells.add(cellBtn4);this.allCells.add(cellBtn5);
-		this.allCells.add(cellBtn6);this.allCells.add(cellBtn7);this.allCells.add(cellBtn8);this.allCells.add(cellBtn9);this.allCells.add(cellBtn10);this.allCells.add(cellBtn11);
-		this.allCells.add(cellBtn12);this.allCells.add(cellBtn13);this.allCells.add(cellBtn14);this.allCells.add(cellBtn15);
-		
+	private void addAllCellBtnsToCellBtnsList(){
+
         ActionListener cellChosenListener = new ActionListener(){
         	@Override
             public void actionPerformed(ActionEvent e) {
@@ -72,18 +60,42 @@ public class MultiGame extends JFrame {
                 }
                 MultiGame.this.messageLabel.setText("");
                 chosenBtn.setBackground(Color.RED);
-                MultiGame.this.chosenCells.add(chosenBtn);
+                
+                int indexOfThisBtnInAll = allCellBtns.indexOf(chosenBtn);
+                
+//                Update model chosen cells info for submission purpose.
+                model.getBoard().addToChosenCellsByCellIndex(indexOfThisBtnInAll);
+                
+//                Update GUI chosenCellBtns for display purpose (maintain this bks everything is local).
+                MultiGame.this.chosenCellBtns.add(chosenBtn);
+                
                 String lett = chosenBtn.getText();
-                String lettDisplay = obtainChosenLettDisplay(chosenCells);
+                String lettDisplay = obtainChosenLettDisplay(chosenCellBtns);
                 MultiGame.this.submission.setText(lettDisplay);                 
                 String previousScore = MultiGame.this.expectscore.getText();
                 Integer currentScore = CalculateLocalScore.calculateLetterScore(lett); 
                 Integer newScore = currentScore + Integer.parseInt(previousScore);
                 MultiGame.this.expectscore.setText(newScore.toString());           
             }
-        };       
-        for(JButton cellBtn : allCells){
+        }; 
+        
+		cellBtn0 = new JButton(); cellBtn1 = new JButton();
+		cellBtn2 = new JButton(); cellBtn3 = new JButton();
+		cellBtn4 = new JButton(); cellBtn5 = new JButton();
+		cellBtn6 = new JButton(); cellBtn7 = new JButton();
+		cellBtn8 = new JButton(); cellBtn9 = new JButton();
+		cellBtn10 = new JButton(); cellBtn11 = new JButton();
+		cellBtn12 = new JButton(); cellBtn13 = new JButton();
+		cellBtn14 = new JButton(); cellBtn15 = new JButton();
+		this.allCellBtns = new ArrayList<JButton>();
+		this.allCellBtns.add(cellBtn0);this.allCellBtns.add(cellBtn1);this.allCellBtns.add(cellBtn2);this.allCellBtns.add(cellBtn3);this.allCellBtns.add(cellBtn4);this.allCellBtns.add(cellBtn5);
+		this.allCellBtns.add(cellBtn6);this.allCellBtns.add(cellBtn7);this.allCellBtns.add(cellBtn8);this.allCellBtns.add(cellBtn9);this.allCellBtns.add(cellBtn10);this.allCellBtns.add(cellBtn11);
+		this.allCellBtns.add(cellBtn12);this.allCellBtns.add(cellBtn13);this.allCellBtns.add(cellBtn14);this.allCellBtns.add(cellBtn15);
+		
+        for(JButton cellBtn : allCellBtns){
         	cellBtn.addActionListener(cellChosenListener);
+        	cellBtn.setBackground(Color.WHITE);
+        	this.boardview.add(cellBtn);
         }
 	}
 	
@@ -108,12 +120,12 @@ public class MultiGame extends JFrame {
 	 * @return
 	 */
 	private boolean isCellValidateToChoose(JButton tempBtn){
-		if(this.chosenCells.size() == 0){
+		if(this.chosenCellBtns.size() == 0){
 			return true;
 		}		
-		int indexOfThisBtnInAll = this.allCells.indexOf(tempBtn);
-		JButton previousChosenButton = this.chosenCells.get(this.chosenCells.size() - 1);
-		int indexOfPreviousBtnInAll = this.allCells.indexOf(previousChosenButton);
+		int indexOfThisBtnInAll = this.allCellBtns.indexOf(tempBtn);
+		JButton previousChosenButton = this.chosenCellBtns.get(this.chosenCellBtns.size() - 1);
+		int indexOfPreviousBtnInAll = this.allCellBtns.indexOf(previousChosenButton);
 		if(isAdjacent(indexOfPreviousBtnInAll, indexOfThisBtnInAll) && !hasBeenChosen(tempBtn)){
 			return true;
 		}else{
@@ -128,7 +140,7 @@ public class MultiGame extends JFrame {
 	 * @return
 	 */
 	private boolean hasBeenChosen(JButton tempBtn){
-		for (JButton previous : this.chosenCells){
+		for (JButton previous : this.chosenCellBtns){
 			if(tempBtn.equals(previous)){
 				return true;
 			}
@@ -168,7 +180,7 @@ public class MultiGame extends JFrame {
 		return false;
 	}
 	
-	private void removeCellsColors(){
+	private void removeCellBtnsColors(){
 		for(int i=0 ; i<16 ; i++){
 			Component c = this.boardview.getComponent(i);
 			c.setBackground(Color.WHITE);
@@ -180,50 +192,46 @@ public class MultiGame extends JFrame {
 		MultiGame.this.messageLabel.setText("");
 		MultiGame.this.expectscore.setText("0");
 		MultiGame.this.submission.setText("");
-		MultiGame.this.chosenCells.removeAll(chosenCells);
-		removeCellsColors();
+		MultiGame.this.chosenCellBtns.removeAll(chosenCellBtns);
+		removeCellBtnsColors();
 	}
 	
 	private void refreshBoard(){
-		String cellsInfo = this.model.getBoard().generateRandomCellInfo();
-		char[] cellsInfoArray = cellsInfo.toCharArray();		
+		char[] LettersToBeAdd = this.model.getBoard().getBoardInfo().toCharArray();
 		for(int i=0;i<16;i++){			
-			Character lettToBeAddChar = (Character)cellsInfoArray[i];
-			String lettToBeAdd;
-			if(lettToBeAddChar.equals('Q')){
+			String lettToBeAdd = String.valueOf(LettersToBeAdd[i]);
+			if(lettToBeAdd.equals("Q")){
 				lettToBeAdd = "Qu";			
-			}else{
-				lettToBeAdd = lettToBeAddChar.toString();
 			}						
-			this.allCells.get(i).setText(lettToBeAdd);
+			this.allCellBtns.get(i).setText(lettToBeAdd);
 		}
-		removeCellsColors();
+		removeCellBtnsColors();
 		boardview.repaint();
 	}
-	
 		
-	private Integer calculateWordScoreFromLib(String word){
+	private Integer calculateWordScoreFromLocalLib(String word){
 		if(word.length() <= 1){
 			messageLabel.setText("Choose at least 2 letters");
 			return 0;
 		}				
-		Integer wordLength = chosenCells.size();
+		Integer wordLength = chosenCellBtns.size();
 		return CalculateLocalScore.calculateWordScore(word, wordLength);		
 	}
 	
 	private void submitPerformed(){
 		String word = submission.getText();
-		Integer expectedWordScore = calculateWordScoreFromLib(word);
-		if(expectedWordScore==0){
-			clearAllChosen();
-			messageLabel.setText("Oh, No! Choose again !");
-			return;
-		}
+		String wordFromModelChosenCells = model.getBoard().getChosenCellsLetters();
+		System.out.println(word + ":" + wordFromModelChosenCells);
+		Integer expectedWordScore = calculateWordScoreFromLocalLib(word);
+//		if(expectedWordScore==0){
+//			clearAllChosen();
+//			messageLabel.setText("Oh, No! Choose again !");
+//			return;
+//		}
 		Integer currentScore = Integer.parseInt(myscore.getText());
 		Integer newScore = (Integer)(expectedWordScore+currentScore);
 		myscore.setText(newScore.toString());
-		model.getBoard().updateBoard();
-		chosenCells.removeAll(chosenCells);
+		chosenCellBtns.removeAll(chosenCellBtns);
 		submission.setText("");
 		expectscore.setText("0");
 		refreshBoard();
@@ -237,6 +245,7 @@ public class MultiGame extends JFrame {
 		setTitle("wordsweeper MultiGame");		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
+		setAlwaysOnTop(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -249,37 +258,24 @@ public class MultiGame extends JFrame {
 		
 		JButton btnUp = new JButton("^");
 		btnUp.setBounds(130, 5, 100, 40);
-		btnUp.setEnabled(false);
+		btnUp.setEnabled(true);
 		leftPanel.add(btnUp);
 		
 		JButton btnLeft = new JButton("<");
 		btnLeft.setBounds(10, 110, 45, 100);
-		btnLeft.setEnabled(false);
+		btnLeft.setEnabled(true);
 		leftPanel.add(btnLeft);
 		
 		JButton btnRight = new JButton(">");
 		btnRight.setBounds(320, 110, 45, 100);
-		btnRight.setEnabled(false);
+		btnRight.setEnabled(true);
 		leftPanel.add(btnRight);
 		
 		JButton btnDown = new JButton("v");
 		btnDown.setBounds(130, 285, 100, 40);
-		btnDown.setEnabled(false);
+		btnDown.setEnabled(true);
 		leftPanel.add(btnDown);
-		
-		JButton btnRefresh = new JButton("Refresh");
-		btnRefresh.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				MultiGame.this.clearAllChosen();
-				MultiGame.this.refreshBoard();		
-			}		
-		});
-		
-		btnRefresh.setBounds(250, 290, 100, 30);
-		btnRefresh.setEnabled(true);
-		leftPanel.add(btnRefresh);
-			
+
 		boardview = new JPanel();
 		boardview.setBackground(Color.WHITE);
 		boardview.setBorder(new LineBorder(Color.WHITE));
@@ -287,13 +283,8 @@ public class MultiGame extends JFrame {
 		leftPanel.add(boardview);
 		boardview.setLayout(new GridLayout(4, 4, 0, 0));
 		
-		chosenCells = new ArrayList<JButton>();
-		addAllCellsToList();
-		for(int i=0; i<16; i++){
-			allCells.get(i).setBackground(Color.WHITE);
-			this.boardview.add(allCells.get(i));
-		}
-		
+		chosenCellBtns = new ArrayList<JButton>();
+		addAllCellBtnsToCellBtnsList();	
 		refreshBoard();
 		
 		messageLabel = new JLabel();
@@ -363,7 +354,8 @@ public class MultiGame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MultiGame.this.setVisible(false);
-				app.setVisible(true);	
+//				app.setVisible(true);	
+				app.enableInputs();
 			}
 		});
 		quit.setForeground(Color.BLUE);

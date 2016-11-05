@@ -45,8 +45,7 @@ public class Practice extends JFrame {
 		this.app = app;
 		initiate();
 	}
-	
-	
+		
 	private void addAllCellsToList(){
 		cellBtn0 = new JButton(); cellBtn1 = new JButton();
 		cellBtn2 = new JButton(); cellBtn3 = new JButton();
@@ -185,7 +184,7 @@ public class Practice extends JFrame {
 	}
 	
 	private void refreshBoard(){
-		String cellsInfo = this.model.getBoard().generateRandomCellInfo();
+		String cellsInfo = this.model.startPracticeGame().generateRandomCellInfo();
 		char[] cellsInfoArray = cellsInfo.toCharArray();		
 		for(int i=0;i<16;i++){			
 			Character lettToBeAddChar = (Character)cellsInfoArray[i];
@@ -222,7 +221,6 @@ public class Practice extends JFrame {
 		Integer currentScore = Integer.parseInt(myscore.getText());
 		Integer newScore = (Integer)(expectedWordScore+currentScore);
 		myscore.setText(newScore.toString());
-		model.getBoard().updateBoard();
 		chosenCells.removeAll(chosenCells);
 		submission.setText("");
 		expectscore.setText("0");

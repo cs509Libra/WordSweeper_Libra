@@ -1,9 +1,9 @@
-package client.controller;
+package client.controller.requestController;
 
 
-import xml.Message;
 import client.model.Model;
 import client.view.Application;
+import xml.Message;
 
 public class CreateGameController {
 
@@ -17,10 +17,15 @@ public class CreateGameController {
 
 	/** Make the request on the server and wait for response. */
 	public void process() {
-		// send the request to create the game.
-		String xmlString = Message.requestHeader() + "<createGameRequest name='"+ this.app.getPlayerName() +"'/></request>";
+		
+		String xmlString;
+		if(this.app.getPassword() == null){
+			xmlString = Message.requestHeader() + String.format("<createGameRequest name='%s'/></request>", this.app.getPlayerName());		
+		}else{
+			xmlString = Message.requestHeader() + String.format("<createGameRequest name='%s' password='%s'/></request>", this.app.getPlayerName(), this.app.getPassword());
+		}
+		
 		Message m = new Message (xmlString);
-
 		// Request the lock (this might not succeed).
 		app.getRequestArea().append(m.toString());
 		app.getRequestArea().append("\n");

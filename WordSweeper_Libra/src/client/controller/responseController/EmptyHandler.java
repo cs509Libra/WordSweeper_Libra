@@ -1,4 +1,4 @@
-package client.controller;
+package client.controller.responseController;
 
 import xml.Message;
 
