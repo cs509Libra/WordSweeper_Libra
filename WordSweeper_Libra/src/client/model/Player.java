@@ -34,6 +34,8 @@ public class Player {
 		this.isManager = true;
 	}
 	
-	
+	public void resetPlayerScore(){
+		this.score = 0;
+	}
 
 }

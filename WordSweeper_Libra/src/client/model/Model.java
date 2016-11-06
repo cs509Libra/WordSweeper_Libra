@@ -29,6 +29,8 @@ public class Model {
 			this.player.setAsManager();
 		}
 		this.board.updateBoard(newStartingCol, newStaringRow, boardInfo);
+		this.board.setRequestColChange(0);
+		this.board.setRequestRowChange(0);
 	}
 
 	public Game getGame() {
@@ -55,5 +57,8 @@ public class Model {
 		this.player = player;
 	}
 	
-	
+	public void resetGame(){
+		this.getPlayer().resetPlayerScore();
+		this.getBoard().empltyChosenCells();
+	}
 }

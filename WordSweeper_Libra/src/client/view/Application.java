@@ -2,10 +2,12 @@ package client.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -15,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import client.ServerAccess;
+import client.controller.MGMouseListener;
 import client.controller.requestController.CreateGameController;
 import client.controller.requestController.JoinGameController;
 import client.model.Model;
@@ -39,10 +42,15 @@ public class Application extends JFrame {
 	JTextField playerNameField;
 	JPasswordField passWordField;
 	
+	MultiGame mg;
 	
 	String playerName;
 	String password;
 	String gameNumber;
+	
+	public MultiGame getMultiGame(){
+		return mg;
+	}
 	
 	public String getPassword() {
 		return password;
@@ -133,35 +141,65 @@ public class Application extends JFrame {
 		contentPane.add(btnPractice);
 		
 		btnCreateGame = new JButton("Create Game");
-		btnCreateGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Application.this.playerName = playerNameField.getText();
-				if(playerName.length() != 0){	
+		btnCreateGame.addMouseListener(new MGMouseListener(){
+			public boolean notHasPlayerName(){
+				playerName = playerNameField.getText();
+				if(playerName.length() == 0){
+					JOptionPane.showMessageDialog(Application.this, "playerName can not be empty", "Warning", JOptionPane.WARNING_MESSAGE);
+					playerNameField.requestFocus();
+					return true;
+				}
+				return false;
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {			
+				if(!notHasPlayerName()){					
 					new CreateGameController(Application.this, model).process();
-					MultiGame mg = new MultiGame(model, Application.this);
-					mg.setVisible(true);
-//					Application.this.setVisible(false);
 					Application.this.disableInputs();
-
+				}
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				if(!notHasPlayerName()){		
+					mg = new MultiGame(model, Application.this);
+					mg.setVisible(true);
 				}
 			}
 		});
+
 		btnCreateGame.setBounds(195, 250, 120, 40);
 		contentPane.add(btnCreateGame);
 		
 		btnJoinGame = new JButton("Join Game");
-		btnJoinGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Application.this.playerName = playerNameField.getText();
-				Application.this.gameNumber = gameNumberField.getText();
-				if(playerName.length()!=0 && gameNumber.length()!=0){  
-					MultiGame mg = new MultiGame(model, Application.this);
-					mg.setVisible(true);
+		btnJoinGame.addMouseListener(new MGMouseListener(){
+			public boolean notHasPlayerNameAndGameId(){			
+				gameNumber = gameNumberField.getText();
+				playerName = playerNameField.getText();
+				if(gameNumber.length() == 0){
+					JOptionPane.showMessageDialog(Application.this, "gameID can not be empty", "Warning", JOptionPane.WARNING_MESSAGE);
+					gameNumberField.requestFocus();
+					return true;
+				}else if(playerName.length() == 0){
+					JOptionPane.showMessageDialog(Application.this, "playerName can not be empty", "Warning", JOptionPane.WARNING_MESSAGE);
+					playerNameField.requestFocus();
+					return true;
+				}
+				return false;
+			}			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if(!notHasPlayerNameAndGameId()){				
 					new JoinGameController(Application.this, model).process();
-//					Application.this.setVisible(false);
 					Application.this.disableInputs();
-				}	
+				}
 			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				if(!notHasPlayerNameAndGameId()){
+					mg = new MultiGame(model, Application.this);
+					mg.setVisible(true);
+				}
+			}			
 		});
 		
 		btnJoinGame.setBounds(320, 250, 120, 40);

@@ -30,5 +30,6 @@ public class CreateGameController {
 		app.getRequestArea().append(m.toString());
 		app.getRequestArea().append("\n");
 		app.getServerAccess().sendRequest(m);
+
 	}
 }

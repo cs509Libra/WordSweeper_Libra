@@ -1,12 +1,15 @@
 package client.controller.responseController;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import xml.Message;
 import client.model.Model;
 import client.view.Application;
+import xml.Message;
 
 /**
  * Tells the client whether the model is locked or not BY SOME OTHER CLIENT. This will never be returned to a client
@@ -34,12 +37,20 @@ public class BoardResponseController extends ControllerChain {
 		NamedNodeMap map = boardResponse.getAttributes();
 		
 		String gameId = map.getNamedItem("gameId").getNodeValue();
+		String managingUser = map.getNamedItem("managingUser").getNodeValue();
 		app.getResponseArea().append("Board Message received for game:" + gameId + "\n");
 		app.getResponseArea().append("Players:\n");
 		NodeList list = boardResponse.getChildNodes();
+		
+		
+		Map<String, Integer> allPlayersInfo = new HashMap<>();
+		
 		for (int i = 0; i < list.getLength(); i++) {
 			Node n = list.item(i);
 			String pname = n.getAttributes().getNamedItem("name").getNodeValue();
+			String pscore = n.getAttributes().getNamedItem("score").getNodeValue();
+			allPlayersInfo.put(pname, Integer.valueOf(pscore));
+//			+= (String.format("  %s\t", String.valueOf(i+1)) + pname + "\t   " + pscore + "\n");			
 			app.getResponseArea().append("  " + pname  + "\n");
 		}
 		
@@ -47,7 +58,7 @@ public class BoardResponseController extends ControllerChain {
 		app.getResponseArea().append(response.toString());
 		app.getResponseArea().append("\n");
 		
-		// initateGame
+		// obtain information from xml and update the corresponding model information
 		Node player = boardResponse.getFirstChild();
 		NamedNodeMap playerMap = player.getAttributes();
 		String playerName = playerMap.getNamedItem("name").getNodeValue();
@@ -58,8 +69,8 @@ public class BoardResponseController extends ControllerChain {
 		Integer globalStaringRow = Integer.valueOf(String.valueOf(corRowArray[corRowArray.length - 1]));
 		Long score = Long.valueOf(playerMap.getNamedItem("score").getNodeValue());
 
-		app.model.updateInfo(gameId, "", playerName, (int)globalStartingCol, (int)globalStaringRow, boardInfo, score);
-		
+		app.model.updateInfo(gameId, managingUser, playerName, (int)globalStartingCol, (int)globalStaringRow, boardInfo, score);
+		model.getGame().setPlayersInfoMap(allPlayersInfo);
 		return true;
 	}
 

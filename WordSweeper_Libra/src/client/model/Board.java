@@ -10,6 +10,8 @@ public class Board {
 		private ArrayList<Cell> chosenCells;
 		private int globalStartingCol;
 		private int globalStartingRow;
+		private Integer requestColChange;
+		private Integer	requestRowChange;
 		private Word word;
 		private Integer chosenLettersScore;
 		
@@ -18,6 +20,8 @@ public class Board {
 			chosenCells = new ArrayList<Cell>();
 			globalStartingCol = 0;
 			globalStartingRow = 0;
+			requestColChange = 0;
+			requestRowChange = 0;
 			word = new Word();
 			chosenLettersScore = 0;
 			for(int i = 0; i < 4 ; i++){
@@ -93,7 +97,33 @@ public class Board {
 			}
 			return this.chosenLettersScore;
 		}
+
+		public Integer getRequestColChange() {
+			return requestColChange;
+		}
+
+		public void setRequestColChange(Integer requestColChange) {
+			this.requestColChange = requestColChange;
+		}
+
+		public Integer getRequestRowChange() {
+			return requestRowChange;
+		}
+
+		public void setRequestRowChange(Integer requestRowChange) {
+			this.requestRowChange = requestRowChange;
+		}
 		
-		
-		
+		public void empltyChosenCells(){
+			this.chosenCells.removeAll(chosenCells);
+		}
+
+		public int getGlobalStartingCol() {
+			return globalStartingCol;
+		}
+
+		public int getGlobalStartingRow() {
+			return globalStartingRow;
+		}
+	
 }

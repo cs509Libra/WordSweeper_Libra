@@ -5,6 +5,8 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 import client.controller.responseController.BoardResponseController;
 import client.controller.responseController.ConnectResponseController;
 import client.controller.responseController.JoinGameResponseController;
+import client.controller.responseController.LockGameResponseController;
+import client.controller.responseController.ResetGameResponseController;
 import client.controller.responseController.SampleClientMessageHandler;
 import client.model.Model;
 import client.view.Application;
@@ -45,6 +47,9 @@ public class ClientLauncher {
 		handler.registerHandler(new BoardResponseController(app, model));
 		handler.registerHandler(new JoinGameResponseController(app, model));
 		handler.registerHandler(new ConnectResponseController(app, model));
+		handler.registerHandler(new ResetGameResponseController(app, model));
+		handler.registerHandler(new LockGameResponseController(app, model));
+
 			
 		// try to connect to the server. Once connected, messages are going to be processed by 
 		// SampleClientMessageHandler. For now we just continue on with the initialization because

@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -19,6 +20,10 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import client.controller.MGMouseListener;
+import client.controller.requestController.LockGameController;
+import client.controller.requestController.RepositionBoardController;
+import client.controller.requestController.ResetGameController;
 import client.model.Model;
 import util.CalculateLocalScore;
 
@@ -31,7 +36,16 @@ public class MultiGame extends JFrame {
 	private JPanel boardview;
 	private JPanel leftPanel;	
 	private JScrollPane jScrollPane1;	
-	private JTextArea playersListArea;	
+	private JTextArea playersListArea;
+	
+	JLabel gameIdLabel;
+	JLabel managerName;
+	JLabel gameLockResetLabel;
+	JButton lockBtn;
+	JButton resetBtn;
+
+	
+	
 	private Model model;
 	private Application app;
 	private ArrayList<JButton> chosenCellBtns;
@@ -46,6 +60,9 @@ public class MultiGame extends JFrame {
 		initiate();
 	}
 	
+	public Model getMultiGameModel(){
+		return this.model;
+	}
 	
 	private void addAllCellBtnsToCellBtnsList(){
 
@@ -236,6 +253,19 @@ public class MultiGame extends JFrame {
 		expectscore.setText("0");
 		refreshBoard();
 	}
+	
+	public void updateGameInfoBoard(){
+		gameIdLabel.setText(model.getGame().getGameID());
+		myscore.setText(String.valueOf(model.getPlayer().getScore()));
+		playersListArea.setText(model.getGame().getPlayersListByName());
+		managerName.setText(model.getGame().getManagingUser());
+		lockBtn.setEnabled(model.getPlayer().isManager());
+		resetBtn.setEnabled(model.getPlayer().isManager());
+		if(model.getGame().isLocked()){
+			gameLockResetLabel.setText("Game has been Locked!");
+			lockBtn.setEnabled(false);
+		}
+	}
 
 	/**
 	 * Initiate the GUI.
@@ -257,21 +287,98 @@ public class MultiGame extends JFrame {
 		leftPanel.setLayout(null);
 		
 		JButton btnUp = new JButton("^");
+		btnUp.addMouseListener(new MGMouseListener(){
+			int previousRow;
+			int newRow;
+			@Override
+			public void mousePressed(MouseEvent e) {
+				messageLabel.setText("");
+				previousRow = model.getBoard().getGlobalStartingRow();
+				model.getBoard().setRequestRowChange(-1);
+				new RepositionBoardController(app, model).process();			
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				refreshBoard();
+				newRow = model.getBoard().getGlobalStartingRow();
+				if(previousRow == newRow){
+					messageLabel.setText("No More Up!");
+				}
+			}
+		});
+
 		btnUp.setBounds(130, 5, 100, 40);
 		btnUp.setEnabled(true);
 		leftPanel.add(btnUp);
 		
 		JButton btnLeft = new JButton("<");
+		btnLeft.addMouseListener(new MGMouseListener(){
+			int previousCol;
+			int newCol;
+			@Override
+			public void mousePressed(MouseEvent e) {
+				messageLabel.setText("");
+				previousCol = model.getBoard().getGlobalStartingCol();
+				model.getBoard().setRequestColChange(-1);
+				new RepositionBoardController(app, model).process();			
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				refreshBoard();
+				newCol = model.getBoard().getGlobalStartingCol();
+				if(previousCol == newCol){
+					messageLabel.setText("No More Left!");
+				}
+			}
+		});
 		btnLeft.setBounds(10, 110, 45, 100);
 		btnLeft.setEnabled(true);
 		leftPanel.add(btnLeft);
 		
 		JButton btnRight = new JButton(">");
+		btnRight.addMouseListener(new MGMouseListener(){
+			int previousCol;
+			int newCol;
+			@Override
+			public void mousePressed(MouseEvent e) {
+				messageLabel.setText("");
+				previousCol = model.getBoard().getGlobalStartingCol();
+				model.getBoard().setRequestColChange(1);
+				new RepositionBoardController(app, model).process();			
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				refreshBoard();	
+				newCol = model.getBoard().getGlobalStartingCol();
+				if(previousCol == newCol){
+					messageLabel.setText("No More Right!");
+				}
+			}
+		});
 		btnRight.setBounds(320, 110, 45, 100);
 		btnRight.setEnabled(true);
 		leftPanel.add(btnRight);
 		
 		JButton btnDown = new JButton("v");
+		btnDown.addMouseListener(new MGMouseListener(){
+			int previousRow;
+			int newRow;
+			@Override
+			public void mousePressed(MouseEvent e) {
+				messageLabel.setText("");
+				previousRow = model.getBoard().getGlobalStartingRow();
+				model.getBoard().setRequestRowChange(1);
+				new RepositionBoardController(app, model).process();			
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				refreshBoard();	
+				newRow = model.getBoard().getGlobalStartingRow();
+				if(previousRow == newRow){
+					messageLabel.setText("No More Down!");
+				}
+			}
+		});
 		btnDown.setBounds(130, 285, 100, 40);
 		btnDown.setEnabled(true);
 		leftPanel.add(btnDown);
@@ -332,6 +439,9 @@ public class MultiGame extends JFrame {
 		submit.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(!model.getGame().isLocked()){
+					gameLockResetLabel.setText("");
+				}
 				MultiGame.this.submitPerformed();
 			}	
 		});
@@ -349,11 +459,26 @@ public class MultiGame extends JFrame {
 		rightPanel.setLayout(null);
 		contentPane.add(rightPanel);
 		
+		gameLockResetLabel = new JLabel("");
+		gameLockResetLabel.setForeground(Color.RED);
+		gameLockResetLabel.setFont(new Font("����", Font.BOLD, 12));
+		gameLockResetLabel.setBounds(10, 20, 200, 30);
+		rightPanel.add(gameLockResetLabel);
+		
+		JLabel gameIdTitle = new JLabel("Game ID:");
+		gameIdTitle.setBounds(10, 50, 65, 28);
+		rightPanel.add(gameIdTitle);
+		
+		gameIdLabel = new JLabel("");
+		gameIdLabel.setBounds(80, 50, 65, 28);
+		rightPanel.add(gameIdLabel);
+		
+		
 		JButton quit = new JButton("Quit");
 		quit.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MultiGame.this.setVisible(false);
+				MultiGame.this.dispose();
 //				app.setVisible(true);	
 				app.enableInputs();
 			}
@@ -361,24 +486,23 @@ public class MultiGame extends JFrame {
 		quit.setForeground(Color.BLUE);
 		quit.setFont(new Font("����", Font.BOLD, 12));
 		quit.setSize(getPreferredSize());
-		quit.setBounds(100, 20, 100, 25);
+		quit.setBounds(190, 20, 100, 25);
 		rightPanel.add(quit);
 		
 		JLabel myScoreLabel = new JLabel("My Score:");
-		myScoreLabel.setBounds(10, 60, 65, 28);
+		myScoreLabel.setBounds(10, 75, 65, 28);
 		rightPanel.add(myScoreLabel);
 		
-		this.myscore = new JLabel("0");
-		this.myscore.setEnabled(false);
-		this.myscore.setBounds(100, 65, 120, 21);
-		this.myscore.setFont(new Font("����", Font.BOLD, 14));;
-		rightPanel.add(this.myscore);
+		myscore = new JLabel("0");
+		myscore.setBounds(80, 78, 120, 21);
+		myscore.setFont(new Font("����", Font.BOLD, 14));;
+		rightPanel.add(myscore);
 		
 		JLabel playerListLabel = new JLabel("Players List: ");
 		playerListLabel.setBounds(10, 100, 120, 28);
 		rightPanel.add(playerListLabel);
 		
-		playersListArea = new JTextArea();
+		playersListArea = new JTextArea("");
 		playersListArea.setForeground(new Color(245, 0, 0));
 		playersListArea.setColumns(20);
 		playersListArea.setRows(10);
@@ -398,25 +522,47 @@ public class MultiGame extends JFrame {
 		managerNameLabel.setBounds(10, 10, 120, 15);
 		managerPower.add(managerNameLabel);
 		
-		JLabel managerName = new JLabel();
+		managerName = new JLabel();
 		managerName.setText("You");
 		managerName.setBounds(130, 10, 100, 15);
 		managerPower.add(managerName);
 
-		JButton lock = new JButton("Lock game");
-		lock.setEnabled(false);
-		lock.setBackground(Color.WHITE);
-		lock.setForeground(Color.GREEN);
-		lock.setFont(new Font("����", Font.BOLD, 12));
-		lock.setBounds(80, 40, 110, 30);
-		managerPower.add(lock);
+		lockBtn = new JButton("Lock game");
+		lockBtn.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				gameLockResetLabel.setText("Game has been Locked!");
+				new LockGameController(app, model).process();
+			}			
+		});
+
+		lockBtn.setEnabled(false);
+		lockBtn.setBackground(Color.WHITE);
+		lockBtn.setForeground(Color.BLUE);
+		lockBtn.setFont(new Font("����", Font.BOLD, 12));
+		lockBtn.setBounds(80, 40, 110, 30);
+		managerPower.add(lockBtn);
 		
-		JButton reset = new JButton("Reset game");
-		reset.setEnabled(false);
-		reset.setForeground(Color.GREEN);
-		reset.setBackground(Color.WHITE);
-		reset.setFont(new Font("����", Font.BOLD, 12));
-		reset.setBounds(80, 70, 110, 30);
-		managerPower.add(reset);
+		
+		// resetGame button has some problems.
+		resetBtn = new JButton("Reset game");
+		resetBtn.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				gameLockResetLabel.setText("Game has been RESET!");
+				new ResetGameController(app, model).process();
+				updateGameInfoBoard();
+			}			
+		});
+
+		resetBtn.setEnabled(false);
+		resetBtn.setForeground(Color.BLUE);
+		resetBtn.setBackground(Color.WHITE);
+		resetBtn.setFont(new Font("����", Font.BOLD, 12));
+		resetBtn.setBounds(80, 70, 110, 30);
+		managerPower.add(resetBtn);
+		
+		updateGameInfoBoard();
 	}
+
 }

@@ -1,7 +1,8 @@
 package client.controller.responseController;
-import xml.Message;
 import client.IMessageHandler;
 import client.view.Application;
+import client.view.MultiGame;
+import xml.Message;
 
 /**
  * Sample implementation of a protocol handler to respond to messages received from the server.
@@ -27,7 +28,6 @@ public class SampleClientMessageHandler implements IMessageHandler {
 	public SampleClientMessageHandler(Application app) {
 		this.app = app;
 	}
-	
 	
 	@Override
 	public void process(Message response) {
