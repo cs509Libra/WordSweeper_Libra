@@ -4,6 +4,7 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 
 import client.controller.responseController.BoardResponseController;
 import client.controller.responseController.ConnectResponseController;
+import client.controller.responseController.FindWordResponseController;
 import client.controller.responseController.JoinGameResponseController;
 import client.controller.responseController.LockGameResponseController;
 import client.controller.responseController.ResetGameResponseController;
@@ -49,6 +50,8 @@ public class ClientLauncher {
 		handler.registerHandler(new ConnectResponseController(app, model));
 		handler.registerHandler(new ResetGameResponseController(app, model));
 		handler.registerHandler(new LockGameResponseController(app, model));
+		handler.registerHandler(new FindWordResponseController(app, model));
+
 
 			
 		// try to connect to the server. Once connected, messages are going to be processed by 

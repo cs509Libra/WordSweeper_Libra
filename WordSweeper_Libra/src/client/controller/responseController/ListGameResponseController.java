@@ -21,9 +21,7 @@ public class ListGameResponseController extends ControllerChain {
 		if (!type.equals ("listGameResponse")) {
 			return next.process(response);
 		}
-		
-		
-		
+
 		return true;
 	}
 

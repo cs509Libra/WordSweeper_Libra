@@ -42,6 +42,8 @@ public class SampleProtocolHandler implements IShutdownHandler {
 			return new ResetGameRequestController(model).process(st, request);
 		} else if(type.equals("lockGameRequest")){
 			return new LockGameRequestController(model).process(st, request);
+		} else if(type.equals("findWordRequest")){
+			return new FindWordRequestController(model).process(st, request);
 		}
 		
 		// unknown? no idea what to do

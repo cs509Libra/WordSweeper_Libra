@@ -32,7 +32,7 @@ public class RepositionBoardRequestController implements IProtocolHandler {
 		if(rowChange == -1 && colChange == 0){
 			xmlString = Message.responseHeader(request.id()) +
 					"<boardResponse gameId='hg12jhd' managingUser='" + pname + "' bonus='4,3' contents='ABCGBCJDH...HDJHJD'>" +
-				      "<player name='" + pname + "' score='392489038' position='4,4' board='REPOSITIONMVUPUP'/>" +
+				      "<player name='" + pname + "' score='392489038' position='4,4' board='REPOSITIONMVUPQQ'/>" +
 				  "</boardResponse>" +
 				"</response>";
 		}else if(rowChange == 1 && colChange == 0){
@@ -50,7 +50,7 @@ public class RepositionBoardRequestController implements IProtocolHandler {
 		}else if(colChange == 1 && rowChange == 0){
 			xmlString = Message.responseHeader(request.id()) +
 					"<boardResponse gameId='hg12jhd' managingUser='" + pname + "' bonus='4,3' contents='ABCGBCJDH...HDJHJD'>" +
-				      "<player name='" + pname + "' score='392489038' position='5,5' board='REPOSITIONMVRITE'/>" +
+				      "<player name='" + pname + "' score='392489038' position='5,5' board='REPOSITIONMVQRIT'/>" +
 				  "</boardResponse>" +
 				"</response>";
 		}else{

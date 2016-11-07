@@ -58,7 +58,7 @@ public class Game {
 		String allPlayersList = "";
 		int i = 1;
 		for(Map.Entry<String, Integer> playerInfoSet : playersInfoMap.entrySet()){
-			allPlayersList += (String.format("  %s\t", String.valueOf(i++)) + playerInfoSet.getKey() + "\t" + playerInfoSet.getValue().toString() + "\n");
+			allPlayersList += (String.format("  %s\t", String.valueOf(i++)) + playerInfoSet.getKey() + "\t  " + playerInfoSet.getValue().toString() + "\n");
 		}
 		System.out.println(allPlayersList);
 		return allPlayersList;
@@ -77,7 +77,7 @@ public class Game {
 	    
 	    for(int i = 0; i < allPlayersListSortedByScore.size(); i++){
 	    	allPlayersInfoSortedByScore += (String.format("  %s\t", String.valueOf(i+1)) + 
-	    			allPlayersListSortedByScore.get(i).getKey() + "\t" + 
+	    			allPlayersListSortedByScore.get(i).getKey() + "\t  " + 
 	    			allPlayersListSortedByScore.get(i).getValue().toString() + "\n");
 	    }
 		
@@ -97,7 +97,7 @@ public class Game {
 	    
 	    for(int i = 0; i < allPlayersListSortedByScore.size(); i++){
 	    	allPlayersInfoSortedByName += (String.format("  %s\t", String.valueOf(i+1)) + 
-	    			allPlayersListSortedByScore.get(i).getKey() + "\t" + 
+	    			allPlayersListSortedByScore.get(i).getKey() + "\t  " + 
 	    			allPlayersListSortedByScore.get(i).getValue().toString() + "\n");
 	    }
 		

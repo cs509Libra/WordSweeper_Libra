@@ -49,8 +49,7 @@ public class BoardResponseController extends ControllerChain {
 			Node n = list.item(i);
 			String pname = n.getAttributes().getNamedItem("name").getNodeValue();
 			String pscore = n.getAttributes().getNamedItem("score").getNodeValue();
-			allPlayersInfo.put(pname, Integer.valueOf(pscore));
-//			+= (String.format("  %s\t", String.valueOf(i+1)) + pname + "\t   " + pscore + "\n");			
+			allPlayersInfo.put(pname, Integer.valueOf(pscore));			
 			app.getResponseArea().append("  " + pname  + "\n");
 		}
 		
@@ -69,7 +68,7 @@ public class BoardResponseController extends ControllerChain {
 		Integer globalStaringRow = Integer.valueOf(String.valueOf(corRowArray[corRowArray.length - 1]));
 		Long score = Long.valueOf(playerMap.getNamedItem("score").getNodeValue());
 
-		app.model.updateInfo(gameId, managingUser, playerName, (int)globalStartingCol, (int)globalStaringRow, boardInfo, score);
+		model.updateInfo(gameId, managingUser, playerName, (int)globalStartingCol, (int)globalStaringRow, boardInfo, score);
 		model.getGame().setPlayersInfoMap(allPlayersInfo);
 		return true;
 	}

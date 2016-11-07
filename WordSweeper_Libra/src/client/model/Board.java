@@ -61,34 +61,51 @@ public class Board {
 			}
 			return allCellLetters;
 		}
+		
+		/**
+		 * Provide 16 letters String to view
+		 * @return
+		 */
 
-		public String getChosenCellsLetters(){
-			String chosenLetters = "";
-			for(Cell cell : cells){
-				if(cell.isChosen()){
-					chosenLetters += cell.getLetter();
-				}
-			}
-			return chosenLetters;
-		}
 		
 		public ArrayList<Cell> getCells(){
 			return cells;
 		}
-		
-		public Cell getCellByIndex(int index){
-			return cells.get(index);
+
+		public String getChosenCellsXMLString(){
+			String chosenCellsString = "";
+			for(Cell cell : chosenCells){
+				chosenCellsString += String.format("<cell position='%s,%s' letter='%s'/>", 
+														String.valueOf(cell.getGlobalCol()), 
+														String.valueOf(cell.getGlobalRow()), 
+														cell.getLetter());			
+			}		
+			return chosenCellsString;
 		}
-		
-		public Word getWord(){
-			this.word = new Word();
-			this.word.setContent(getChosenCellsLetters());
-			this.word.setlocalExpectedScore(CalculateLocalScore.calculateWordScore(getChosenCellsLetters(), this.chosenCells.size()));
-			return word;
+	
+		public Word getWord(){			
+			return this.word;
 		}
 
-		public void addToChosenCellsByCellIndex(int index){		
-			this.chosenCells.add(getCellByIndex(index));
+		public void addToChosenCellsByCellIndex(int index){
+			cells.get(index).setAsChosen();
+			chosenCells.add(cells.get(index));
+			word.setContent(getChosenCellsLetters());
+			word.setlocalExpectedScore(CalculateLocalScore.calculateWordScore(getChosenCellsLetters(), this.chosenCells.size()));
+			System.out.println("word: "+word.getContent() + chosenCells.size());
+			
+		}
+		
+		public String getChosenCellsLetters(){
+			String chosenLetters = "";
+			for(Cell cell : chosenCells){
+				if(cell.getLetter().equals("Q")){
+					chosenLetters += "Qu";
+				}else{
+					chosenLetters += cell.getLetter(); 
+				}
+			}
+			return chosenLetters;
 		}
 
 		public Integer getChosenLettersScore(){
@@ -98,6 +115,17 @@ public class Board {
 			return this.chosenLettersScore;
 		}
 
+		
+		public void clearChosenCells(){
+			for(Cell cell : this.chosenCells){
+				cell.setAsUnchosen();
+			}
+			chosenCells.removeAll(chosenCells);
+		}
+		
+		
+		
+		
 		public Integer getRequestColChange() {
 			return requestColChange;
 		}

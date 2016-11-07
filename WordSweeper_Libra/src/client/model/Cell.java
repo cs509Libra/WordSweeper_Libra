@@ -75,5 +75,8 @@ public class Cell {
 	public boolean isChosen(){
 		return this.isChosen;
 	}
-
+	
+	public void setAsUnchosen(){
+		this.isChosen = false;
+	}
 }
