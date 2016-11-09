@@ -47,10 +47,9 @@ public class Board {
 		}
 
 		private void updateBoardByAllLetters(String cellsLetters){
-			char[] cellInfoList = cellsLetters.toCharArray();
+			String[] cellInforList = cellsLetters.split(",");
 			for(int i = 0; i < 16; i++){
-				Character toBeAdd = (Character)(cellInfoList[i]);
-				this.cells.get(i).setLetter(toBeAdd.toString());
+				this.cells.get(i).setLetter(cellInforList[i]);
 			}
 		}
 	

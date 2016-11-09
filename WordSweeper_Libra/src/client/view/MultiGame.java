@@ -17,12 +17,12 @@ public class MultiGame extends JFrame {
 	
 	public MultiGame (Model model, Application app) {
 		this.model = model;
-		this.app = app;
+		this.app = app;	
 		initiate();
+		
 	}
 	
-	private void initiate(){
-		
+	private void initiate(){		
 		setTitle("Wordsweeper");		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
@@ -33,7 +33,7 @@ public class MultiGame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		rightGameInfoPanel = new RightGameInfoBoard(model, app);		
+		rightGameInfoPanel = new RightGameInfoBoard(model, app);
 		contentPane.add(rightGameInfoPanel);	
 		
 		leftBoardPanel = new LeftBoardPanel(model, app, rightGameInfoPanel);

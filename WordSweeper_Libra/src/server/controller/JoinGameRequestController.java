@@ -24,7 +24,7 @@ public class JoinGameRequestController implements IProtocolHandler {
 		
 		String otherPlayers = "";
 		for (int i = 0; i < model.getNumPlayers(); i++) {
-			otherPlayers += "<player name='player" + i + "' score='38974' position='2,2' board='ECDRFTGOUIGERPRT'/>";
+			otherPlayers += "<player name='player" + i + "' score='38974' position='2,2' board='E,C,D,R,F,T,G,O,U,I,G,E,R,P,R,T'/>";
 		}
 		
 		// Construct message reflecting state

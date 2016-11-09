@@ -164,28 +164,26 @@ public class RightGameInfoBoard extends JPanel {
 		if(model.getPlayer().isManager()){
 			lockBtn.setEnabled(true);
 			resetBtn.setEnabled(true);
-			resetBtn.addMouseListener(new MGMouseListener(){
+			resetBtn.addActionListener(new ActionListener(){
 				@Override
-				public void mousePressed(MouseEvent e) {
+				public void actionPerformed(ActionEvent e) {
 					gameLockResetLabel.setText("Game has been RESET!");
-					new ResetGameController(app, model).process();		
-				}
-				@Override
-				public void mouseReleased(MouseEvent e) {
+					new ResetGameController(app, model).process();
 					updateGameInfoBoard();
 				}
 			});
-			lockBtn.addMouseListener(new MGMouseListener(){
+			lockBtn.addActionListener(new ActionListener(){
+
 				@Override
-				public void mousePressed(MouseEvent e) {
+				public void actionPerformed(ActionEvent e) {
 					gameLockResetLabel.setText("Game has been Locked!");
 					new LockGameController(app, model).process();	
+					lockBtn.setEnabled(false);
+					
 				}
-				@Override
-				public void mouseReleased(MouseEvent e) {
-					updateGameInfoBoard();
-				}
+				
 			});
+
 		}
 		
 		if(model.getGame().isLocked()){
