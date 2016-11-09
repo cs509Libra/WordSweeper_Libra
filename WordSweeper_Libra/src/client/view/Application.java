@@ -52,6 +52,10 @@ public class Application extends JFrame {
 		return mg;
 	}
 	
+	public void setMultiGame(MultiGame mg){
+		this.mg = mg;
+	}
+	
 	public String getPassword() {
 		return password;
 	}
@@ -153,14 +157,14 @@ public class Application extends JFrame {
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {			
-				if(!notHasPlayerName()){					
+				if(!notHasPlayerName()){
 					new CreateGameController(Application.this, model).process();
 					Application.this.disableInputs();
 				}
 			}
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				if(!notHasPlayerName()){		
+				if(!notHasPlayerName()){
 					mg = new MultiGame(model, Application.this);
 					mg.setVisible(true);
 				}

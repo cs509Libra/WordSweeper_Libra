@@ -18,6 +18,9 @@ public class MultiGame extends JFrame {
 	public MultiGame (Model model, Application app) {
 		this.model = model;
 		this.app = app;	
+		this.app.setMultiGame(this);
+		this.rightGameInfoPanel = new RightGameInfoBoard(model, app);
+		this.leftBoardPanel = new LeftBoardPanel(model, app, this.rightGameInfoPanel);
 		initiate();
 		
 	}
@@ -33,20 +36,20 @@ public class MultiGame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		rightGameInfoPanel = new RightGameInfoBoard(model, app);
+//		rightGameInfoPanel = new RightGameInfoBoard(model, app);
 		contentPane.add(rightGameInfoPanel);	
 		
-		leftBoardPanel = new LeftBoardPanel(model, app, rightGameInfoPanel);
+//		leftBoardPanel = new LeftBoardPanel(model, app, rightGameInfoPanel);
 		contentPane.add(leftBoardPanel);
 
 	}
 
 	public JPanel getLeftBoardPanel() {
-		return leftBoardPanel;
+		return this.leftBoardPanel;
 	}
 
 	public JPanel getRightGameInfoPanel() {
-		return rightGameInfoPanel;
+		return this.rightGameInfoPanel;
 	}
 	
 	

@@ -76,18 +76,15 @@ public class LeftBoardPanel extends JPanel {
 		add(btnUp);
 		
 		JButton btnLeft = new JButton("<");
-		btnLeft.addMouseListener(new MGMouseListener(){
+		btnLeft.addActionListener(new ActionListener(){
 			int previousCol;
 			int newCol;
 			@Override
-			public void mousePressed(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				clearAllChosen();
 				previousCol = model.getBoard().getGlobalStartingCol();
 				model.getBoard().setRequestColChange(-1);
-				new RepositionBoardController(app, model).process();			
-			}
-			@Override
-			public void mouseReleased(MouseEvent e) {
+				new RepositionBoardController(app, model).process();
 				refreshBoard();
 				newCol = model.getBoard().getGlobalStartingCol();
 				if(previousCol == newCol){
@@ -95,6 +92,26 @@ public class LeftBoardPanel extends JPanel {
 				}
 			}
 		});
+		
+//		btnLeft.addMouseListener(new MGMouseListener(){
+//			int previousCol;
+//			int newCol;
+//			@Override
+//			public void mousePressed(MouseEvent e) {
+//				clearAllChosen();
+//				previousCol = model.getBoard().getGlobalStartingCol();
+//				model.getBoard().setRequestColChange(-1);
+//				new RepositionBoardController(app, model).process();			
+//			}
+//			@Override
+//			public void mouseReleased(MouseEvent e) {
+//				refreshBoard();
+//				newCol = model.getBoard().getGlobalStartingCol();
+//				if(previousCol == newCol){
+//					messageLabel.setText("No More Left!");
+//				}
+//			}
+//		});
 		btnLeft.setBounds(10, 110, 45, 100);
 		btnLeft.setEnabled(true);
 		add(btnLeft);
@@ -267,7 +284,7 @@ public class LeftBoardPanel extends JPanel {
 	}
 	
 	
-	private void refreshBoard(){
+	public void refreshBoard(){
 		char[] LettersToBeAdd = this.model.getBoard().getBoardInfo().toCharArray();
 		for(int i=0;i<16;i++){			
 			String lettToBeAdd = String.valueOf(LettersToBeAdd[i]);
