@@ -35,9 +35,6 @@ public class LeftBoardPanel extends JPanel {
 	
 	private ArrayList<JButton> chosenCellBtns;
 	private ArrayList<JButton> allCellBtns;
-	private JButton cellBtn0; private JButton cellBtn1; private JButton cellBtn2; private JButton cellBtn3; private JButton cellBtn4; private JButton cellBtn5; 
-	private JButton cellBtn6; private JButton cellBtn7; private JButton cellBtn8; private JButton cellBtn9; private JButton cellBtn10; private JButton cellBtn11; 
-	private JButton cellBtn12; private JButton cellBtn13; private JButton cellBtn14; private JButton cellBtn15;
 	
 	public LeftBoardPanel(Model model, Application app, JPanel rightGameInfoBoard) {
 		this.model = model;
@@ -351,19 +348,10 @@ public class LeftBoardPanel extends JPanel {
             }
         }; 
         
-		cellBtn0 = new JButton(); cellBtn1 = new JButton();
-		cellBtn2 = new JButton(); cellBtn3 = new JButton();
-		cellBtn4 = new JButton(); cellBtn5 = new JButton();
-		cellBtn6 = new JButton(); cellBtn7 = new JButton();
-		cellBtn8 = new JButton(); cellBtn9 = new JButton();
-		cellBtn10 = new JButton(); cellBtn11 = new JButton();
-		cellBtn12 = new JButton(); cellBtn13 = new JButton();
-		cellBtn14 = new JButton(); cellBtn15 = new JButton();
 		this.allCellBtns = new ArrayList<JButton>();
-		this.allCellBtns.add(cellBtn0);this.allCellBtns.add(cellBtn1);this.allCellBtns.add(cellBtn2);this.allCellBtns.add(cellBtn3);this.allCellBtns.add(cellBtn4);this.allCellBtns.add(cellBtn5);
-		this.allCellBtns.add(cellBtn6);this.allCellBtns.add(cellBtn7);this.allCellBtns.add(cellBtn8);this.allCellBtns.add(cellBtn9);this.allCellBtns.add(cellBtn10);this.allCellBtns.add(cellBtn11);
-		this.allCellBtns.add(cellBtn12);this.allCellBtns.add(cellBtn13);this.allCellBtns.add(cellBtn14);this.allCellBtns.add(cellBtn15);
-		
+		for(int i=0;i<16;i++)                          //changed by zy
+			this.allCellBtns.add(new JButton());
+			
         for(JButton cellBtn : allCellBtns){
         	cellBtn.addActionListener(cellChosenListener);
         	cellBtn.setBackground(Color.WHITE);
