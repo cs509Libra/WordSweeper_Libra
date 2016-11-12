@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+
+<xs:element name='message'>       <!-- Each Message is a request or response -->
+  <xs:complexType>
+    <xs:choice>
+      <xs:element ref='response'/>
+      <xs:element ref='request'/>
+    </xs:choice>
+  </xs:complexType>
+</xs:element>
+
+
+<xs:element name='request'>       <!-- All request sub-types are declared here -->
+  <xs:complexType>
+    <xs:choice>
+      <xs:element ref='connectRequest'/>      <!-- MUST NEVER CHANGE -->
+      
+      <!-- Regular Client Requests -->
+      <xs:element ref='createGameRequest'/>
+      <xs:element ref='joinGameRequest'/>
+      <xs:element ref='exitGameRequest'/>
+      <xs:element ref='lockGameRequest'/>
+      <xs:element ref='resetGameRequest'/>
+      <xs:element ref='findWordRequest'/>
+      <xs:element ref='repositionBoardRequest'/>
+      
+      
+      <!-- Admin Client Requests -->
+      <xs:element ref='listGamesRequest'/>
+      <xs:element ref='showGameStateRequest'/>
+      
+    </xs:choice>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attribute name="version" default="1.0" type="xs:string" use="optional"/>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name='response'>      <!-- All response sub-types are declared here -->
+  <xs:complexType>
+    <xs:choice>
+      <xs:element ref='connectResponse'/>     <!-- MUST NEVER CHANGE -->
+      <xs:element ref='boardResponse'/>
+      
+      <xs:element ref='lockGameResponse'/>
+      <xs:element ref='resetGameResponse'/>
+      <xs:element ref='joinGameResponse'/>
+      <xs:element ref='exitGameResponse'/>
+      <xs:element ref='findWordResponse'/>
+      
+      <!-- Admin Client Responses -->
+      <xs:element ref='listGamesResponse'/>
+      
+      
+    </xs:choice>
+    <xs:attribute name="id"      type="xs:string"  use="required"/>
+    <xs:attribute name='success' type='xs:boolean' use='required'/>
+    <xs:attribute name='reason'  type='xs:string'  use='optional'/>  <!-- Only on failure -->
+    <xs:attribute name="version" default="1.0" type="xs:string" use="optional"/>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name='connectRequest'/>    <!-- Connect to server -->
+
+<xs:element name='connectResponse'>   <!-- Response to connectRequest -->
+  <xs:complexType>
+    <xs:attribute name='id' type='xs:string' use='required'/>
+  </xs:complexType>
+</xs:element>
+
+<!-- Domain-specific changes to protocol appear below this line. -->
+
+<xs:simpleType name="commaSeparatedPair"> 
+    <xs:restriction base="xs:string"> 
+      <xs:pattern value="[0-9]+,[0-9]+"/>
+    </xs:restriction> 
+</xs:simpleType> 
+
+<xs:element name='cell'>
+  <xs:complexType>
+    <xs:attribute name='position'   type='commaSeparatedPair' use='required'/>        <!-- 'col,row' location on board -->
+    <xs:attribute name='letter'     type='xs:string' use='required'/>        <!-- letter in word. -->
+  </xs:complexType>
+</xs:element>
+
+
+<xs:element name='gameBrief'>
+  <xs:complexType>
+    <xs:attribute name='gameId'   type='xs:string'  use='required'/>        <!-- Valid Game ID -->
+    <xs:attribute name='players'  type='xs:integer' use='required'/>        <!-- Number of players on that game. -->
+  </xs:complexType>
+</xs:element>
+
+<xs:element name='player'>
+  <xs:complexType>
+    <xs:attribute name='name'       type='xs:string' use='required'/>
+    <xs:attribute name='position'   type='commaSeparatedPair' use='required'/>        <!-- 'col,row' location on board -->
+    <xs:attribute name='board'      type='xs:string' use='required'/>        <!-- 16 visible characters. -->
+    <xs:attribute name='score'      type='xs:long'   use='required'/>
+    
+  </xs:complexType>
+</xs:element>
+
+<xs:element name='findWordRequest'>   
+  <xs:complexType>
+    <!-- Sequence determines word. -->
+    <xs:sequence>
+        <xs:element ref='cell' minOccurs='1' maxOccurs='unbounded'/>
+    </xs:sequence>
+    <xs:attribute name='name'       type='xs:string' use='required'/>
+    <xs:attribute name='word'       type='xs:string'    use='required'/>
+    <xs:attribute name='gameId'     type='xs:string'    use='required'/>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name='createGameRequest'>   
+  <xs:complexType>
+    <xs:attribute name='name'       type='xs:string'    use='required'/>
+    <xs:attribute name='password'   type='xs:string'    use='optional'/>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name='joinGameRequest'>   
+  <xs:complexType>
+    <xs:attribute name='name'         type='xs:string'  use='required'/>
+    <xs:attribute name='gameId'       type='xs:string'  use='required'/>
+    <xs:attribute name='password'     type='xs:string'  use='optional'/>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name='repositionBoardRequest'>   
+  <xs:complexType>
+    <xs:attribute name='name'         type='xs:string'  use='required'/>
+    <xs:attribute name='gameId'       type='xs:string'  use='required'/>
+    <xs:attribute name='rowChange'    type='xs:integer' use='optional'/>
+    <xs:attribute name='colChange'    type='xs:integer' use='optional'/>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name='exitGameRequest'>   
+  <xs:complexType>
+    <xs:attribute name='name'         type='xs:string'  use='required'/>
+    <xs:attribute name='gameId'       type='xs:string'  use='required'/>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name='lockGameRequest'>   
+  <xs:complexType>
+    <xs:attribute name='gameId'       type='xs:string'  use='required'/>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name='resetGameRequest'>   
+  <xs:complexType>
+    <xs:attribute name='gameId'       type='xs:string'  use='required'/>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name='listGamesRequest'>   
+  
+</xs:element>
+
+
+<xs:element name='listGamesResponse'>   <!-- Response to listGamesRequest -->
+  <xs:complexType>
+    <xs:sequence>
+       <xs:element ref='gameBrief' minOccurs='0' maxOccurs='unbounded'/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name='showGameStateRequest'>   
+  <xs:complexType>
+    <xs:attribute name='gameId' type='xs:string' use='required'/>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name='lockGameResponse'>   <!-- Response to lockGameRequest -->
+  <xs:complexType>
+    <xs:attribute name='gameId' type='xs:string' use='required'/>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name='resetGameResponse'>   <!-- Response to resetGameRequest -->
+  <xs:complexType>
+    <xs:attribute name='gameId' type='xs:string' use='required'/>
+  </xs:complexType>
+</xs:element>
+
+<!-- only to be sent in case of failure... -->
+<xs:element name='joinGameResponse'>   <!-- Response to joinGameRequest -->
+  <xs:complexType>
+    <xs:attribute name='gameId' type='xs:string' use='required'/>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name='exitGameResponse'>   <!-- Response to exitGameRequest -->
+  <xs:complexType>
+    <xs:attribute name='gameId' type='xs:string' use='required'/>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name='findWordResponse'>   <!-- Response to findWordRequest -->
+  <xs:complexType>
+    <xs:attribute name='gameId'  type='xs:string' use='required'/>
+    <xs:attribute name='name'    type='xs:string' use='required'/>
+    <xs:attribute name='score'   type='xs:long'   use='required'/>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name='boardResponse'>
+  <xs:complexType>
+    <xs:sequence>
+        <xs:element ref='player' minOccurs='0' maxOccurs='unbounded'/>
+    </xs:sequence>
+    <xs:attribute name='gameId'       type='xs:string'  use='required'/>
+    <xs:attribute name='size'         type='xs:integer' use='optional'/>   <!-- Admin Client needs size. -->
+    <xs:attribute name='managingUser' type='xs:string'  use='required'/>
+    <xs:attribute name='contents'     type='xs:string'  use='optional'/>   <!-- Admin Client needs whole board. -->
+    <xs:attribute name='bonus'        type='commaSeparatedPair'  use='required'/>   <!-- location of bonus. -->
+  </xs:complexType>
+</xs:element>
+
+</xs:schema>
+
+<!--
+ 
+ 1.0 Initial Version (Sep-27-2016)
+ 
+ 1.1 Changed Version
+     * added repositionBoardRequest
+     * clarified that letters in the board state are comma-separated.
+ 
+ 1.2 Changed Version [9-30-2016]
+     * redefined comma-separated for bonus and position values. Note that 
+       first value is the col (indexed from 1) and the second value is the row (indexed from 1).
+     * added resetGameRequest (and resetGameResponse)
+     * added joinGameResponse to be sent on failure.
+     * clarified that top-left corner of the virtual board state is (1,1) and the rows
+       increase downwards and the columns increase to the right.
+     * clarified that in the comma-separated board state, the 16 cells appear from 
+       left to right, and top to bottom.
+     * note that the boardResponse to admin clients has a 'contents' which is only sent
+       to admin clients. Regular boardResponse messages sent to clients have this as the
+       empty string.
+-->
