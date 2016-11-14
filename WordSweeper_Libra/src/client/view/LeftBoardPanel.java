@@ -350,7 +350,7 @@ public class LeftBoardPanel extends JPanel {
         }; 
         
 		this.allCellBtns = new ArrayList<JButton>();
-		for(int i=0;i<16;i++)                          //changed by zy
+		for(int i=0;i<16;i++)                         
 			this.allCellBtns.add(new JButton());
 			
         for(JButton cellBtn : allCellBtns){

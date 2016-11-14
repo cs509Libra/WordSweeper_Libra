@@ -6,12 +6,12 @@ import java.util.Map;
 public class CalculateLocalScore {
 	
 	public static Integer calculateLetterScore(String letter){
+		Integer score;
 		if(letter.length()==0){
 			return (Integer)0;
 		}
 		String upperLett = letter.toUpperCase();
 		Map<String, Integer> letterScoreDictionary = getLetterScoreDictionary();
-		Integer score;
 		if(upperLett.equals("QU")){
 			score = letterScoreDictionary.get("Q") + letterScoreDictionary.get("U");
 		}else{
@@ -83,6 +83,4 @@ public class CalculateLocalScore {
 //		String b = a.replace("Qu", "Q");
 //		System.out.println(b);
 //	}
-	
-	
 }

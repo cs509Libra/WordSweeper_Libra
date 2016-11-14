@@ -1,8 +1,5 @@
 package client.model;
 
-import util.CalculateLocalScore;
-import util.WordTable;
-
 public class Word {
 	private String content;
     private int score;

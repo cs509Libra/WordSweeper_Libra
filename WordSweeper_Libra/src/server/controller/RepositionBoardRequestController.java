@@ -56,7 +56,7 @@ public class RepositionBoardRequestController implements IProtocolHandler {
 		}else{
 			xmlString = Message.responseHeader(request.id()) +
 					"<boardResponse gameId='hg12jhd' managingUser='" + pname + "' bonus='4,3' contents='ABCGBCJDH...HDJHJD'>" +
-				      "<player name='" + pname + "' score='392489038' position='4,5' board='REPOSITIONNOMOVE'/>" +
+				      "<player name='" + pname + "' score='392489038' position='4,5' board='R,E,P,O,S,I,T,I,O,N,N,O,M,O,V,E'/>" +
 				  "</boardResponse>" +
 				"</response>";
 		}

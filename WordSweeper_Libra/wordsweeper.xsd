@@ -235,9 +235,9 @@
      * redefined comma-separated for bonus and position values. Note that 
        first value is the col (indexed from 1) and the second value is the row (indexed from 1).
      * added resetGameRequest (and resetGameResponse)
-     * added joinGameResponse to be sent on failure.
+     * added joinGameResponse to be sent on failure.     //?
      * clarified that top-left corner of the virtual board state is (1,1) and the rows
-       increase downwards and the columns increase to the right.
+       increase downwards and the columns increase to the right.  //cell的全局位置
      * clarified that in the comma-separated board state, the 16 cells appear from 
        left to right, and top to bottom.
      * note that the boardResponse to admin clients has a 'contents' which is only sent

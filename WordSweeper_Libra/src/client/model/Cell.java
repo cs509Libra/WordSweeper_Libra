@@ -11,7 +11,7 @@ public class Cell {
     private boolean isBonus;
     
     public Cell(){
-    	localRow = 0;
+    	localRow = 0;       
     	localCol = 0;
     	globalRow = 0;
     	globalCol = 0;

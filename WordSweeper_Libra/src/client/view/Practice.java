@@ -36,9 +36,6 @@ public class Practice extends JFrame {
 	private Application app;
 	private ArrayList<JButton> chosenCells;
 	private ArrayList<JButton> allCells;
-	private JButton cellBtn0; private JButton cellBtn1; private JButton cellBtn2; private JButton cellBtn3; private JButton cellBtn4; private JButton cellBtn5; 
-	private JButton cellBtn6; private JButton cellBtn7; private JButton cellBtn8; private JButton cellBtn9; private JButton cellBtn10; private JButton cellBtn11; 
-	private JButton cellBtn12; private JButton cellBtn13; private JButton cellBtn14; private JButton cellBtn15;
 
 	public Practice(Model model, Application app) {
 		this.model = model;
@@ -47,18 +44,9 @@ public class Practice extends JFrame {
 	}
 		
 	private void addAllCellsToList(){
-		cellBtn0 = new JButton(); cellBtn1 = new JButton();
-		cellBtn2 = new JButton(); cellBtn3 = new JButton();
-		cellBtn4 = new JButton(); cellBtn5 = new JButton();
-		cellBtn6 = new JButton(); cellBtn7 = new JButton();
-		cellBtn8 = new JButton(); cellBtn9 = new JButton();
-		cellBtn10 = new JButton(); cellBtn11 = new JButton();
-		cellBtn12 = new JButton(); cellBtn13 = new JButton();
-		cellBtn14 = new JButton(); cellBtn15 = new JButton();
 		this.allCells = new ArrayList<JButton>();
-		this.allCells.add(cellBtn0);this.allCells.add(cellBtn1);this.allCells.add(cellBtn2);this.allCells.add(cellBtn3);this.allCells.add(cellBtn4);this.allCells.add(cellBtn5);
-		this.allCells.add(cellBtn6);this.allCells.add(cellBtn7);this.allCells.add(cellBtn8);this.allCells.add(cellBtn9);this.allCells.add(cellBtn10);this.allCells.add(cellBtn11);
-		this.allCells.add(cellBtn12);this.allCells.add(cellBtn13);this.allCells.add(cellBtn14);this.allCells.add(cellBtn15);
+		for(int i=0;i<16;i++)                         
+			this.allCells.add(new JButton());
 		
         ActionListener cellChosenListener = new ActionListener(){
         	@Override

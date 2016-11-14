@@ -24,8 +24,8 @@ public class Board {
 			requestRowChange = 0;
 			word = new Word();
 			chosenLettersScore = 0;
-			for(int i = 0; i < 4 ; i++){
-				for(int j = 0; j < 4; j++){
+			for(int i = 1; i < 5 ; i++){
+				for(int j = 1; j < 5; j++){
 					Cell currentCell = new Cell();
 					currentCell.setLocalRow(i);
 					currentCell.setLocalCol(j);
@@ -40,8 +40,8 @@ public class Board {
 			this.globalStartingCol = newStartingCol;
 			this.globalStartingRow = newStaringRow;
 			for(Cell cell : cells){
-				cell.setGlobalCol(this.globalStartingCol + cell.getLocalCol());
-				cell.setGlobalRow(this.globalStartingRow + cell.getLocalRow());
+				cell.setGlobalCol(this.globalStartingCol + cell.getLocalCol()-1);
+				cell.setGlobalRow(this.globalStartingRow + cell.getLocalRow()-1);
 			}
 			updateBoardByAllLetters(NewBoardInfo);
 		}
@@ -49,6 +49,8 @@ public class Board {
 		private void updateBoardByAllLetters(String cellsLetters){
 			String[] cellInforList = cellsLetters.split(",");
 			for(int i = 0; i < 16; i++){
+				if(cellInforList[i]=="Qu")
+					cellInforList[i]="Q";
 				this.cells.get(i).setLetter(cellInforList[i]);
 			}
 		}
@@ -97,13 +99,8 @@ public class Board {
 		
 		public String getChosenCellsLetters(){
 			String chosenLetters = "";
-			for(Cell cell : chosenCells){
-				if(cell.getLetter().equals("Q")){
-					chosenLetters += "Qu";
-				}else{
+			for(Cell cell : chosenCells)
 					chosenLetters += cell.getLetter(); 
-				}
-			}
 			return chosenLetters;
 		}
 
@@ -123,8 +120,7 @@ public class Board {
 		}
 		
 		
-		
-		
+	
 		public Integer getRequestColChange() {
 			return requestColChange;
 		}
