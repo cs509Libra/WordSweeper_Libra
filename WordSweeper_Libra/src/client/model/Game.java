@@ -13,6 +13,7 @@ public class Game {
 	private String gameID;
 	private String managingUser;
 	private Map<String, Integer> playersInfoMap;
+	private Map<String, String> playersPositionMap;
 	private boolean isLocked;
 	
 	public Game() {
@@ -69,7 +70,8 @@ public class Game {
 		
 	    List<Entry<String, Integer>> allPlayersListSortedByScore = new LinkedList<>(this.playersInfoMap.entrySet());
 	    Collections.sort(allPlayersListSortedByScore, new Comparator<Object>() {
-	        @SuppressWarnings("unchecked")
+	        @Override
+			@SuppressWarnings("unchecked")
 	        public int compare(Object o1, Object o2) {
 	            return ((Comparable<Integer>) ((Map.Entry<String, Integer>) (o1)).getValue()).compareTo(((Map.Entry<String, Integer>) (o2)).getValue());
 	        }
@@ -89,7 +91,8 @@ public class Game {
 		
 	    List<Entry<String, Integer>> allPlayersListSortedByScore = new LinkedList<>(this.playersInfoMap.entrySet());
 	    Collections.sort(allPlayersListSortedByScore, new Comparator<Object>() {
-	        @SuppressWarnings("unchecked")
+	        @Override
+			@SuppressWarnings("unchecked")
 	        public int compare(Object o1, Object o2) {
 	            return ((Comparable<String>) ((Map.Entry<String, Integer>) (o1)).getKey()).compareTo(((Map.Entry<String, Integer>) (o2)).getKey());
 	        }
@@ -103,4 +106,13 @@ public class Game {
 		
 		return allPlayersInfoSortedByName;		
 	}
+
+	public Map<String, String> getPlayersPositionMap() {
+		return playersPositionMap;
+	}
+
+	public void setPlayersPositionMap(Map<String, String> playersPositionMap) {
+		this.playersPositionMap = playersPositionMap;
+	}
+
 }

@@ -130,7 +130,14 @@ public class Practice extends JFrame {
 	 * @param B
 	 * @return
 	 */
-	private boolean isAdjacent(int A, int B){
+	private boolean isAdjacent(int A, int B) {
+		int C = Math.abs(A - B);
+		if (C == 1 || C == 3 || C == 4 || C == 5)
+			return true;
+		else
+			return false;
+	}
+	/*private boolean isAdjacent(int A, int B){
 		int[] arrayWithBorder = new int[] {-1, -1, -1, -1, -1, -1, 
 										   -1,  0,  1,  2,  3, -1, 
 										   -1,  4,  5,  6,  7, -1,
@@ -153,7 +160,7 @@ public class Practice extends JFrame {
 			}
 		}
 		return false;
-	}
+	}*/
 	
 	private void removeCellsColors(){
 		for(int i=0 ; i<16 ; i++){
@@ -175,7 +182,7 @@ public class Practice extends JFrame {
 		String cellsInfo = this.model.startPracticeGame().generateRandomCellInfo();
 		char[] cellsInfoArray = cellsInfo.toCharArray();		
 		for(int i=0;i<16;i++){			
-			Character lettToBeAddChar = (Character)cellsInfoArray[i];
+			Character lettToBeAddChar = cellsInfoArray[i];
 			String lettToBeAdd;
 			if(lettToBeAddChar.equals('Q')){
 				lettToBeAdd = "Qu";			
@@ -207,7 +214,7 @@ public class Practice extends JFrame {
 			return;
 		}
 		Integer currentScore = Integer.parseInt(myscore.getText());
-		Integer newScore = (Integer)(expectedWordScore+currentScore);
+		Integer newScore = expectedWordScore+currentScore;
 		myscore.setText(newScore.toString());
 		chosenCells.removeAll(chosenCells);
 		submission.setText("");
@@ -318,7 +325,7 @@ public class Practice extends JFrame {
 		});
 		clear.setBackground(Color.WHITE);
 		clear.setForeground(Color.RED);
-		clear.setFont(new Font("����", Font.BOLD, 12));
+		clear.setFont(new Font("Tahoma", Font.BOLD, 12));
 		clear.setToolTipText("Clear all the letters!");
 		clear.setBounds(69, 430, 93, 23);
 		leftPanel.add(clear);
@@ -365,7 +372,7 @@ public class Practice extends JFrame {
 		this.myscore = new JLabel("0");
 		this.myscore.setEnabled(false);
 		this.myscore.setBounds(100, 65, 120, 21);
-		this.myscore.setFont(new Font("����", Font.BOLD, 14));;
+		this.myscore.setFont(new Font("Tahoma", Font.BOLD, 14));;
 		rightPanel.add(this.myscore);
 		
 		JLabel playerListLabel = new JLabel("Players List: ");
@@ -401,7 +408,7 @@ public class Practice extends JFrame {
 		lock.setEnabled(false);
 		lock.setBackground(Color.WHITE);
 		lock.setForeground(Color.GREEN);
-		lock.setFont(new Font("����", Font.BOLD, 12));
+		lock.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lock.setBounds(80, 40, 110, 30);
 		managerPower.add(lock);
 		
@@ -409,7 +416,7 @@ public class Practice extends JFrame {
 		reset.setEnabled(false);
 		reset.setForeground(Color.GREEN);
 		reset.setBackground(Color.WHITE);
-		reset.setFont(new Font("����", Font.BOLD, 12));
+		reset.setFont(new Font("Tahoma", Font.BOLD, 12));
 		reset.setBounds(80, 70, 110, 30);
 		managerPower.add(reset);
 	}

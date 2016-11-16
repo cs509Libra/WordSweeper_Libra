@@ -49,7 +49,7 @@ public class RightGameInfoBoard extends JPanel {
 		
 		gameLockResetLabel = new JLabel("");
 		gameLockResetLabel.setForeground(Color.RED);
-		gameLockResetLabel.setFont(new Font("����", Font.BOLD, 12));
+		gameLockResetLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		gameLockResetLabel.setBounds(10, 20, 200, 30);
 		add(gameLockResetLabel);
 		
@@ -72,7 +72,7 @@ public class RightGameInfoBoard extends JPanel {
 			}
 		});
 		quit.setForeground(Color.BLUE);
-		quit.setFont(new Font("����", Font.BOLD, 12));
+		quit.setFont(new Font("Tahoma", Font.BOLD, 12));
 		quit.setSize(getPreferredSize());
 		quit.setBounds(190, 20, 100, 25);
 		add(quit);
@@ -83,7 +83,8 @@ public class RightGameInfoBoard extends JPanel {
 		
 		myScoreFromSever = new JLabel("0");
 		myScoreFromSever.setBounds(80, 78, 120, 21);
-		myScoreFromSever.setFont(new Font("����", Font.BOLD, 14));;
+		myScoreFromSever.setFont(new Font("Tahoma", Font.BOLD, 14));
+		;
 		add(myScoreFromSever);
 		
 		JLabel playerListLabel = new JLabel("Players List: ");
@@ -140,7 +141,7 @@ public class RightGameInfoBoard extends JPanel {
 		lockBtn.setEnabled(false);
 		lockBtn.setBackground(Color.WHITE);
 		lockBtn.setForeground(Color.BLUE);
-		lockBtn.setFont(new Font("����", Font.BOLD, 12));
+		lockBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lockBtn.setBounds(80, 40, 110, 30);
 		managerPower.add(lockBtn);
 		
@@ -149,7 +150,7 @@ public class RightGameInfoBoard extends JPanel {
 		resetBtn.setEnabled(false);
 		resetBtn.setForeground(Color.BLUE);
 		resetBtn.setBackground(Color.WHITE);
-		resetBtn.setFont(new Font("����", Font.BOLD, 12));
+		resetBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
 		resetBtn.setBounds(80, 70, 110, 30);
 		managerPower.add(resetBtn);
 		
@@ -161,7 +162,7 @@ public class RightGameInfoBoard extends JPanel {
 		myScoreFromSever.setText(String.valueOf(model.getPlayer().getScore()));
 		playersListArea.setText(model.getGame().getPlayersListByName());
 		managerName.setText(model.getGame().getManagingUser());
-		if(model.getPlayer().isManager()){
+		if (model.getGame().getManagingUser().equals(model.getPlayer().getName())) {// model.getPlayer().isManager()
 			lockBtn.setEnabled(true);
 			resetBtn.setEnabled(true);
 			resetBtn.addActionListener(new ActionListener(){

@@ -173,7 +173,7 @@ public class LeftBoardPanel extends JPanel {
 		refreshBoard();
 		
 		messageLabel = new JLabel();
-		messageLabel.setFont(new Font("����", Font.BOLD, 12));
+		messageLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		messageLabel.setBounds(100, 340, 200, 21);
 		messageLabel.setText("");
 		messageLabel.setForeground(Color.RED);
@@ -218,7 +218,7 @@ public class LeftBoardPanel extends JPanel {
 		});
 		clear.setBackground(Color.WHITE);
 		clear.setForeground(Color.RED);
-		clear.setFont(new Font("����", Font.BOLD, 12));
+		clear.setFont(new Font("Tahoma", Font.BOLD, 12));
 		clear.setToolTipText("Clear all the letters!");
 		clear.setBounds(69, 430, 93, 23);
 		add(clear);
@@ -274,7 +274,7 @@ public class LeftBoardPanel extends JPanel {
 
 		submit.setToolTipText("submit the word you have chosen");
 		submit.setForeground(Color.GREEN);
-		submit.setFont(new Font("����", Font.BOLD, 12));
+		submit.setFont(new Font("Tahoma", Font.BOLD, 12));
 		submit.setBackground(Color.WHITE);
 		submit.setBounds(198, 430, 93, 23);
 		add(submit);
@@ -416,7 +416,14 @@ public class LeftBoardPanel extends JPanel {
 	 * @param B
 	 * @return
 	 */
-	private boolean isAdjacent(int A, int B){
+	private boolean isAdjacent(int A, int B) {
+		int C = Math.abs(A - B);
+		if (C == 1 || C == 3 || C == 4 || C == 5)
+			return true;
+		else
+			return false;
+	}
+	/*private boolean isAdjacent(int A, int B){
 		int[] arrayWithBorder = new int[] {-1, -1, -1, -1, -1, -1, 
 										   -1,  0,  1,  2,  3, -1, 
 										   -1,  4,  5,  6,  7, -1,
@@ -439,7 +446,7 @@ public class LeftBoardPanel extends JPanel {
 			}
 		}
 		return false;
-	}
+	}*/
 	
 	private Integer calculateWordScoreFromLocalLib(String word){
 		if(word.length() <= 1){

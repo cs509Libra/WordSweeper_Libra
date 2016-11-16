@@ -135,6 +135,7 @@ public class Application extends JFrame {
 		
 		btnPractice = new JButton("Practice");
 		btnPractice.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				Practice pg = new Practice(model, Application.this);			
 				pg.setVisible(true);
@@ -164,7 +165,13 @@ public class Application extends JFrame {
 			}
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				if(!notHasPlayerName()){
+				if (!notHasPlayerName()) {
+					try {
+						Thread.sleep(200);
+					} catch (InterruptedException e1) { // TODO Auto-generated
+														// catch block
+						e1.printStackTrace();
+					}
 					mg = new MultiGame(model, Application.this);
 					mg.setVisible(true);
 				}
@@ -200,6 +207,12 @@ public class Application extends JFrame {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				if(!notHasPlayerNameAndGameId()){
+					try {
+						Thread.sleep(200);
+					} catch (InterruptedException e1) { // TODO Auto-generated
+														// catch block
+						e1.printStackTrace();
+					}
 					mg = new MultiGame(model, Application.this);
 					mg.setVisible(true);
 				}

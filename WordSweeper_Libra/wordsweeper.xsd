@@ -235,12 +235,19 @@
      * redefined comma-separated for bonus and position values. Note that 
        first value is the col (indexed from 1) and the second value is the row (indexed from 1).
      * added resetGameRequest (and resetGameResponse)
-     * added joinGameResponse to be sent on failure.     //?
+     * added joinGameResponse to be sent on failure.
      * clarified that top-left corner of the virtual board state is (1,1) and the rows
-       increase downwards and the columns increase to the right.  //cell的全局位置
+       increase downwards and the columns increase to the right.
      * clarified that in the comma-separated board state, the 16 cells appear from 
        left to right, and top to bottom.
      * note that the boardResponse to admin clients has a 'contents' which is only sent
        to admin clients. Regular boardResponse messages sent to clients have this as the
        empty string.
+       
+  1.3 Changed/Refined Version [11-8-2016]
+     * ResetGameResponse should only be sent to client in unlikely occurence of Failure. Otherwise
+       in response to a ResetGameRequest, the server should send BoardResponse to all players in game.
+     * Given LockGameRequest, server can choose to ignore subsequent requests to lock a game that 
+       has already been locked. Managing user is the only one who gets the LockGameResponse.
+       
 -->
