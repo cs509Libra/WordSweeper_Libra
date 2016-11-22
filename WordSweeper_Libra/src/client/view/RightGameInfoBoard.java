@@ -19,13 +19,13 @@ import client.controller.requestController.ResetGameController;
 import client.model.Model;
 
 public class RightGameInfoBoard extends JPanel {
-	
+
 	private Model model;
 	private Application app;
-	
-	private JScrollPane jScrollPane1;	
+
+	private JScrollPane jScrollPane1;
 	private JTextArea playersListArea;
-	
+
 	private JLabel myScoreFromSever;
 	private JLabel gameIdLabel;
 	private JLabel managerName;
@@ -34,40 +34,38 @@ public class RightGameInfoBoard extends JPanel {
 	private JButton resetBtn;
 	private JLabel playersNamesLabel;
 	private JLabel playersScoresLabel;
-	
-	
+
 	public RightGameInfoBoard(Model model, Application app) {
 		this.model = model;
 		this.app = app;
 		initiate();
 	}
-	
-	private void initiate(){
+
+	private void initiate() {
 		setBorder(BorderFactory.createTitledBorder("Game Information"));
 		setBounds(380, 5, 300, 470);
 		setLayout(null);
-		
+
 		gameLockResetLabel = new JLabel("");
 		gameLockResetLabel.setForeground(Color.RED);
 		gameLockResetLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		gameLockResetLabel.setBounds(10, 20, 200, 30);
 		add(gameLockResetLabel);
-		
+
 		JLabel gameIdTitle = new JLabel("Game ID:");
 		gameIdTitle.setBounds(10, 50, 65, 28);
 		add(gameIdTitle);
-		
+
 		gameIdLabel = new JLabel("");
 		gameIdLabel.setBounds(80, 50, 65, 28);
 		add(gameIdLabel);
-		
-		
+
 		JButton quit = new JButton("Quit");
-		quit.addActionListener(new ActionListener(){
+		quit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				app.mg.dispose();
-//				app.setVisible(true);	
+				// app.setVisible(true);
 				app.enableInputs();
 			}
 		});
@@ -76,65 +74,64 @@ public class RightGameInfoBoard extends JPanel {
 		quit.setSize(getPreferredSize());
 		quit.setBounds(190, 20, 100, 25);
 		add(quit);
-		
+
 		JLabel myScoreLabel = new JLabel("My Score:");
 		myScoreLabel.setBounds(10, 75, 65, 28);
 		add(myScoreLabel);
-		
+
 		myScoreFromSever = new JLabel("0");
 		myScoreFromSever.setBounds(80, 78, 120, 21);
 		myScoreFromSever.setFont(new Font("Tahoma", Font.BOLD, 14));
 		;
 		add(myScoreFromSever);
-		
+
 		JLabel playerListLabel = new JLabel("Players List: ");
 		playerListLabel.setBounds(10, 100, 120, 25);
 		add(playerListLabel);
-		
-		
+
 		playersNamesLabel = new JLabel("Name");
 		playersNamesLabel.setBounds(100, 100, 120, 25);
-		playersNamesLabel.addMouseListener(new MGMouseListener(){
+		playersNamesLabel.addMouseListener(new MGMouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				playersListArea.setText(model.getGame().getPlayersListByName());
 			}
 		});
 		add(playersNamesLabel);
-		
+
 		playersScoresLabel = new JLabel("Score");
 		playersScoresLabel.setBounds(200, 100, 120, 25);
-		playersScoresLabel.addMouseListener(new MGMouseListener(){
+		playersScoresLabel.addMouseListener(new MGMouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				playersListArea.setText(model.getGame().getPlayersListByScore());
 			}
 		});
 		add(playersScoresLabel);
-		
+
 		playersListArea = new JTextArea("");
 		playersListArea.setForeground(new Color(245, 0, 0));
 		playersListArea.setColumns(20);
 		playersListArea.setRows(10);
 		playersListArea.setEditable(false);
-		
+
 		jScrollPane1 = new JScrollPane();
 		jScrollPane1.setBounds(10, 125, 280, 200);
-		jScrollPane1.setViewportView(playersListArea);		
+		jScrollPane1.setViewportView(playersListArea);
 		add(jScrollPane1);
-		
+
 		JPanel managerPower = new JPanel();
 		managerPower.setBounds(10, 350, 280, 110);
 		managerPower.setLayout(null);
 		add(managerPower);
-		
+
 		JLabel managerNameLabel = new JLabel("Manager Name: ");
 		managerNameLabel.setBounds(10, 10, 120, 15);
 		managerPower.add(managerNameLabel);
-		
+
 		managerName = new JLabel();
 		managerName.setText("You");
-		managerName.setBounds(130, 10, 100, 15);
+		managerName.setBounds(129, 10, 100, 15);
 		managerPower.add(managerName);
 
 		lockBtn = new JButton("Lock game");
@@ -144,7 +141,6 @@ public class RightGameInfoBoard extends JPanel {
 		lockBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lockBtn.setBounds(80, 40, 110, 30);
 		managerPower.add(lockBtn);
-		
 
 		resetBtn = new JButton("Reset game");
 		resetBtn.setEnabled(false);
@@ -153,11 +149,11 @@ public class RightGameInfoBoard extends JPanel {
 		resetBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
 		resetBtn.setBounds(80, 70, 110, 30);
 		managerPower.add(resetBtn);
-		
+
 		updateGameInfoBoard();
 	}
-	
-	public void updateGameInfoBoard(){
+
+	public void updateGameInfoBoard() {
 		gameIdLabel.setText(model.getGame().getGameID());
 		myScoreFromSever.setText(String.valueOf(model.getPlayer().getScore()));
 		playersListArea.setText(model.getGame().getPlayersListByName());
@@ -165,29 +161,29 @@ public class RightGameInfoBoard extends JPanel {
 		if (model.getGame().getManagingUser().equals(model.getPlayer().getName())) {// model.getPlayer().isManager()
 			lockBtn.setEnabled(true);
 			resetBtn.setEnabled(true);
-			resetBtn.addActionListener(new ActionListener(){
+			resetBtn.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					gameLockResetLabel.setText("Game has been RESET!");
 					new ResetGameController(app, model).process();
-					updateGameInfoBoard();
+					// updateGameInfoBoard();
+					resetBtn.setEnabled(false);
+					resetBtn.setEnabled(true);
 				}
 			});
-			lockBtn.addActionListener(new ActionListener(){
 
+			lockBtn.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					gameLockResetLabel.setText("Game has been Locked!");
-					new LockGameController(app, model).process();	
+					new LockGameController(app, model).process();
 					lockBtn.setEnabled(false);
-					
 				}
-				
 			});
 
 		}
-		
-		if(model.getGame().isLocked()){
+
+		if (model.getGame().isLocked()) {
 			setBorder(BorderFactory.createTitledBorder("Game Information <Locked>"));
 			lockBtn.setEnabled(false);
 		}

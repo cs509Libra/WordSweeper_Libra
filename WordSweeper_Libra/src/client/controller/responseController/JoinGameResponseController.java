@@ -25,17 +25,19 @@ public class JoinGameResponseController extends ControllerChain {
 		if (!type.equals ("joinGameResponse")) {
 			return next.process(response);
 		}
-		
+
+		if (response.contents.getAttributes().getNamedItem("success").getNodeValue().equals("false"))
+			return false;
+		else
+			this.model.existedGame = true;
 		Node boardResponse = response.contents.getFirstChild();
 		NamedNodeMap map = boardResponse.getAttributes();
-		
 		String gameId = map.getNamedItem("gameId").getNodeValue();
 		app.getResponseArea().append(response.toString() + "\n");
 		model.getGame().setGameID(gameId);
 		
-			((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();
-			((RightGameInfoBoard) app.getMultiGame().getRightGameInfoPanel()).updateGameInfoBoard();
-
+		((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();
+		((RightGameInfoBoard) app.getMultiGame().getRightGameInfoPanel()).updateGameInfoBoard();
 		
 		return true;
 	}

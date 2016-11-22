@@ -28,8 +28,8 @@ public class MultiGame extends JFrame {
 	private void initiate(){		
 		setTitle("Wordsweeper");		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 700, 500);
-		setAlwaysOnTop(true);
+		setBounds(100, 100, 700, 520);
+		setAlwaysOnTop(false);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

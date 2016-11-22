@@ -167,7 +167,7 @@ public class Application extends JFrame {
 			public void mouseReleased(MouseEvent e) {
 				if (!notHasPlayerName()) {
 					try {
-						Thread.sleep(200);
+						Thread.sleep(300);
 					} catch (InterruptedException e1) { // TODO Auto-generated
 														// catch block
 						e1.printStackTrace();
@@ -208,10 +208,16 @@ public class Application extends JFrame {
 			public void mouseReleased(MouseEvent e) {
 				if(!notHasPlayerNameAndGameId()){
 					try {
-						Thread.sleep(200);
+						Thread.sleep(400);
 					} catch (InterruptedException e1) { // TODO Auto-generated
 														// catch block
 						e1.printStackTrace();
+					}
+					if (Application.this.model.existedGame == false) {
+						JOptionPane.showMessageDialog(Application.this, "Game Number is incorrect!", "Warning",
+								JOptionPane.WARNING_MESSAGE);
+						Application.this.enableInputs();
+						return;
 					}
 					mg = new MultiGame(model, Application.this);
 					mg.setVisible(true);
