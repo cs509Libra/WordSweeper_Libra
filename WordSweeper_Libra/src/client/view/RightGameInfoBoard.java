@@ -110,7 +110,7 @@ public class RightGameInfoBoard extends JPanel {
 		add(playersScoresLabel);
 
 		playersListArea = new JTextArea("");
-		playersListArea.setForeground(new Color(245, 0, 0));
+		playersListArea.setForeground(Color.BLACK);
 		playersListArea.setColumns(20);
 		playersListArea.setRows(10);
 		playersListArea.setEditable(false);

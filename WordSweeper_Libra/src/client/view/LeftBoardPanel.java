@@ -222,6 +222,7 @@ public class LeftBoardPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				clearAllChosen();
+				overlapArea();
 				changeBonusColor();
 			}
 		});
