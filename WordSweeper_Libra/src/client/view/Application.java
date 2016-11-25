@@ -169,7 +169,7 @@ public class Application extends JFrame {
 			public void mouseReleased(MouseEvent e) {
 				if (!notHasPlayerName()) {
 					try {
-						Thread.sleep(400);
+						Thread.sleep(800);
 					} catch (InterruptedException e1) { // TODO Auto-generated
 														// catch block
 						e1.printStackTrace();
@@ -214,7 +214,7 @@ public class Application extends JFrame {
 			public void mouseReleased(MouseEvent e) {
 				if (!notHasPlayerNameAndGameId()) {
 					try {
-						Thread.sleep(400);
+						Thread.sleep(800);
 					} catch (InterruptedException e1) { // TODO Auto-generated
 														// catch block
 						e1.printStackTrace();
