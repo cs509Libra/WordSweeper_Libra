@@ -75,23 +75,6 @@ public class LeftBoardPanel extends JPanel {
 		add(btnUp);
 
 		JButton btnLeft = new JButton("<");
-		// btnLeft.addActionListener(new ActionListener(){
-		// int previousCol;
-		// int newCol;
-		// @Override
-		// public void actionPerformed(ActionEvent e) {
-		// clearAllChosen();
-		// previousCol = model.getBoard().getGlobalStartingCol();
-		// model.getBoard().setRequestColChange(-1);
-		// new RepositionBoardController(app, model).process();
-		// refreshBoard();
-		// newCol = model.getBoard().getGlobalStartingCol();
-		// if(previousCol == newCol){
-		// messageLabel.setText("No More Left!");
-		// }
-		// }
-		// });
-
 		btnLeft.addMouseListener(new MGMouseListener() {
 			int previousCol;
 			int newCol;
