@@ -150,6 +150,26 @@ public class RightGameInfoBoard extends JPanel {
 		resetBtn.setBounds(80, 70, 110, 30);
 		managerPower.add(resetBtn);
 
+		resetBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				gameLockResetLabel.setText("Game has been RESET!");
+				new ResetGameController(app, model).process();
+				// updateGameInfoBoard();
+				resetBtn.setEnabled(false);
+				resetBtn.setEnabled(true);
+			}
+		});
+
+		lockBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				gameLockResetLabel.setText("Game has been Locked!");
+				new LockGameController(app, model).process();
+				lockBtn.setEnabled(false);
+			}
+		});
+
 		updateGameInfoBoard();
 	}
 
@@ -161,26 +181,6 @@ public class RightGameInfoBoard extends JPanel {
 		if (model.getGame().getManagingUser().equals(model.getPlayer().getName())) {// model.getPlayer().isManager()
 			lockBtn.setEnabled(true);
 			resetBtn.setEnabled(true);
-			resetBtn.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					gameLockResetLabel.setText("Game has been RESET!");
-					new ResetGameController(app, model).process();
-					// updateGameInfoBoard();
-					resetBtn.setEnabled(false);
-					resetBtn.setEnabled(true);
-				}
-			});
-
-			lockBtn.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					gameLockResetLabel.setText("Game has been Locked!");
-					new LockGameController(app, model).process();
-					lockBtn.setEnabled(false);
-				}
-			});
-
 		}
 
 		if (model.getGame().isLocked()) {
