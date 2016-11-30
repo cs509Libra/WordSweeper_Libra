@@ -57,6 +57,7 @@ public class LeftBoardPanel extends JPanel {
 				clearAllChosen();
 				previousRow = model.getBoard().getGlobalStartingRow();
 				model.getBoard().setRequestRowChange(-1);
+				model.getBoard().setRequestColChange(0);
 				new RepositionBoardController(app, model).process();
 			}
 
@@ -84,6 +85,7 @@ public class LeftBoardPanel extends JPanel {
 				clearAllChosen();
 				previousCol = model.getBoard().getGlobalStartingCol();
 				model.getBoard().setRequestColChange(-1);
+				model.getBoard().setRequestRowChange(0);
 				new RepositionBoardController(app, model).process();
 			}
 
@@ -110,6 +112,7 @@ public class LeftBoardPanel extends JPanel {
 				clearAllChosen();
 				previousCol = model.getBoard().getGlobalStartingCol();
 				model.getBoard().setRequestColChange(1);
+				model.getBoard().setRequestRowChange(0);
 				new RepositionBoardController(app, model).process();
 			}
 
@@ -136,6 +139,7 @@ public class LeftBoardPanel extends JPanel {
 				clearAllChosen();
 				previousRow = model.getBoard().getGlobalStartingRow();
 				model.getBoard().setRequestRowChange(1);
+				model.getBoard().setRequestColChange(0);
 				new RepositionBoardController(app, model).process();
 			}
 
@@ -205,8 +209,6 @@ public class LeftBoardPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				clearAllChosen();
-				overlapArea();
-				changeBonusColor();
 			}
 		});
 		clear.setBackground(Color.WHITE);
@@ -309,6 +311,8 @@ public class LeftBoardPanel extends JPanel {
 		chosenCellBtns.removeAll(chosenCellBtns);
 		model.getBoard().clearChosenCells();
 		removeCellBtnsColors();
+		overlapArea();
+		changeBonusColor();
 	}
 
 	private void addAllCellBtnsToCellBtnsList() {

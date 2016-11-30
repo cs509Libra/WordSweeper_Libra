@@ -160,6 +160,7 @@ public class Application extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (!notHasPlayerName()) {
+					model.getPlayer().setName(playerName);
 					new CreateGameController(Application.this, model).process();
 					Application.this.disableInputs();
 				}
@@ -169,9 +170,8 @@ public class Application extends JFrame {
 			public void mouseReleased(MouseEvent e) {
 				if (!notHasPlayerName()) {
 					try {
-						Thread.sleep(800);
-					} catch (InterruptedException e1) { // TODO Auto-generated
-														// catch block
+						Thread.sleep(1000);
+					} catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
 					mg = new MultiGame(model, Application.this);
@@ -205,6 +205,7 @@ public class Application extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (!notHasPlayerNameAndGameId()) {
+					model.getPlayer().setName(playerName);
 					new JoinGameController(Application.this, model).process();
 					Application.this.disableInputs();
 				}
@@ -214,7 +215,7 @@ public class Application extends JFrame {
 			public void mouseReleased(MouseEvent e) {
 				if (!notHasPlayerNameAndGameId()) {
 					try {
-						Thread.sleep(800);
+						Thread.sleep(500);
 					} catch (InterruptedException e1) { // TODO Auto-generated
 														// catch block
 						e1.printStackTrace();
@@ -224,6 +225,12 @@ public class Application extends JFrame {
 								JOptionPane.WARNING_MESSAGE);
 						Application.this.enableInputs();
 						return;
+					}
+					try {
+						Thread.sleep(800);
+					} catch (InterruptedException e1) { // TODO Auto-generated
+														// catch block
+						e1.printStackTrace();
 					}
 					mg = new MultiGame(model, Application.this);
 					mg.setVisible(true);

@@ -67,43 +67,23 @@ public class BoardResponseController extends ControllerChain {
 			Long score = Long.valueOf(n.getAttributes().getNamedItem("score").getNodeValue());
 			allPlayersInfo.put(pname, Integer.valueOf(pscore));
 			allPlayersPositionInfo.put(pname, plocation);
-			if (this.flag == false)
+			if (list.getLength() == 1)
 				model.updateInfo(gameId, managingUser, pname, globalStartingCol, globalStaringRow, boardInfo, score,
 						bonusCell);
-			else if (pname.equals(this.model.getPlayer().getName()))
+			else if (pname.equals(this.model.getPlayer().getName())) {
 				model.updateInfo(gameId, managingUser, pname, globalStartingCol, globalStaringRow, boardInfo, score,
 						bonusCell);
+			}
 			this.model.getBoard().positions.add(plocation);
 
 			app.getResponseArea().append("  " + pname + "\n");
 		}
 
-		// at this point, you would normally start processing this...
 		app.getResponseArea().append(response.toString());
 		app.getResponseArea().append("\n");
 
 		model.getGame().setPlayersInfoMap(allPlayersInfo);
 		model.getGame().setPlayersPositionMap(allPlayersPositionInfo);
-
-		// obtain information from xml and update the corresponding model
-		// information
-
-		// Node player = boardResponse.getFirstChild();
-		// NamedNodeMap playerMap = player.getAttributes();
-		// String playerName = playerMap.getNamedItem("name").getNodeValue();
-		// String boardInfo = playerMap.getNamedItem("board").getNodeValue();
-		// String colRow = playerMap.getNamedItem("position").getNodeValue();
-		// char[] corRowArray = colRow.toCharArray();
-		// Integer globalStartingCol =
-		// Integer.valueOf(String.valueOf(corRowArray[0]));
-		// Integer globalStaringRow =
-		// Integer.valueOf(String.valueOf(corRowArray[corRowArray.length - 1]));
-		// Long score =
-		// Long.valueOf(playerMap.getNamedItem("score").getNodeValue());
-		//
-		// model.updateInfo(gameId, managingUser, playerName, globalStartingCol,
-		// globalStaringRow, boardInfo, score);
-		//
 
 		if (this.flag == true) {
 			((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();
