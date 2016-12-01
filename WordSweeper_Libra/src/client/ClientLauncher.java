@@ -5,6 +5,7 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 
 import client.controller.responseController.BoardResponseController;
 import client.controller.responseController.ConnectResponseController;
+import client.controller.responseController.ExitGameResponseController;
 import client.controller.responseController.FindWordResponseController;
 import client.controller.responseController.JoinGameResponseController;
 import client.controller.responseController.LockGameResponseController;
@@ -18,8 +19,8 @@ import xml.Message;
 public class ClientLauncher {
 
 	// If requested by ClientLauncher (pass in '-server' as argument).
-	public static final String serverHost = "72.249.186.243";
-	// public static final String serverHost = "cccwork3.wpi.edu";
+	//public static final String serverHost = "72.249.186.243";
+	 public static final String serverHost = "cccwork3.wpi.edu";
 	// public static final String serverHost = "rambo.wpi.edu";
 
 	/**
@@ -40,8 +41,8 @@ public class ClientLauncher {
 		}
 
 		// select dedicated server with '-server' options
-		String host = "localhost";
-		// String host = "cccwork3.wpi.edu";
+		//String host = "localhost";
+	    String host = "cccwork3.wpi.edu";
 		// String host = "rambo.wpi.edu";
 
 		if (args.length > 0 && args[0].equals("-server")) {
@@ -53,13 +54,14 @@ public class ClientLauncher {
 		Application app = new Application(model);
 
 		SampleClientMessageHandler handler = new SampleClientMessageHandler(app);
-
+		
 		handler.registerHandler(new BoardResponseController(app, model));
+		handler.registerHandler(new FindWordResponseController(app, model));
 		handler.registerHandler(new JoinGameResponseController(app, model));
 		handler.registerHandler(new ConnectResponseController(app, model));
-		handler.registerHandler(new ResetGameResponseController(app, model));
 		handler.registerHandler(new LockGameResponseController(app, model));
-		handler.registerHandler(new FindWordResponseController(app, model));
+		handler.registerHandler(new ResetGameResponseController(app, model));
+		handler.registerHandler(new ExitGameResponseController(app, model));
 
 		// try to connect to the server. Once connected, messages are going to
 		// be processed by

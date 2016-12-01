@@ -21,11 +21,17 @@ public class ExitGameResponseController extends ControllerChain {
 		if (!type.equals ("exitGameResponse")) {
 			return next.process(response);
 		}
+		this.model.existedGame = false;
 		
 		//<xs:attribute name='gameId' type='xs:string' use='required'/>
+		app.getMg().dispose();
+		app.enableInputs();
 		
+		// app.setVisible(true);
+		
+		app.getResponseArea().append(response.toString());
+		app.getResponseArea().append("\n");
 		return true;
 	}
-
 }
 

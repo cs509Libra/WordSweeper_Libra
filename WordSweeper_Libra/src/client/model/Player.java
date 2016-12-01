@@ -3,6 +3,7 @@ package client.model;
 public class Player {
     private String name;
     private long score;
+    private long wordscore;
     private boolean isManager;
     
 	public Player(){
@@ -36,6 +37,18 @@ public class Player {
 	
 	public void resetPlayerScore(){
 		this.score = 0;
+	}
+
+	public long getWordscore() {
+		return wordscore;
+	}
+
+	public void setWordscore(long wordscore) {
+		this.wordscore = wordscore;
+	}
+
+	public void setManager(boolean isManager) {
+		this.isManager = isManager;
 	}
 
 }

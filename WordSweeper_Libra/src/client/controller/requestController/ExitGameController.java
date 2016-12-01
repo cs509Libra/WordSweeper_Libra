@@ -17,7 +17,7 @@ public class ExitGameController {
 	/** Make the request on the server and wait for response. */
 	public void process() {
 		
-		String xmlString = Message.requestHeader() + String.format("<createGameRequest name='%s' gameID='%s'/></request>", 
+		String xmlString = Message.requestHeader() + String.format("<exitGameRequest name='%s' gameId='%s'/></request>", 
 																	model.getPlayer().getName(),
 																	model.getGame().getGameID());		
 		

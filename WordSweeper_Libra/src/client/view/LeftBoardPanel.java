@@ -220,7 +220,6 @@ public class LeftBoardPanel extends JPanel {
 
 		JButton submit = new JButton("Submit");
 		submit.addMouseListener(new MGMouseListener() {
-			long playerPreviousScore;
 			long playerNewScore;
 			Integer localExpectedWordScore;
 
@@ -247,23 +246,19 @@ public class LeftBoardPanel extends JPanel {
 				refreshBoard();
 
 				// call findWordRequestController
-				playerPreviousScore = model.getPlayer().getScore();
 				new FindWordController(app, model).process();
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-
-				playerNewScore = model.getPlayer().getScore();
-				if (playerNewScore == playerPreviousScore) {
-					messageLabel.setText("Word Picked By Others");
-				} else {
-					String wordScoreFromServer = String.valueOf(playerNewScore - playerPreviousScore);
-					scoreFromServerField.setText(wordScoreFromServer);
-					if (localExpectedWordScore != Integer.valueOf(wordScoreFromServer)) {
-						messageLabel.setText("You get a bonus");
-					}
+				try {
+					Thread.sleep(50);
+				} catch (InterruptedException e1) { // TODO Auto-generated
+							              			// catch block
+					e1.printStackTrace();
 				}
+				playerNewScore = model.getPlayer().getWordscore();
+				scoreFromServerField.setText(String.valueOf(playerNewScore));
 				rightGameInfoBoard.updateGameInfoBoard();
 				clearAllChosen();
 			}

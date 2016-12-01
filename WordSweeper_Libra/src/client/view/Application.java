@@ -41,18 +41,18 @@ public class Application extends JFrame {
 	JTextField playerNameField;
 	JPasswordField passWordField;
 
-	MultiGame mg;
+	private MultiGame mg;
 
 	String playerName;
 	String password;
 	String gameNumber;
 
 	public MultiGame getMultiGame() {
-		return mg;
+		return getMg();
 	}
 
 	public void setMultiGame(MultiGame mg) {
-		this.mg = mg;
+		this.setMg(mg);
 	}
 
 	public String getPassword() {
@@ -174,8 +174,8 @@ public class Application extends JFrame {
 					} catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
-					mg = new MultiGame(model, Application.this);
-					mg.setVisible(true);
+					setMg(new MultiGame(model, Application.this));
+					getMg().setVisible(true);
 				}
 			}
 		});
@@ -232,8 +232,8 @@ public class Application extends JFrame {
 														// catch block
 						e1.printStackTrace();
 					}
-					mg = new MultiGame(model, Application.this);
-					mg.setVisible(true);
+					setMg(new MultiGame(model, Application.this));
+					getMg().setVisible(true);
 				}
 			}
 		});
@@ -281,5 +281,13 @@ public class Application extends JFrame {
 	/** Navigation access to actionable elements in the GUI. */
 	public JTextArea getResponseArea() {
 		return responseArea;
+	}
+
+	public MultiGame getMg() {
+		return mg;
+	}
+
+	public void setMg(MultiGame mg) {
+		this.mg = mg;
 	}
 }

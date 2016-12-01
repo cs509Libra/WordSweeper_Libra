@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import client.controller.MGMouseListener;
+import client.controller.requestController.ExitGameController;
 import client.controller.requestController.LockGameController;
 import client.controller.requestController.ResetGameController;
 import client.model.Model;
@@ -64,9 +65,10 @@ public class RightGameInfoBoard extends JPanel {
 		quit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				app.mg.dispose();
+				new ExitGameController(app, model).process();
+//				app.getMg().dispose();
+//				app.enableInputs();
 				// app.setVisible(true);
-				app.enableInputs();
 			}
 		});
 		quit.setForeground(Color.BLUE);

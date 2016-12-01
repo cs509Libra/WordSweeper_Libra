@@ -75,8 +75,8 @@ public class Game {
 			@Override
 			@SuppressWarnings("unchecked")
 			public int compare(Object o1, Object o2) {
-				return ((Comparable<Integer>) ((Map.Entry<String, Integer>) (o1)).getValue())
-						.compareTo(((Map.Entry<String, Integer>) (o2)).getValue());
+				return ((Comparable<Integer>) ((Map.Entry<String, Integer>) (o2)).getValue())
+						.compareTo(((Map.Entry<String, Integer>) (o1)).getValue());
 			}
 		});
 

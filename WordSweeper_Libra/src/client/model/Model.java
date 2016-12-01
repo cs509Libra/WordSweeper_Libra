@@ -24,6 +24,7 @@ public class Model {
 			String boardInfo, long score, String bonusCell) {
 		this.game.setGameID(gameID);
 		this.player.setName(playerName);
+		if(score!=this.player.getScore())
 		this.player.setScore(score);
 		this.game.setManagingUser(managingUser);
 		if (managingUser.equals(this.player.getName())) {

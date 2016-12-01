@@ -32,7 +32,7 @@ public class RepositionBoardRequestController implements IProtocolHandler {
 		if(rowChange == -1 && colChange == 0){
 			xmlString = Message.responseHeader(request.id()) +
 					"<boardResponse gameId='hg12jhd' managingUser='" + pname + "' bonus='4,3' contents='ABCGBCJDH...HDJHJD'>" +
-				      "<player name='" + pname + "' score='392489038' position='4,4' board='R,E,P,O,S,I,T,I,O,N,M,V,U,P,Q,Q'/>" +
+				      "<player name='" + pname + "' score='392489038' position='4,4' board='R,E,P,O,S,I,T,I,O,N,M,V,U,P,Qu,Qu'/>" +
 				  "</boardResponse>" +
 				"</response>";
 		}else if(rowChange == 1 && colChange == 0){

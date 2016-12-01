@@ -35,9 +35,9 @@ public class FindWordResponseController extends ControllerChain {
 		String gameId = map.getNamedItem("gameId").getNodeValue();
 		String score = map.getNamedItem("score").getNodeValue();
 		String pname = map.getNamedItem("name").getNodeValue();
-
+     
 		app.getResponseArea().append("Board Message received for game:" + boardResponse.toString() + "\n");
-		model.getPlayer().setScore(Integer.valueOf(score));
+		model.getPlayer().setWordscore(Integer.valueOf(score));
 
 		((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();
 		((RightGameInfoBoard) app.getMultiGame().getRightGameInfoPanel()).updateGameInfoBoard();
