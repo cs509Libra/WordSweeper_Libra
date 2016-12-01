@@ -3,10 +3,12 @@ package client.controller;
 import java.util.ArrayList;
 
 import client.MockServerAccess;
+import client.controller.requestController.CreateGameController;
+import client.controller.requestController.JoinGameController;
 import client.model.Model;
 import client.view.Application;
-import xml.Message;
 import junit.framework.TestCase;
+import xml.Message;
 
 /**
  * This test case is needed when the job of a controller is to send a Request to the server.
