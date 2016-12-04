@@ -37,8 +37,10 @@ public class TestBoardResponseController {
 		String bonus = "4,3";
 		String gameId = "some id";
 		String managingUser = name2;
-		String board1 = "AFERKSOEROIERPOR";
-		String board2 = "ECDRFTGOUIGERPRT";
+		String board1 = "A,F,E,R,K,S,O,E,R,O,I,E,R,P,O,R";
+		String board2 = "E,C,D,R,F,T,G,O,M,I,G,E,R,P,R,T";
+		String board11 = "AFERKSOEROIERPOR";
+		String board21 = "ECDRFTGOMIGERPRT";
 		String pos1 = col1 + "," + row1, pos2 = col2 + "," + row2;
 		int score1 = 5, score2 = 10;
 		String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><response id=\"someMessageID\" success=\"true\">"
@@ -47,7 +49,7 @@ public class TestBoardResponseController {
 				+ "<player board=\"%s\" name=\"%s\" position=\"%s\" score=\"%s\"/>"
 				+ "</boardResponse></response>";
 		xml = String.format(xml, bonus, gameId, managingUser, board1, name1, pos1, score1, board2, name2, pos2, score2);
-		model.updateInfo("something different", "I don't know", "haha", 6, 7, "abcdefghijklmnop", 55, "6,6");
+		model.updateInfo("something different", "I don't know", "haha", 6, 7, "A,B,C,D,F,E,E,G,J,I,J,O,P,B,I,M", 55, "6,6");
 		model.getPlayer().setName(name1);
 		
 		Message m = new Message(xml);
@@ -59,7 +61,7 @@ public class TestBoardResponseController {
 		assertTrue(b.positions.contains(pos2));
 		assertEquals(b.getGlobalStartingCol(), col1);
 		assertEquals(b.getGlobalStartingRow(), row1);
-		assertEquals(b.getBoardInfo(), board1);
+		assertEquals(b.getBoardInfo(), board11);
 		assertEquals(b.getBonusCell(), bonus);
 		
 		Game game = model.getGame();

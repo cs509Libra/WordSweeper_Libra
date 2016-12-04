@@ -36,13 +36,13 @@ public class TestFindWordController {
 	{
 		String player_name = "player1";
 		String game_id = "exitGame";
-		String wordContent="UP";
+		String wordContent="SO";
 
 
 		model.getPlayer().setName(player_name);
 		model.getGame().setGameID(game_id);
 		model.getBoard().getWord().setContent(wordContent);
-		model.getBoard().updateBoard(2, 1, "UABCPAABIENFJKOL");
+		model.getBoard().updateBoard(2, 1, "S,A,B,C,O,A,A,B,I,E,N,F,J,K,O,L");
 		model.getBoard().addToChosenCellsByCellIndex(0);
 		model.getBoard().addToChosenCellsByCellIndex(4);
 
