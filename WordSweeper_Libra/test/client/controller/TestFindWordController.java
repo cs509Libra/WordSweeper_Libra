@@ -35,7 +35,7 @@ public class TestFindWordController {
 	public void TestFindWordProcess()
 	{
 		String player_name = "player1";
-		String game_id = "exitGame";
+		String game_id = "Game1";
 		String wordContent="SO";
 
 
