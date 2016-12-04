@@ -40,7 +40,6 @@ public class TestBoardResponseController {
 		String board1 = "A,F,E,R,K,S,O,E,R,O,I,E,R,P,O,R";
 		String board2 = "E,C,D,R,F,T,G,O,M,I,G,E,R,P,R,T";
 		String board11 = "AFERKSOEROIERPOR";
-		String board21 = "ECDRFTGOMIGERPRT";
 		String pos1 = col1 + "," + row1, pos2 = col2 + "," + row2;
 		int score1 = 5, score2 = 10;
 		String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><response id=\"someMessageID\" success=\"true\">"

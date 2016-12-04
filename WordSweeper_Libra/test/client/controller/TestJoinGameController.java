@@ -10,12 +10,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import client.MockServerAccess;
-import client.controller.requestController.CreateGameController;
+import client.controller.requestController.JoinGameController;
 import client.model.Model;
 import client.view.Application;
 import xml.Message;
 
-public class TestCreateGameController {
+public class TestJoinGameController {
 	Model model=new Model();
 	Application client=new Application(model);
 	MockServerAccess mockServer=new MockServerAccess("localhost");
@@ -32,33 +32,44 @@ public class TestCreateGameController {
 	}
 
 	@Test
-	public void TestCreateGameProcess()
+	public void TestJoinGameProcess()
 	{
-		//test create game process without password
+		//test join game process without password
+		String gameid="game1";
 		String player_name = "player1";
 		model.getPlayer().setName(player_name);
+		model.getGame().setGameID(gameid);
 		client.setPlayerName(player_name);
-		CreateGameController cgame=new CreateGameController(client,model);
-		cgame.process();
+		client.setGameNumber(gameid);
+		JoinGameController jgame=new JoinGameController(client,model);
+		jgame.process();
 		ArrayList<Message> reqs = mockServer.getAndClearMessages();
 		assertTrue(reqs.size() == 1);
 		Message r = reqs.get(0);
-		assertEquals("createGameRequest", r.contents.getFirstChild().getLocalName());
+		assertEquals("joinGameRequest", r.contents.getFirstChild().getLocalName());
+		assertEquals(gameid, r.contents.getFirstChild().getAttributes().getNamedItem("gameId").getNodeValue());
 		assertEquals(player_name, r.contents.getFirstChild().getAttributes().getNamedItem("name").getNodeValue());
+
 		
-		//test create game process with password
-		String password="abc";
-		String name="player2";
+/*		//test join game process with password
+		String gameid2="game2";
+		String name = "player2";
+		String password ="abc";
 		model.getPlayer().setName(name);
+		model.getGame().setGameID(gameid2);
 		client.setPlayerName(name);
+		client.setGameNumber(gameid2);
 		client.setPassword(password);
-		CreateGameController cgame2=new CreateGameController(client,model);
-		cgame2.process();
+		JoinGameController jgame2=new JoinGameController(client,model);
+		jgame2.process();
 		ArrayList<Message> reqs2 = mockServer.getAndClearMessages();
 		assertTrue(reqs2.size() == 1);
 		Message r2 = reqs2.get(0);
-		assertEquals("createGameRequest", r2.contents.getFirstChild().getLocalName());
+		assertEquals("joinGameRequest", r2.contents.getFirstChild().getLocalName());
+		assertEquals(gameid2, r2.contents.getFirstChild().getAttributes().getNamedItem("gameId").getNodeValue());
 		assertEquals(name, r2.contents.getFirstChild().getAttributes().getNamedItem("name").getNodeValue());
 		assertEquals(password, r2.contents.getFirstChild().getAttributes().getNamedItem("password").getNodeValue());
+*/
 	}
+	
 }
