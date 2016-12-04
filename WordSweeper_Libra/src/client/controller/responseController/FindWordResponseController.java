@@ -26,8 +26,9 @@ public class FindWordResponseController extends ControllerChain {
 		if (!type.equals("findWordResponse")) {
 			return next.process(response);
 		}
-		if (response.contents.getAttributes().getNamedItem("success").getNodeValue().equals("false"))
-			return false;
+		if (response.contents.getAttributes().getNamedItem("success").getNodeValue().equals("false")){
+			model.getPlayer().setWordscore(0);
+			return false;}
 
 		Node boardResponse = response.contents.getFirstChild();
 		NamedNodeMap map = boardResponse.getAttributes();
