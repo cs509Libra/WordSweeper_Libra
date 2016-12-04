@@ -58,11 +58,11 @@ public class Board {
 	}
 
 	private void updateBoardByAllLetters(String cellsLetters) {
-		String[] cellInforList = cellsLetters.split(",");
+//		String[] cellInforList = cellsLetters.split(",");
 		for (int i = 0; i < 16; i++) {
-			this.cells.get(i).setLetter(cellInforList[i]);
+			this.cells.get(i).setLetter("" + cellsLetters.charAt(i));
 		}
-	}
+	}//change a little
 
 	public String getBoardInfo() {
 		String allCellLetters = "";

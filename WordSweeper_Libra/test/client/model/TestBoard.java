@@ -15,7 +15,7 @@ public class TestBoard {
 	 */
 	public void testBoardInitialization() {
 		Board board = new Board();
-		board.updateBoard(2, 3, "A,B,C,D,A,B,C,D,A,B,C,D,A,B,C,D");
+		board.updateBoard(2, 3, "ABCDABCDABCDABCD");
 
 		assertEquals(2, board.getCol());
 		assertEquals(3, board.getRow());
@@ -28,7 +28,7 @@ public class TestBoard {
 	 */
 	public void testBoardCells() {
 		Board board = new Board();
-		board.updateBoard(2, 3, "A,B,C,D,A,B,C,D,A,B,C,D,A,B,C,D");
+		board.updateBoard(2, 3, "ABCDABCDABCDABCD");
 		ArrayList<Cell> cells = board.getCells();
 		for (Cell i : cells) {
 			System.out.println(i.getLetter());
@@ -41,7 +41,7 @@ public class TestBoard {
 	 */
 	public void testChosenCells() {
 		Board board = new Board();
-		board.updateBoard(2, 3, "A,B,C,D,A,B,C,D,A,B,C,D,A,B,C,D");
+		board.updateBoard(2, 3, "ABCDABCDABCDABCD");
 		board.addToChosenCellsByCellIndex(0);
 		board.addToChosenCellsByCellIndex(5);
 		board.addToChosenCellsByCellIndex(10);
