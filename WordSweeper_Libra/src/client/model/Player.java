@@ -9,6 +9,7 @@ public class Player {
 	public Player(){
 		this.name = "";
 		this.score = 0;
+		this.wordscore=0;
 		this.isManager = false;
 	}
 
