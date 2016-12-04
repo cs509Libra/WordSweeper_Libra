@@ -22,6 +22,7 @@ public class ExitGameResponseController extends ControllerChain {
 		app.getResponseArea().append(response.toString());
 		app.getResponseArea().append("\n");
 
+		this.model.isWaitingResponse = false;
 		String type = response.contents.getFirstChild().getLocalName();
 		if (!type.equals("exitGameResponse")) {
 			return next.process(response);

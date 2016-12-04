@@ -54,11 +54,11 @@ public class RightGameInfoBoard extends JPanel {
 		add(gameLockResetLabel);
 
 		JLabel gameIdTitle = new JLabel("Game ID:");
-		gameIdTitle.setBounds(10, 50, 65, 28);
+		gameIdTitle.setBounds(10, 40, 65, 28);
 		add(gameIdTitle);
 
 		gameIdLabel = new JLabel("");
-		gameIdLabel.setBounds(80, 50, 65, 28);
+		gameIdLabel.setBounds(80, 40, 65, 28);
 		add(gameIdLabel);
 
 		JButton quit = new JButton("Quit");
@@ -66,8 +66,19 @@ public class RightGameInfoBoard extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new ExitGameController(app, model).process();
-//				app.getMg().dispose();
-//				app.enableInputs();
+				try {
+					Thread.sleep(300);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				if (model.isWaitingResponse == true) {
+					((LeftBoardPanel) app.getMg().getLeftBoardPanel()).getMessageLabel()
+							.setText("You are offline! Please close the game.");
+					((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();
+					gameLockResetLabel.setText("");
+				}
+				// app.getMg().dispose();
+				// app.enableInputs();
 				// app.setVisible(true);
 			}
 		});
@@ -76,6 +87,10 @@ public class RightGameInfoBoard extends JPanel {
 		quit.setSize(getPreferredSize());
 		quit.setBounds(190, 20, 100, 25);
 		add(quit);
+
+		JLabel myNameLabel = new JLabel("Name:          " + this.model.getPlayer().getName());
+		myNameLabel.setBounds(10, 57, 180, 28);
+		add(myNameLabel);
 
 		JLabel myScoreLabel = new JLabel("My Score:");
 		myScoreLabel.setBounds(10, 75, 65, 28);
@@ -155,20 +170,42 @@ public class RightGameInfoBoard extends JPanel {
 		resetBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				gameLockResetLabel.setText("Game has been RESET!");
 				new ResetGameController(app, model).process();
-				// updateGameInfoBoard();
-				resetBtn.setEnabled(false);
-				resetBtn.setEnabled(true);
+				try {
+					Thread.sleep(300);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				if (model.isWaitingResponse == true) {
+					((LeftBoardPanel) app.getMg().getLeftBoardPanel()).getMessageLabel()
+							.setText("Disconnected  from  the  server !!!");
+					((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();
+					gameLockResetLabel.setText("");
+				} else {
+					gameLockResetLabel.setText("Game has been RESET!");
+				}
 			}
 		});
 
 		lockBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				gameLockResetLabel.setText("Game has been Locked!");
 				new LockGameController(app, model).process();
-				lockBtn.setEnabled(false);
+				try {
+					Thread.sleep(300);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				if (model.isWaitingResponse == true) {
+					((LeftBoardPanel) app.getMg().getLeftBoardPanel()).getMessageLabel()
+							.setText("Disconnected  from  the  server !!!");
+					((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();
+					gameLockResetLabel.setText("");
+				} else {
+					gameLockResetLabel.setText("Game has been Locked!");
+					lockBtn.setEnabled(false);
+				}
+
 			}
 		});
 

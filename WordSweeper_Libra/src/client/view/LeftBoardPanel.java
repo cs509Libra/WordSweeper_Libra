@@ -30,6 +30,7 @@ public class LeftBoardPanel extends JPanel {
 	private String previousBoard;
 
 	private JLabel messageLabel;
+
 	private JTextField localExpectedScoreField;
 	private JTextField scoreFromServerField;
 	private JTextField submissionField;
@@ -45,6 +46,10 @@ public class LeftBoardPanel extends JPanel {
 		this.isBoardChanged = false;
 		this.previousBoard = "";
 		initiate();
+	}
+
+	public JLabel getMessageLabel() {
+		return this.messageLabel;
 	}
 
 	private void initiate() {
@@ -63,14 +68,24 @@ public class LeftBoardPanel extends JPanel {
 				model.getBoard().setRequestRowChange(-1);
 				model.getBoard().setRequestColChange(0);
 				new RepositionBoardController(app, model).process();
+				messageLabel.setText("");
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// refreshBoard();
-				newRow = model.getBoard().getGlobalStartingRow();
-				if (previousRow == newRow) {
-					messageLabel.setText("No More Up!");
+				try {
+					Thread.sleep(300);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				if (model.isWaitingResponse == true) {
+					messageLabel.setText("Disconnected  from  the  server !!!");
+				} else {
+					newRow = model.getBoard().getGlobalStartingRow();
+					if (previousRow == newRow) {
+						messageLabel.setText("No More Up !");
+					}
 				}
 			}
 		});
@@ -91,14 +106,24 @@ public class LeftBoardPanel extends JPanel {
 				model.getBoard().setRequestColChange(-1);
 				model.getBoard().setRequestRowChange(0);
 				new RepositionBoardController(app, model).process();
+				messageLabel.setText("");
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// refreshBoard();
-				newCol = model.getBoard().getGlobalStartingCol();
-				if (previousCol == newCol) {
-					messageLabel.setText("No More Left!");
+				try {
+					Thread.sleep(300);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				if (model.isWaitingResponse == true) {
+					messageLabel.setText("Disconnected  from  the  server !!!");
+				} else {
+					newCol = model.getBoard().getGlobalStartingCol();
+					if (previousCol == newCol) {
+						messageLabel.setText("No More Left!");
+					}
 				}
 			}
 		});
@@ -118,14 +143,24 @@ public class LeftBoardPanel extends JPanel {
 				model.getBoard().setRequestColChange(1);
 				model.getBoard().setRequestRowChange(0);
 				new RepositionBoardController(app, model).process();
+				messageLabel.setText("");
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// refreshBoard();
-				newCol = model.getBoard().getGlobalStartingCol();
-				if (previousCol == newCol) {
-					messageLabel.setText("No More Right!");
+				try {
+					Thread.sleep(300);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				if (model.isWaitingResponse == true) {
+					messageLabel.setText("Disconnected  from  the  server !!!");
+				} else {
+					newCol = model.getBoard().getGlobalStartingCol();
+					if (previousCol == newCol) {
+						messageLabel.setText("No More Right!");
+					}
 				}
 			}
 		});
@@ -145,14 +180,24 @@ public class LeftBoardPanel extends JPanel {
 				model.getBoard().setRequestRowChange(1);
 				model.getBoard().setRequestColChange(0);
 				new RepositionBoardController(app, model).process();
+				messageLabel.setText("");
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// refreshBoard();
-				newRow = model.getBoard().getGlobalStartingRow();
-				if (previousRow == newRow) {
-					messageLabel.setText("No More Down!");
+				try {
+					Thread.sleep(300);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				if (model.isWaitingResponse == true) {
+					messageLabel.setText("Disconnected  from  the  server !!!");
+				} else {
+					newRow = model.getBoard().getGlobalStartingRow();
+					if (previousRow == newRow) {
+						messageLabel.setText("No More Down!");
+					}
 				}
 			}
 		});
@@ -172,7 +217,7 @@ public class LeftBoardPanel extends JPanel {
 
 		messageLabel = new JLabel();
 		messageLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		messageLabel.setBounds(100, 340, 200, 21);
+		messageLabel.setBounds(41, 340, 299, 21);
 		messageLabel.setText("");
 		messageLabel.setForeground(Color.RED);
 		add(messageLabel);
@@ -250,20 +295,25 @@ public class LeftBoardPanel extends JPanel {
 
 				// call findWordRequestController
 				new FindWordController(app, model).process();
+				messageLabel.setText("");
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				try {
-					Thread.sleep(50);
+					Thread.sleep(300);
 				} catch (InterruptedException e1) { // TODO Auto-generated
 													// catch block
 					e1.printStackTrace();
 				}
-				playerNewScore = model.getPlayer().getWordscore();
-				scoreFromServerField.setText(String.valueOf(playerNewScore));
-				rightGameInfoBoard.updateGameInfoBoard();
-				clearAllChosen();
+				if (model.isWaitingResponse == true) {
+					messageLabel.setText("Disconnected  from  the  server !!!");
+				} else {
+					playerNewScore = model.getPlayer().getWordscore();
+					scoreFromServerField.setText(String.valueOf(playerNewScore));
+					rightGameInfoBoard.updateGameInfoBoard();
+					clearAllChosen();
+				}
 			}
 		});
 		;
@@ -311,7 +361,7 @@ public class LeftBoardPanel extends JPanel {
 	}
 
 	private void clearAllChosen() {
-		messageLabel.setText("");
+		// messageLabel.setText("");
 		localExpectedScoreField.setText("0");
 		submissionField.setText("");
 		chosenCellBtns.removeAll(chosenCellBtns);

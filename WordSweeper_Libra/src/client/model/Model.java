@@ -7,6 +7,7 @@ public class Model {
 	private Player player;
 	private PracticeGame practiceGame;
 	public boolean existedGame;
+	public boolean isWaitingResponse;
 
 	public Model() {
 		this.game = new Game();
@@ -14,6 +15,7 @@ public class Model {
 		this.board = new Board();
 		this.player = new Player();
 		this.existedGame = false;
+		this.isWaitingResponse = false;
 	}
 
 	public PracticeGame startPracticeGame() {
@@ -24,8 +26,8 @@ public class Model {
 			String boardInfo, long score, String bonusCell) {
 		this.game.setGameID(gameID);
 		this.player.setName(playerName);
-		if(score!=this.player.getScore())
-		this.player.setScore(score);
+		if (score != this.player.getScore())
+			this.player.setScore(score);
 		this.game.setManagingUser(managingUser);
 		if (managingUser.equals(this.player.getName())) {
 			this.player.setAsManager();

@@ -169,10 +169,12 @@ public class Application extends JFrame {
 				return false;
 			}
 
+			@SuppressWarnings("deprecation")
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (!notHasPlayerName()) {
 					model.getPlayer().setName(playerName);
+					password = passWordField.getText();
 					new CreateGameController(Application.this, model).process();
 					Application.this.disableInputs();
 				}
@@ -182,7 +184,7 @@ public class Application extends JFrame {
 			public void mouseReleased(MouseEvent e) {
 				if (!notHasPlayerName()) {
 					try {
-						Thread.sleep(1000);
+						Thread.sleep(500);
 					} catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
@@ -214,10 +216,12 @@ public class Application extends JFrame {
 				return false;
 			}
 
+			@SuppressWarnings("deprecation")
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (!notHasPlayerNameAndGameId()) {
 					model.getPlayer().setName(playerName);
+					password = passWordField.getText();
 					new JoinGameController(Application.this, model).process();
 					Application.this.disableInputs();
 				}
@@ -239,7 +243,7 @@ public class Application extends JFrame {
 						return;
 					}
 					try {
-						Thread.sleep(800);
+						Thread.sleep(500);
 					} catch (InterruptedException e1) { // TODO Auto-generated
 														// catch block
 						e1.printStackTrace();
@@ -283,6 +287,7 @@ public class Application extends JFrame {
 	/** Get the server access object. */
 	public ServerAccess getServerAccess() {
 		System.out.println("Send a request");
+		this.model.isWaitingResponse = true;
 		return serverAccess;
 	}
 
