@@ -326,7 +326,6 @@ public class LeftBoardPanel extends JPanel {
 		add(submit);
 
 		refreshBoard();
-
 	}
 
 	public void refreshBoard() {
