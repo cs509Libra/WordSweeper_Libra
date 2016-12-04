@@ -16,12 +16,12 @@ public class ResetGameController {
 
 	/** Make the request on the server and wait for response. */
 	public void process() {
-		
-		String xmlString = Message.requestHeader() + String.format("<resetGameRequest gameId='%s'/></request>", model.getGame().getGameID());			
-		System.out.println(xmlString);
-		Message m = new Message (xmlString);
+
+		String xmlString = Message.requestHeader()
+				+ String.format("<resetGameRequest gameId='%s'/></request>", model.getGame().getGameID());
+		Message m = new Message(xmlString);
 		// Request the lock (this might not succeed).
-		
+
 		app.getRequestArea().append(m.toString());
 		app.getRequestArea().append("\n");
 		app.getServerAccess().sendRequest(m);

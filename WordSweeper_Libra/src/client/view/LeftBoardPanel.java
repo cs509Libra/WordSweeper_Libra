@@ -26,6 +26,8 @@ public class LeftBoardPanel extends JPanel {
 	private Model model;
 	private Application app;
 	private RightGameInfoBoard rightGameInfoBoard;
+	private Boolean isBoardChanged;
+	private String previousBoard;
 
 	private JLabel messageLabel;
 	private JTextField localExpectedScoreField;
@@ -40,6 +42,8 @@ public class LeftBoardPanel extends JPanel {
 		this.model = model;
 		this.app = app;
 		this.rightGameInfoBoard = (RightGameInfoBoard) rightGameInfoBoard;
+		this.isBoardChanged = false;
+		this.previousBoard = "";
 		initiate();
 	}
 
@@ -63,7 +67,7 @@ public class LeftBoardPanel extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				refreshBoard();
+				// refreshBoard();
 				newRow = model.getBoard().getGlobalStartingRow();
 				if (previousRow == newRow) {
 					messageLabel.setText("No More Up!");
@@ -91,7 +95,7 @@ public class LeftBoardPanel extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				refreshBoard();
+				// refreshBoard();
 				newCol = model.getBoard().getGlobalStartingCol();
 				if (previousCol == newCol) {
 					messageLabel.setText("No More Left!");
@@ -118,7 +122,7 @@ public class LeftBoardPanel extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				refreshBoard();
+				// refreshBoard();
 				newCol = model.getBoard().getGlobalStartingCol();
 				if (previousCol == newCol) {
 					messageLabel.setText("No More Right!");
@@ -145,7 +149,7 @@ public class LeftBoardPanel extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				refreshBoard();
+				// refreshBoard();
 				newRow = model.getBoard().getGlobalStartingRow();
 				if (previousRow == newRow) {
 					messageLabel.setText("No More Down!");
@@ -165,7 +169,6 @@ public class LeftBoardPanel extends JPanel {
 
 		chosenCellBtns = new ArrayList<JButton>();
 		addAllCellBtnsToCellBtnsList();
-		refreshBoard();
 
 		messageLabel = new JLabel();
 		messageLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -254,7 +257,7 @@ public class LeftBoardPanel extends JPanel {
 				try {
 					Thread.sleep(50);
 				} catch (InterruptedException e1) { // TODO Auto-generated
-							              			// catch block
+													// catch block
 					e1.printStackTrace();
 				}
 				playerNewScore = model.getPlayer().getWordscore();
@@ -272,9 +275,13 @@ public class LeftBoardPanel extends JPanel {
 		submit.setBounds(198, 430, 93, 23);
 		add(submit);
 
+		refreshBoard();
+
 	}
 
 	public void refreshBoard() {
+		this.isBoardChanged = !this.previousBoard.equals(this.model.getBoard().getBoardInfo());
+		this.previousBoard = this.model.getBoard().getBoardInfo();
 		char[] LettersToBeAdd = this.model.getBoard().getBoardInfo().toCharArray();
 		int j = 0;
 		for (int i = 0; i < 16; i++) {
@@ -285,9 +292,13 @@ public class LeftBoardPanel extends JPanel {
 			}
 			this.allCellBtns.get(i).setText(cellToBeAdded);
 		}
-		removeCellBtnsColors();
-		overlapArea();
-		changeBonusColor();
+		if (this.isBoardChanged) {
+			this.model.getBoard().clearChosenCells();
+			clearAllChosen();
+		} else {
+			overlapArea();
+			changeBonusColor();
+		}
 		boardview.repaint();
 	}
 
@@ -462,6 +473,9 @@ public class LeftBoardPanel extends JPanel {
 				if (times[n] < 7)
 					times[n] += 1;
 			}
+		}
+		for (JButton previous : this.chosenCellBtns) {
+			previous.setBackground(Color.RED);
 		}
 	}
 

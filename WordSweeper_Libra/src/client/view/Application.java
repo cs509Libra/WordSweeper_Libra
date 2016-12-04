@@ -58,26 +58,26 @@ public class Application extends JFrame {
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public void setPassword(String paword) {
-		this.password=paword;
-	}//for test
+		this.password = paword;
+	}// for test
 
 	public String getGameNumber() {
 		return gameNumber;
 	}
 
-	public void setGameNumber(String gameid)  {
-		this.gameNumber=gameid;
-	}//for test
-	
+	public void setGameNumber(String gameid) {
+		this.gameNumber = gameid;
+	}// for test
+
 	public String getPlayerName() {
 		return playerName;
 	}
-	
-	public void setPlayerName(String name){
-		this.playerName=name;
-	}//for test
+
+	public void setPlayerName(String name) {
+		this.playerName = name;
+	}// for test
 
 	public Application(Model model) {
 		this.model = model;
@@ -282,6 +282,7 @@ public class Application extends JFrame {
 
 	/** Get the server access object. */
 	public ServerAccess getServerAccess() {
+		System.out.println("Send a request");
 		return serverAccess;
 	}
 

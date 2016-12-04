@@ -62,7 +62,7 @@ public class Board {
 		for (int i = 0; i < 16; i++) {
 			this.cells.get(i).setLetter("" + cellInforList[i]);
 		}
-	}//change a little
+	}// change a little
 
 	public String getBoardInfo() {
 		String allCellLetters = "";
@@ -124,6 +124,7 @@ public class Board {
 			cell.setAsUnchosen();
 		}
 		chosenCells.removeAll(chosenCells);
+		word.setContent(getChosenCellsLetters());
 	}
 
 	public Integer getRequestColChange() {

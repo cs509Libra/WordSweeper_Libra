@@ -76,11 +76,11 @@ public class BoardResponseController extends ControllerChain {
 			}
 			this.model.getBoard().positions.add(plocation);
 
-			app.getResponseArea().append("  " + pname + "\n");
+			// app.getResponseArea().append(" " + pname + "\n");
 		}
 
-		app.getResponseArea().append(response.toString());
-		app.getResponseArea().append("\n");
+		// app.getResponseArea().append(response.toString());
+		// app.getResponseArea().append("\n");
 
 		model.getGame().setPlayersInfoMap(allPlayersInfo);
 		model.getGame().setPlayersPositionMap(allPlayersPositionInfo);
