@@ -22,7 +22,7 @@ public class TestCell {
 	
 	@Test
 	public void TestLocalPosition()
-	//the test for set&get local column function
+	//the test for set&get local column &row function
 	{
 		Cell cell2=new Cell();
 		assertEquals(0,cell2.getLocalCol());
@@ -35,6 +35,7 @@ public class TestCell {
 	
 	@Test
 	public void TestGlobalPosition()
+	//the test for set&get global  column &row function
 	{
 		Cell cell3=new Cell();
 		assertEquals(0,cell3.getGlobalCol());
@@ -47,6 +48,7 @@ public class TestCell {
 	
 	@Test
 	public void TestCellLetter()
+	//the test for set&get cell letter function
 	{
 		Cell cell4=new Cell();
 		assertEquals("",cell4.getLetter());
@@ -56,6 +58,7 @@ public class TestCell {
 	
 	@Test
 	public void TestIsChosen()
+	//the test to know if the cell is chosen or not function
 	{
 		Cell cell5=new Cell();
 		assertEquals(false,cell5.isChosen());
@@ -65,3 +68,4 @@ public class TestCell {
 		assertEquals(false,cell5.isChosen());
 	}
 }
+//end of TestCell

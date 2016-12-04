@@ -13,7 +13,34 @@ public class TestModel {
 //updateInfo and startPracticeGame in model is related to private attributes,
 //so we can't test it.
 //any ideas???
+	
+	@Test
+	public void TestPracticeModel()
+	//the test for start the practice game function in model
+	{
+		PracticeGame prac1=testmodel1.startPracticeGame();
+		assertEquals(false,prac1==null);
+	}
 
+	@Test
+	public void TestUpdateInfo()
+	//the test for update information function in model
+	{
+		testmodel1.updateInfo("game1", "Mike", "Mike", 2, 3, "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P", 2500, "2,3");
+		Game game1=testmodel1.getGame();
+		Player player1=testmodel1.getPlayer();
+		Board board1=testmodel1.getBoard();
+		assertEquals("game1",game1.getGameID());
+		assertEquals("Mike",player1.getName());
+		assertEquals(true,player1.isManager());
+		assertEquals(2,board1.getGlobalStartingCol());
+		assertEquals(3,board1.getGlobalStartingRow());
+		assertEquals("ABCDEFGHIJKLMNOP",board1.getBoardInfo());
+		assertEquals(2500,player1.getScore());
+		assertEquals("2,3",board1.getBonusCell());
+		
+	}
+	
 	@Test
 	public void TestGameinModel()
 	//the test for set&get game in model
