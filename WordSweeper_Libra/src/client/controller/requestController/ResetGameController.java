@@ -4,6 +4,16 @@ import client.model.Model;
 import client.view.Application;
 import xml.Message;
 
+/**
+ * When the player clicks "reset" button, a resetGameRequest will be sent to the
+ * server.
+ * <p>
+ * The {@link #process()} makes a resetGameRequest in XML format, and send it to
+ * the server.
+ * 
+ * @author HanBao
+ *
+ */
 public class ResetGameController {
 
 	Application app;
@@ -14,14 +24,13 @@ public class ResetGameController {
 		this.model = model;
 	}
 
-	/** Make the request on the server and wait for response. */
+	/** Make a resetGameRequest in XML format, and send it to the server. */
 	public void process() {
 
 		String xmlString = Message.requestHeader()
 				+ String.format("<resetGameRequest gameId='%s'/></request>", model.getGame().getGameID());
-		Message m = new Message(xmlString);
-		// Request the lock (this might not succeed).
 
+		Message m = new Message(xmlString);
 		app.getRequestArea().append(m.toString());
 		app.getRequestArea().append("\n");
 		app.getServerAccess().sendRequest(m);

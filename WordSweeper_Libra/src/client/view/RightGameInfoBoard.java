@@ -17,31 +17,53 @@ import client.controller.MGMouseListener;
 import client.controller.requestController.ExitGameController;
 import client.controller.requestController.LockGameController;
 import client.controller.requestController.ResetGameController;
+import client.controller.responseController.SampleClientMessageHandler;
 import client.model.Model;
 
+/**
+ * Right part of the GUI. This class is initialized in {@link MultiGame}.
+ * <p>
+ * When initialize this class, the constructor uses {@link #initiate()} to
+ * initialize
+ * <p>
+ * When {@link SampleClientMessageHandler}(Controllers) receive responses from
+ * the server, Controllers will first change the according attributes in models,
+ * then call {@link #updateGameInfoBoard()} to update the GUI.
+ * 
+ * @author HanBao
+ * 
+ */
 public class RightGameInfoBoard extends JPanel {
 
 	private Model model;
 	private Application app;
 
-	private JScrollPane jScrollPane1;
-	private JTextArea playersListArea;
+	private JScrollPane jScrollPane1; /* display players' names and scores */
+	private JTextArea playersListArea;/* display players' names and scores */
+	private JLabel myScoreFromSever; /* display local player's score */
+	private JLabel gameIdLabel; /* display Game ID */
+	private JLabel managerName; /* display manager players name */
+	private JButton lockBtn; /* lock game button */
+	private JButton resetBtn; /* reset game button */
+	private JLabel playersNamesLabel; /* column name for player name */
+	private JLabel playersScoresLabel;/* column name for player score */
+	JLabel gameLockResetLabel;/* the status of reset game and lock game */
 
-	private JLabel myScoreFromSever;
-	private JLabel gameIdLabel;
-	private JLabel managerName;
-	JLabel gameLockResetLabel;
-	private JButton lockBtn;
-	private JButton resetBtn;
-	private JLabel playersNamesLabel;
-	private JLabel playersScoresLabel;
-
+	/**
+	 * Constructor of {@link RightGameInfoBoard}
+	 * 
+	 * @param model
+	 * @param app
+	 */
 	public RightGameInfoBoard(Model model, Application app) {
 		this.model = model;
 		this.app = app;
 		initiate();
 	}
 
+	/**
+	 * Initialization of {@link RightGameInfoBoard}
+	 */
 	private void initiate() {
 		setBorder(BorderFactory.createTitledBorder("Game Information"));
 		setBounds(380, 5, 300, 470);
@@ -62,24 +84,23 @@ public class RightGameInfoBoard extends JPanel {
 		add(gameIdLabel);
 
 		JButton quit = new JButton("Quit");
-		quit.addActionListener(new ActionListener() {
+		quit.addActionListener(new ActionListener() {// quit game button
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new ExitGameController(app, model).process();
-				try {
+				try {/* sleep for a while to wait for response from server */
 					Thread.sleep(300);
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}
-				if (model.isWaitingResponse == true) {
+
+				/* notify the player that the server is offline */
+				if (model.isWaitingResponse == true) {//
 					((LeftBoardPanel) app.getMg().getLeftBoardPanel()).getMessageLabel()
 							.setText("You are offline! Please close the game.");
 					((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();
 					gameLockResetLabel.setText("");
 				}
-				// app.getMg().dispose();
-				// app.enableInputs();
-				// app.setVisible(true);
 			}
 		});
 		quit.setForeground(Color.BLUE);
@@ -167,7 +188,7 @@ public class RightGameInfoBoard extends JPanel {
 		resetBtn.setBounds(80, 70, 110, 30);
 		managerPower.add(resetBtn);
 
-		resetBtn.addActionListener(new ActionListener() {
+		resetBtn.addActionListener(new ActionListener() {// reset game button
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new ResetGameController(app, model).process();
@@ -178,16 +199,17 @@ public class RightGameInfoBoard extends JPanel {
 				}
 				if (model.isWaitingResponse == true) {
 					((LeftBoardPanel) app.getMg().getLeftBoardPanel()).getMessageLabel()
-							.setText("Disconnected  from  the  server !!!");
+							.setText("Disconnected  from  the  server! Unable to reset!");
 					((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();
 					gameLockResetLabel.setText("");
 				} else {
 					gameLockResetLabel.setText("Game has been RESET!");
+					((LeftBoardPanel) app.getMg().getLeftBoardPanel()).getMessageLabel().setText("");
 				}
 			}
 		});
 
-		lockBtn.addActionListener(new ActionListener() {
+		lockBtn.addActionListener(new ActionListener() {// lock game button
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new LockGameController(app, model).process();
@@ -198,7 +220,7 @@ public class RightGameInfoBoard extends JPanel {
 				}
 				if (model.isWaitingResponse == true) {
 					((LeftBoardPanel) app.getMg().getLeftBoardPanel()).getMessageLabel()
-							.setText("Disconnected  from  the  server !!!");
+							.setText("Disconnected  from  the  server! Unable to lock!");
 					((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();
 					gameLockResetLabel.setText("");
 				} else {
@@ -212,16 +234,21 @@ public class RightGameInfoBoard extends JPanel {
 		updateGameInfoBoard();
 	}
 
+	/**
+	 * When {@link SampleClientMessageHandler}(Controllers) receive responses
+	 * from the server, Controllers will first change the according attributes
+	 * in models, then call this method to update the GUI.
+	 */
 	public void updateGameInfoBoard() {
+		gameLockResetLabel.setText("");
 		gameIdLabel.setText(model.getGame().getGameID());
 		myScoreFromSever.setText(String.valueOf(model.getPlayer().getScore()));
 		playersListArea.setText(model.getGame().getPlayersListByName());
 		managerName.setText(model.getGame().getManagingUser());
-		if (model.getGame().getManagingUser().equals(model.getPlayer().getName())) {// model.getPlayer().isManager()
+		if (model.getPlayer().isManager()) {// check manager player
 			lockBtn.setEnabled(true);
 			resetBtn.setEnabled(true);
 		}
-
 		if (model.getGame().isLocked()) {
 			setBorder(BorderFactory.createTitledBorder("Game Information <Locked>"));
 			lockBtn.setEnabled(false);

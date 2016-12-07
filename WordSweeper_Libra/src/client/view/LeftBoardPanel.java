@@ -64,7 +64,7 @@ public class LeftBoardPanel extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				clearAllChosen();
-				previousRow = model.getBoard().getGlobalStartingRow();
+				previousRow = model.getBoard().getRow();
 				model.getBoard().setRequestRowChange(-1);
 				model.getBoard().setRequestColChange(0);
 				new RepositionBoardController(app, model).process();
@@ -82,7 +82,7 @@ public class LeftBoardPanel extends JPanel {
 				if (model.isWaitingResponse == true) {
 					messageLabel.setText("Disconnected  from  the  server !!!");
 				} else {
-					newRow = model.getBoard().getGlobalStartingRow();
+					newRow = model.getBoard().getRow();
 					if (previousRow == newRow) {
 						messageLabel.setText("No More Up !");
 					}
@@ -102,7 +102,7 @@ public class LeftBoardPanel extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				clearAllChosen();
-				previousCol = model.getBoard().getGlobalStartingCol();
+				previousCol = model.getBoard().getCol();
 				model.getBoard().setRequestColChange(-1);
 				model.getBoard().setRequestRowChange(0);
 				new RepositionBoardController(app, model).process();
@@ -120,7 +120,7 @@ public class LeftBoardPanel extends JPanel {
 				if (model.isWaitingResponse == true) {
 					messageLabel.setText("Disconnected  from  the  server !!!");
 				} else {
-					newCol = model.getBoard().getGlobalStartingCol();
+					newCol = model.getBoard().getCol();
 					if (previousCol == newCol) {
 						messageLabel.setText("No More Left!");
 					}
@@ -139,7 +139,7 @@ public class LeftBoardPanel extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				clearAllChosen();
-				previousCol = model.getBoard().getGlobalStartingCol();
+				previousCol = model.getBoard().getCol();
 				model.getBoard().setRequestColChange(1);
 				model.getBoard().setRequestRowChange(0);
 				new RepositionBoardController(app, model).process();
@@ -157,7 +157,7 @@ public class LeftBoardPanel extends JPanel {
 				if (model.isWaitingResponse == true) {
 					messageLabel.setText("Disconnected  from  the  server !!!");
 				} else {
-					newCol = model.getBoard().getGlobalStartingCol();
+					newCol = model.getBoard().getCol();
 					if (previousCol == newCol) {
 						messageLabel.setText("No More Right!");
 					}
@@ -176,7 +176,7 @@ public class LeftBoardPanel extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				clearAllChosen();
-				previousRow = model.getBoard().getGlobalStartingRow();
+				previousRow = model.getBoard().getRow();
 				model.getBoard().setRequestRowChange(1);
 				model.getBoard().setRequestColChange(0);
 				new RepositionBoardController(app, model).process();
@@ -194,7 +194,7 @@ public class LeftBoardPanel extends JPanel {
 				if (model.isWaitingResponse == true) {
 					messageLabel.setText("Disconnected  from  the  server !!!");
 				} else {
-					newRow = model.getBoard().getGlobalStartingRow();
+					newRow = model.getBoard().getRow();
 					if (previousRow == newRow) {
 						messageLabel.setText("No More Down!");
 					}
@@ -217,7 +217,7 @@ public class LeftBoardPanel extends JPanel {
 
 		messageLabel = new JLabel();
 		messageLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		messageLabel.setBounds(41, 340, 299, 21);
+		messageLabel.setBounds(41, 340, 324, 21);
 		messageLabel.setText("");
 		messageLabel.setForeground(Color.RED);
 		add(messageLabel);
@@ -302,8 +302,7 @@ public class LeftBoardPanel extends JPanel {
 			public void mouseReleased(MouseEvent e) {
 				try {
 					Thread.sleep(300);
-				} catch (InterruptedException e1) { // TODO Auto-generated
-													// catch block
+				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}
 				if (model.isWaitingResponse == true) {
@@ -387,7 +386,6 @@ public class LeftBoardPanel extends JPanel {
 				int indexOfThisBtnInAll = allCellBtns.indexOf(chosenBtn);
 				if (isBonusCell(indexOfThisBtnInAll))
 					chosenBtn.setBackground(Color.ORANGE);
-				System.out.println(indexOfThisBtnInAll);
 
 				// Update model chosen cells info for submission purpose.
 				model.getBoard().addToChosenCellsByCellIndex(indexOfThisBtnInAll);
@@ -487,6 +485,9 @@ public class LeftBoardPanel extends JPanel {
 
 	}
 
+	/**
+	 * Change the color of bonus cell into yellow
+	 */
 	private void changeBonusColor() {
 		String bonusCell = this.model.getBoard().getBonusCell();
 		int x = Character.getNumericValue(bonusCell.charAt(0)) - this.model.getBoard().getCol() + 1;
@@ -497,6 +498,10 @@ public class LeftBoardPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Find the overlapped cells, and change the color of overlapped cells. The
+	 * more players in one cell, the darker color of the cell.
+	 */
 	private void overlapArea() {
 		if (this.model.getBoard().positions.size() == 0)
 			return;
@@ -537,11 +542,22 @@ public class LeftBoardPanel extends JPanel {
 	 * @return
 	 */
 	private boolean isAdjacent(int A, int B) {
-		int C = Math.abs(A - B);
-		if (C == 1 || C == 3 || C == 4 || C == 5)
-			return true;
-		else
-			return false;
+		int[] arrayWithBorder = new int[] { -1, -1, -1, -1, -1, -1, -1, 0, 1, 2, 3, -1, -1, 4, 5, 6, 7, -1, -1, 8, 9,
+				10, 11, -1, -1, 12, 13, 14, 15, -1, -1, -1, -1, -1, -1, -1, };
+		ArrayList<Integer> arrayListWithBorder = new ArrayList<Integer>();
+		for (int i : arrayWithBorder) {
+			arrayListWithBorder.add(i);
+		}
+		int rankOfA = arrayListWithBorder.indexOf(A);
+		int[] aroundA = { arrayWithBorder[rankOfA - 7], arrayWithBorder[rankOfA - 6], arrayWithBorder[rankOfA - 5],
+				arrayWithBorder[rankOfA - 1], arrayWithBorder[rankOfA + 1], arrayWithBorder[rankOfA + 5],
+				arrayWithBorder[rankOfA + 6], arrayWithBorder[rankOfA + 7] };
+		for (int i : aroundA) {
+			if (B == i) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private Integer calculateWordScoreFromLocalLib(String word) {
@@ -552,4 +568,5 @@ public class LeftBoardPanel extends JPanel {
 		Integer wordLength = chosenCellBtns.size();
 		return CalculateLocalScore.calculateWordScore(word, wordLength);
 	}
+
 }

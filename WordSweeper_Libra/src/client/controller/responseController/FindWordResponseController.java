@@ -26,9 +26,12 @@ public class FindWordResponseController extends ControllerChain {
 		if (!type.equals("findWordResponse")) {
 			return next.process(response);
 		}
-		if (response.contents.getAttributes().getNamedItem("success").getNodeValue().equals("false")){
+		if (response.contents.getAttributes().getNamedItem("success").getNodeValue().equals("false")) {
 			model.getPlayer().setWordscore(0);
-			return false;}
+			((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).getMessageLabel()
+					.setText(response.contents.getAttributes().getNamedItem("reason").getNodeValue());
+			return false;
+		}
 
 		Node boardResponse = response.contents.getFirstChild();
 		NamedNodeMap map = boardResponse.getAttributes();
@@ -40,7 +43,7 @@ public class FindWordResponseController extends ControllerChain {
 		// app.getResponseArea().append("Board Message received for game:" +
 		// boardResponse.toString() + "\n");
 		model.getPlayer().setWordscore(Integer.valueOf(score));
-
+		((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).getMessageLabel().setText("Good job!");
 		((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();
 		((RightGameInfoBoard) app.getMultiGame().getRightGameInfoPanel()).updateGameInfoBoard();
 

@@ -47,8 +47,6 @@ public class BoardResponseController extends ControllerChain {
 		String gameId = map.getNamedItem("gameId").getNodeValue();
 		String managingUser = map.getNamedItem("managingUser").getNodeValue();
 		String bonusCell = map.getNamedItem("bonus").getNodeValue();
-		app.getResponseArea().append("Board Message received for game:" + gameId + "\n");
-		app.getResponseArea().append("Players:\n");
 		NodeList list = boardResponse.getChildNodes();
 
 		Map<String, Integer> allPlayersInfo = new HashMap<>();

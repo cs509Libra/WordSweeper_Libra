@@ -27,9 +27,10 @@ public class JoinGameResponseController extends ControllerChain {
 			return next.process(response);
 		}
 
-		if (response.contents.getAttributes().getNamedItem("success").getNodeValue().equals("false"))
+		if (response.contents.getAttributes().getNamedItem("success").getNodeValue().equals("false")) {
+			app.setError_messege(response.contents.getAttributes().getNamedItem("reason").getNodeValue());
 			return false;
-		else
+		} else
 			this.model.existedGame = true;
 		Node boardResponse = response.contents.getFirstChild();
 		NamedNodeMap map = boardResponse.getAttributes();

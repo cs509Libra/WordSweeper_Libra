@@ -101,7 +101,8 @@ public class Board {
 		word.setContent(getChosenCellsLetters());
 		word.setlocalExpectedScore(
 				CalculateLocalScore.calculateWordScore(getChosenCellsLetters(), this.chosenCells.size()));
-		System.out.println("word: " + word.getContent() + chosenCells.size());
+		// System.out.println("word: " + word.getContent() +
+		// chosenCells.size());
 
 	}
 
@@ -145,14 +146,6 @@ public class Board {
 
 	public void empltyChosenCells() {
 		this.chosenCells.removeAll(chosenCells);
-	}
-
-	public int getGlobalStartingCol() {
-		return globalStartingCol;
-	}
-
-	public int getGlobalStartingRow() {
-		return globalStartingRow;
 	}
 
 	public String getBonusCell() {

@@ -27,6 +27,7 @@ public class Application extends JFrame {
 	public Model model;
 	JPanel contentPane;
 	ServerAccess serverAccess;
+	String error_messege;
 
 	JTextArea requestArea;
 	JTextArea responseArea;
@@ -55,6 +56,10 @@ public class Application extends JFrame {
 		this.setMg(mg);
 	}
 
+	public void setError_messege(String error_messege) {
+		this.error_messege = error_messege;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -81,6 +86,7 @@ public class Application extends JFrame {
 
 	public Application(Model model) {
 		this.model = model;
+		this.error_messege = "";
 		initiate();
 	}
 
@@ -188,6 +194,17 @@ public class Application extends JFrame {
 					} catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
+					if (Application.this.model.existedGame == false) {
+						String messege;
+						if (error_messege.equals(""))
+							messege = "Unable to connect server!";
+						else
+							messege = Application.this.error_messege;
+						JOptionPane.showMessageDialog(Application.this, messege, "ERROR", JOptionPane.WARNING_MESSAGE);
+						setError_messege("");
+						Application.this.enableInputs();
+						return;
+					}
 					setMg(new MultiGame(model, Application.this));
 					getMg().setVisible(true);
 				}
@@ -237,13 +254,18 @@ public class Application extends JFrame {
 						e1.printStackTrace();
 					}
 					if (Application.this.model.existedGame == false) {
-						JOptionPane.showMessageDialog(Application.this, "Game Number is incorrect!", "Warning",
-								JOptionPane.WARNING_MESSAGE);
+						String messege;
+						if (error_messege.equals(""))
+							messege = "Unable to connect server!";
+						else
+							messege = Application.this.error_messege;
+						JOptionPane.showMessageDialog(Application.this, messege, "ERROR", JOptionPane.WARNING_MESSAGE);
+						setError_messege("");
 						Application.this.enableInputs();
 						return;
 					}
 					try {
-						Thread.sleep(500);
+						Thread.sleep(100);
 					} catch (InterruptedException e1) { // TODO Auto-generated
 														// catch block
 						e1.printStackTrace();

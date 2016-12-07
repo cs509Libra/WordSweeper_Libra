@@ -1,6 +1,9 @@
 package client.controller;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,17 +17,16 @@ import client.view.Application;
 import xml.Message;
 
 public class TestBoardResponseController {
-	
-	Model model=new Model();
-	Application client=new Application(model);
-	MockServerAccess mockServer=new MockServerAccess("localhost");
-	
+
+	Model model = new Model();
+	Application client = new Application(model);
+	MockServerAccess mockServer = new MockServerAccess("localhost");
+
 	@Before
-	public void set()
-	{
+	public void set() {
 		// FIRST thing to do is register the protocol being used.
 		if (!Message.configure("wordsweeper.xsd")) {
-			fail ("unable to configure protocol");
+			fail("unable to configure protocol");
 		}
 		client.setVisible(true);
 		client.setServerAccess(mockServer);
@@ -45,37 +47,37 @@ public class TestBoardResponseController {
 		String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><response id=\"someMessageID\" success=\"true\">"
 				+ "<boardResponse bonus=\"%s\" gameId=\"%s\" managingUser=\"%s\">"
 				+ "<player board=\"%s\" name=\"%s\" position=\"%s\" score=\"%s\"/>"
-				+ "<player board=\"%s\" name=\"%s\" position=\"%s\" score=\"%s\"/>"
-				+ "</boardResponse></response>";
+				+ "<player board=\"%s\" name=\"%s\" position=\"%s\" score=\"%s\"/>" + "</boardResponse></response>";
 		xml = String.format(xml, bonus, gameId, managingUser, board1, name1, pos1, score1, board2, name2, pos2, score2);
-		model.updateInfo("something different", "I don't know", "haha", 6, 7, "A,B,C,D,F,E,E,G,J,I,J,O,P,B,I,M", 55, "6,6");
+		model.updateInfo("something different", "I don't know", "haha", 6, 7, "A,B,C,D,F,E,E,G,J,I,J,O,P,B,I,M", 55,
+				"6,6");
 		model.getPlayer().setName(name1);
-		
+
 		Message m = new Message(xml);
 		new BoardResponseController(client, model).process(m);
-		
-		
+
 		Board b = model.getBoard();
 		assertTrue(b.positions.contains(pos1));
 		assertTrue(b.positions.contains(pos2));
-		assertEquals(b.getGlobalStartingCol(), col1);
-		assertEquals(b.getGlobalStartingRow(), row1);
+		assertEquals(b.getCol(), col1);
+		assertEquals(b.getRow(), row1);
 		assertEquals(b.getBoardInfo(), board11);
 		assertEquals(b.getBonusCell(), bonus);
-		
+
 		Game game = model.getGame();
 		assertTrue(game.getPlayersInfoMap().containsKey(name1) && game.getPlayersInfoMap().get(name1) == score1);
 		assertTrue(game.getPlayersInfoMap().containsKey(name2) && game.getPlayersInfoMap().get(name2) == score2);
 		assertTrue(game.getPlayersInfoMap().size() == 2);
-		
-		assertTrue(game.getPlayersPositionMap().containsKey(name1) && game.getPlayersPositionMap().get(name1).equals(pos1));
-		assertTrue(game.getPlayersPositionMap().containsKey(name2) && game.getPlayersPositionMap().get(name2).equals(pos2));
+
+		assertTrue(game.getPlayersPositionMap().containsKey(name1)
+				&& game.getPlayersPositionMap().get(name1).equals(pos1));
+		assertTrue(game.getPlayersPositionMap().containsKey(name2)
+				&& game.getPlayersPositionMap().get(name2).equals(pos2));
 		assertTrue(game.getPlayersPositionMap().size() == 2);
-		
+
 		assertEquals(model.getGame().getGameID(), gameId);
 		assertEquals(model.getGame().getManagingUser(), name2);
-		
-		
+
 		assertEquals(model.getPlayer().getName(), name1);
 		assertEquals(model.getPlayer().getScore(), score1);
 		assertFalse(model.getPlayer().isManager());

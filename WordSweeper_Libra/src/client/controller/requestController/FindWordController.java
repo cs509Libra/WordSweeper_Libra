@@ -4,6 +4,16 @@ import client.model.Model;
 import client.view.Application;
 import xml.Message;
 
+/**
+ * When the player clicks "submit" button, a findWordRequest will be sent to the
+ * server.
+ * <p>
+ * The {@link #process()} makes a findWordRequest in XML format, and send it to
+ * the server.
+ * 
+ * @author HanBao
+ *
+ */
 public class FindWordController {
 	Application app;
 	Model model;
@@ -13,21 +23,17 @@ public class FindWordController {
 		this.model = model;
 	}
 
-	/** Make the request on the server and wait for response. */
+	/** Make a findWordRequest in XML format, and send it to the server. */
 	public void process() {
-		
+
 		String chosenCellsInfoXMLString = model.getBoard().getChosenCellsXMLString();
-		
-		String xmlString = Message.requestHeader() + String.format("<findWordRequest gameId='%s' name='%s' word='%s'>",
-																							model.getGame().getGameID(),
-																							model.getPlayer().getName(), 
-																							model.getBoard().getWord().getContent())
-																	+
-																	chosenCellsInfoXMLString
-																	+
-																	"</findWordRequest></request>";
+
+		String xmlString = Message.requestHeader()
+				+ String.format("<findWordRequest gameId='%s' name='%s' word='%s'>", model.getGame().getGameID(),
+						model.getPlayer().getName(), model.getBoard().getWord().getContent())
+				+ chosenCellsInfoXMLString + "</findWordRequest></request>";
 		System.out.println(xmlString);
-		Message m = new Message (xmlString);
+		Message m = new Message(xmlString);
 		app.getRequestArea().append(m.toString());
 		app.getRequestArea().append("\n");
 		app.getServerAccess().sendRequest(m);

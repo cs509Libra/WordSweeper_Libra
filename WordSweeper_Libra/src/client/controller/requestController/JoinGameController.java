@@ -4,6 +4,16 @@ import client.model.Model;
 import client.view.Application;
 import xml.Message;
 
+/**
+ * When the player clicks "Join Game" button, a joinGameRequest will be sent to
+ * the server.
+ * <p>
+ * The {@link #process()} makes a joinGameRequest in XML format, and send it to
+ * the server.
+ * 
+ * @author HanBao
+ *
+ */
 public class JoinGameController {
 
 	Application app;
@@ -14,7 +24,7 @@ public class JoinGameController {
 		this.model = model;
 	}
 
-	/** Make the request on the server and wait for response. */
+	/** Make a joinGameRequest in XML format, and send it to the server. */
 	public void process() {
 
 		String xmlString;

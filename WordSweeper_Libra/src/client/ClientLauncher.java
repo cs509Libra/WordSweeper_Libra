@@ -19,7 +19,7 @@ import xml.Message;
 public class ClientLauncher {
 
 	// If requested by ClientLauncher (pass in '-server' as argument).
-	//public static final String serverHost = "72.249.186.243";
+	// public static final String serverHost = "72.249.186.243";
 	public static final String serverHost = "cccwork3.wpi.edu";
 	// public static final String serverHost = "rambo.wpi.edu";
 
