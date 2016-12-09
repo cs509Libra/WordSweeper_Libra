@@ -10,7 +10,7 @@ import xml.Message;
  * A reset game response information sent from server should be received once the game manager reset the game.
  * 
  * The {@link #process(Message)} handles the reset game response message based on xml protocol, and reset board and player score in entities, and displays in the corresponding boundary GUIs.
- * @author QQZhao
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
  *
  */
 

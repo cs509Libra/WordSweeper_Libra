@@ -7,7 +7,7 @@ import xml.Message;
  * This takes care of the message that can not be handled by current registered handler. 
  * 
  * The {@link #process(Message)}} will print out a "Not handled" information to notify the player.
- * @author QQZhao
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
  *
  */
 

@@ -17,7 +17,7 @@ import xml.Message;
  * Whenever a board response message is received from server, this class deals with it based on xml transmission protocol.
  * <p>
  * The {@link #process(Message)}} extract information from the broad response message from server, update the corresponding information in both the entity classes and boundary class accordingly.
- * @author QQZhao
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
  *
  */
 public class BoardResponseController extends ControllerChain {

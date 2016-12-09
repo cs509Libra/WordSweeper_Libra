@@ -11,7 +11,7 @@ import xml.Message;
  * The {@link #process()} makes a resetGameRequest in XML format, and send it to
  * the server.
  * 
- * @author HanBao
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
  *
  */
 public class ResetGameController {

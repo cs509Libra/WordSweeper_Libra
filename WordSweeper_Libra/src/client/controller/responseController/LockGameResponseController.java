@@ -11,7 +11,7 @@ import xml.Message;
  * No new players are able to join the game.
  * 
  * The {@link #process(Message)} handles the lock game response information, and set the game locked to be true.
- * @author QQZhao
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
  *
  */
 

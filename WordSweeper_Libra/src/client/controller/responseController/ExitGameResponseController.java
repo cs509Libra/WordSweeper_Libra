@@ -11,7 +11,7 @@ import xml.Message;
  * 
  * The {@link #process(Message)}} updates the isWaitingResponse and existedGame information in entity classes, and returns the boundary from game GUI to the login GUI.
  * 
- * @author QQZhao
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
  *
  */
 

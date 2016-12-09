@@ -14,7 +14,7 @@ import xml.Message;
  * 
  * The {@link #process(Message)} handles the join game response information. 
  * If the connection is successful, the corresponding information of entity classes will be updated, and the GUI in boundary classes will be changed to the game part from login.
- * @author QQZhao
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
  *
  */
 

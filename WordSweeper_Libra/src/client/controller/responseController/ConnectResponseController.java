@@ -12,7 +12,7 @@ import xml.Message;
  * This class deals with the connect response information based on xml transmission protocol.
  * 
  * The {@link #process(Message)}} returns true if the connection is successful.
- * @author QQZhao
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
  *
  */
 
