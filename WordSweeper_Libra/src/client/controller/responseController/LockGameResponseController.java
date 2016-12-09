@@ -6,6 +6,15 @@ import client.view.LeftBoardPanel;
 import client.view.RightGameInfoBoard;
 import xml.Message;
 
+/**
+ * A lock game response information sent from server should be received once the game manager locks the game. 
+ * No new players are able to join the game.
+ * 
+ * The {@link #process(Message)} handles the lock game response information, and set the game locked to be true.
+ * @author QQZhao
+ *
+ */
+
 public class LockGameResponseController extends ControllerChain {
 
 	public Application app;

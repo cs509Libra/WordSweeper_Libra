@@ -9,6 +9,15 @@ import client.view.LeftBoardPanel;
 import client.view.RightGameInfoBoard;
 import xml.Message;
 
+/**
+ * A join game response information sent from server should be received once a player is trying to join into an existing server.
+ * 
+ * The {@link #process(Message)} handles the join game response information. 
+ * If the connection is successful, the corresponding information of entity classes will be updated, and the GUI in boundary classes will be changed to the game part from login.
+ * @author QQZhao
+ *
+ */
+
 public class JoinGameResponseController extends ControllerChain {
 	public Application app;
 	public Model model;

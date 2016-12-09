@@ -14,9 +14,11 @@ import client.view.RightGameInfoBoard;
 import xml.Message;
 
 /**
- * Tells the client whether the model is locked or not BY SOME OTHER CLIENT.
- * This will never be returned to a client to tell him that HE has the model
- * locked (that is job of LockResponse).
+ * Whenever a board response message is received from server, this class deals with it based on xml transmission protocol.
+ * <p>
+ * The {@link #process(Message)}} extract information from the broad response message from server, update the corresponding information in both the entity classes and boundary class accordingly.
+ * @author QQZhao
+ *
  */
 public class BoardResponseController extends ControllerChain {
 

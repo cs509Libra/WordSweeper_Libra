@@ -2,6 +2,7 @@ package client.controller.responseController;
 
 import xml.Message;
 
+
 public abstract class ControllerChain implements IClientController {
 
 	/** Next one in the chain. Once null is reached, done. */

@@ -4,6 +4,7 @@ import client.model.Model;
 import client.view.Application;
 import xml.Message;
 
+
 public class ListGameResponseController extends ControllerChain {
 
 	public Application app;

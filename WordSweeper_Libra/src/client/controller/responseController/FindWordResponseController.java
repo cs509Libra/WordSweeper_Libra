@@ -9,6 +9,14 @@ import client.view.LeftBoardPanel;
 import client.view.RightGameInfoBoard;
 import xml.Message;
 
+/**
+ * Find word response information sent from server should be received once a player submits a word.
+ * 
+ * The {@link #process(Message)} handles the find word response information. If the submission is successful, the entity classes will be updated. Otherwise, return false.
+ * @author QQZhao
+ *
+ */
+
 public class FindWordResponseController extends ControllerChain {
 
 	public Application app;

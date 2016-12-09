@@ -6,6 +6,14 @@ import client.view.LeftBoardPanel;
 import client.view.RightGameInfoBoard;
 import xml.Message;
 
+/**
+ * A reset game response information sent from server should be received once the game manager reset the game.
+ * 
+ * The {@link #process(Message)} handles the reset game response message based on xml protocol, and reset board and player score in entities, and displays in the corresponding boundary GUIs.
+ * @author QQZhao
+ *
+ */
+
 public class ResetGameResponseController extends ControllerChain {
 
 	public Application app;
