@@ -36,9 +36,59 @@ public class TestBoardResponseController {
 	}
 
 	@Test
-	public void testBoardResponseProcess() {
+	public void TestBoardResponseProcess1(){
 		/**@author Ruochen Shi; 
-		 * This is responsible for testing the process of "Board Response" Controller*/
+		 * This is responsible for testing the process of "Board Response" Controller
+		 * the situation is that the list is more than 1*/
+		String name="player1";
+		int col=2, row=1;
+		String bonus = "3,3";
+		String gameId= "idid";
+		String managingUser =name;
+		String board = "A,B,A,B,A,B,B,B,C,B,C,D,B,A,B,R";
+		String boardm= "ABABABBBCBCDBABR";
+		String pos=col+ "," + row;
+		int score =100;
+		String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><response id=\"someMessageID\" success=\"true\">"
+				+ "<boardResponse bonus=\"%s\" gameId=\"%s\" managingUser=\"%s\">"
+				+ "<player board=\"%s\" name=\"%s\" position=\"%s\" score=\"%s\"/>"
+				+ "</boardResponse></response>";
+		xml = String.format(xml, bonus,gameId,managingUser,board,name,pos,score);
+		model.updateInfo("something different", "I don't know", "haha", 6, 7, "A,B,C,D,F,E,E,G,J,I,J,O,P,B,I,M", 55,
+				"6,6");
+		model.getPlayer().setName(name);
+		
+		Message m = new Message(xml);
+		new BoardResponseController(client,model).process(m);
+		
+		Board b = model.getBoard();
+		assertTrue(b.positions.contains(pos));
+		assertEquals(b.getCol(), col);
+		assertEquals(b.getRow(), row);
+		assertEquals(b.getBoardInfo(), boardm);
+		assertEquals(b.getBonusCell(), bonus);
+
+		Game game = model.getGame();
+		assertTrue(game.getPlayersInfoMap().containsKey(name) && game.getPlayersInfoMap().get(name) == score);
+		assertTrue(game.getPlayersInfoMap().size() == 1);
+
+		assertTrue(game.getPlayersPositionMap().containsKey(name)
+				&& game.getPlayersPositionMap().get(name).equals(pos));
+		assertTrue(game.getPlayersPositionMap().size() == 1);
+
+		assertEquals(model.getGame().getGameID(), gameId);
+		assertEquals(model.getGame().getManagingUser(), name);
+
+		assertEquals(model.getPlayer().getName(), name);
+		assertEquals(model.getPlayer().getScore(), score);
+		assertTrue(model.getPlayer().isManager());
+		
+	}
+	@Test
+	public void testBoardResponseProcess2() {
+		/**@author Ruochen Shi; 
+		 * This is responsible for testing the process of "Board Response" Controller
+		 * the situation is that the list is more than 1*/
 		String name1 = "player1", name2 = "player2";
 		int col1 = 4, col2 = 2, row1 = 1, row2 = 2;
 		String bonus = "4,3";
@@ -89,3 +139,4 @@ public class TestBoardResponseController {
 	}
 
 }
+//end of TestBoardResponseController
