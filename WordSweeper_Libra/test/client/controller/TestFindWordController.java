@@ -40,7 +40,7 @@ public class TestFindWordController {
 		/**@author Ruochen Shi; 
 		 * This is responsible for testing the process of "Find Word" Controller*/
 		String player_name = "player1";
-		String game_id = "exitGame";
+		String game_id = "game1";
 		String wordContent="SO";
 
 
