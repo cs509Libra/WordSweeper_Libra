@@ -34,7 +34,7 @@ public class TestFindWordResponseController {
 
 	@Test
 	public void TestFindWordResponseProcess(){
-		/**this is responsible for testing the process of "Lock Game Response" controller*/
+		/**this is responsible for testing the process of "Find Word Response" controller*/
 		String gameID="game";
 		String name="player";
 		int score= 5000;
