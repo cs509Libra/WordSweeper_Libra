@@ -81,4 +81,4 @@ public class TestJoinGameController {
 	}
 	
 }
-//end of test join game controller
+//end of TestJoinGameController
