@@ -16,6 +16,8 @@ import client.view.Application;
 import xml.Message;
 
 public class TestJoinGameController {
+	/**@author Ruochen Shi; 
+	 * This is responsible for testing "Join Game" Controller*/
 	Model model=new Model();
 	Application client=new Application(model);
 	MockServerAccess mockServer=new MockServerAccess("localhost");
@@ -23,6 +25,7 @@ public class TestJoinGameController {
 	@Before
 	public void set()
 	{
+		/**this is the setting for the test*/
 		// FIRST thing to do is register the protocol being used.
 		if (!Message.configure("wordsweeper.xsd")) {
 			fail ("unable to configure protocol");
@@ -34,6 +37,11 @@ public class TestJoinGameController {
 	@Test
 	public void TestJoinGameProcess()
 	{
+		/**@author Ruochen Shi; 
+		 * This is responsible for testing the process of "Join Game" Controller
+		 * Has two parts:
+		 * 1.join game process without providing password
+		 * 2.join game process by providing password*/
 		//test join game process without password
 		String gameid="game1";
 		String player_name = "player1";

@@ -16,6 +16,8 @@ import client.view.Application;
 import xml.Message;
 
 public class TestFindWordController {
+	/**@author Ruochen Shi; 
+	 * This is responsible for testing "Find Word" Controller*/
 	Model model=new Model();
 	Application client=new Application(model);
 	MockServerAccess mockServer=new MockServerAccess("localhost");
@@ -23,6 +25,7 @@ public class TestFindWordController {
 	@Before
 	public void set()
 	{
+		/**this is the setting for the test*/
 		// FIRST thing to do is register the protocol being used.
 		if (!Message.configure("wordsweeper.xsd")) {
 			fail ("unable to configure protocol");
@@ -34,6 +37,8 @@ public class TestFindWordController {
 	@Test
 	public void TestFindWordProcess()
 	{
+		/**@author Ruochen Shi; 
+		 * This is responsible for testing the process of "Find Word" Controller*/
 		String player_name = "player1";
 		String game_id = "exitGame";
 		String wordContent="SO";

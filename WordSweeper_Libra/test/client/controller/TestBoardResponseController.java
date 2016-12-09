@@ -18,12 +18,15 @@ import xml.Message;
 
 public class TestBoardResponseController {
 
+/**@author Ruochen Shi; 
+ * This is responsible for testing "Board Response" Controller*/
 	Model model = new Model();
 	Application client = new Application(model);
 	MockServerAccess mockServer = new MockServerAccess("localhost");
 
 	@Before
 	public void set() {
+		/**this is the setting for the test*/
 		// FIRST thing to do is register the protocol being used.
 		if (!Message.configure("wordsweeper.xsd")) {
 			fail("unable to configure protocol");
@@ -34,6 +37,8 @@ public class TestBoardResponseController {
 
 	@Test
 	public void testBoardResponseProcess() {
+		/**@author Ruochen Shi; 
+		 * This is responsible for testing the process of "Board Response" Controller*/
 		String name1 = "player1", name2 = "player2";
 		int col1 = 4, col2 = 2, row1 = 1, row2 = 2;
 		String bonus = "4,3";

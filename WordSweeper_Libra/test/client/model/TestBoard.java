@@ -7,13 +7,15 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 public class TestBoard {
-
+	/**@author Ruochen Shi; 
+	 * This is responsible for testing "Board" Entity class*/
 	@Test
 	/*
 	 * Test initialization of Board, including constructor, getCol(), getRow()
 	 * and getBoardInfo()
 	 */
 	public void testBoardInitialization() {
+		/**the test for initializing a board*/
 		Board board = new Board();
 		board.updateBoard(2, 3, "A,B,C,D,A,B,C,D,A,B,C,D,A,B,C,D");
 
@@ -27,6 +29,7 @@ public class TestBoard {
 	 * test the letter in every cell
 	 */
 	public void testBoardCells() {
+		/**the test for each cell in the board*/
 		Board board = new Board();
 		board.updateBoard(2, 3, "A,B,C,D,A,B,C,D,A,B,C,D,A,B,C,D");
 		ArrayList<Cell> cells = board.getCells();
@@ -40,6 +43,7 @@ public class TestBoard {
 	 * test choosing cells , get chosen cells and clear chosen cells
 	 */
 	public void testChosenCells() {
+		/**the test for adding, clearing and checking chosen cells*/
 		Board board = new Board();
 		board.updateBoard(2, 3, "A,B,C,D,A,B,C,D,A,B,C,D,A,B,C,D");
 		board.addToChosenCellsByCellIndex(0);

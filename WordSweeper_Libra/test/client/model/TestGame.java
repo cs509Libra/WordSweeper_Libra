@@ -10,12 +10,15 @@ import org.junit.Test;
 
 
 public class TestGame {
+	/**@author Ruochen Shi; 
+	 * This is responsible for testing "Game" Entity class*/
 	Game game1=new Game();
 
 	@Test
 	public void TestPlayerInforMap()
 	//the test for set&get Players Information map function, it's used HashMap
 	{
+		/**the test for setting players in the game function*/
 		Map<String, Integer> playersInfoMap1 = new HashMap<String, Integer>();
 		playersInfoMap1.put("Mike", 150);
 		playersInfoMap1.put("Lisa",1500);
@@ -28,6 +31,7 @@ public class TestGame {
 	public void TestGameID()
 	//the test for set&get Game ID function
 	{
+		/**the test for setting and getting game ID function*/
 		assertEquals("",game1.getGameID());
 		game1.setGameID("game1");
 		assertEquals("game1",game1.getGameID());
@@ -37,6 +41,7 @@ public class TestGame {
 	public void TestManagingUser()
 	//the test for set&get managing user function
 	{
+		/**the test for setting and getting game manager function*/
 		assertEquals(null,game1.getManagingUser());
 		game1.setManagingUser("Mike");
 		assertEquals("Mike",game1.getManagingUser());
@@ -46,6 +51,7 @@ public class TestGame {
 	public void TestLockGame()
 	//the test for lock game function
 	{
+		/**the test for setting and checking if the game is locked function*/
 		assertEquals(false,game1.isLocked());
 		game1.setLocked(true);
 		assertEquals(true,game1.isLocked());
@@ -57,6 +63,7 @@ public class TestGame {
 	//will be arranged by the time they joined. The earlier they joined, the
 	//more front his/her name will be
 	{
+		/**the test for getting players' information ranging by time they join*/
 		assertEquals("",game1.getPlayersListByJoinTime());
 		Map<String, Integer> playersInfoMap1 = new HashMap<String, Integer>();
 		playersInfoMap1.put("Mike", 150);
@@ -71,6 +78,7 @@ public class TestGame {
 	//the test for get players' names by scores function. the higher score
 	//the player get, the more front his/her name will be
 	{
+		/**the test for getting players' information ranging by the scores from high to low*/
 		assertEquals("",game1.getPlayersListByScore());
 		Map<String, Integer> playersInfoMap1 = new HashMap<String, Integer>();
 		playersInfoMap1.put("Mike", 150);
@@ -84,6 +92,7 @@ public class TestGame {
 	public void TestGetPlayersByName()
 	//the test for get players' names by their name, arranged by alphabet
 	{
+		/**the test for getting players' information ranging by players' names*/
 		assertEquals("",game1.getPlayersListByName());
 		Map<String, Integer> playersInfoMap1 = new HashMap<String, Integer>();
 		playersInfoMap1.put("Mike", 150);
@@ -98,6 +107,7 @@ public class TestGame {
 	//the test for set&get players position map, also using HashMap, the 
 	//key is string, and the value is tring too
 	{
+		/**the test for setting and getting player's position function*/
 		Map<String,String> playersPositionMap =new HashMap<String,String>();
 		playersPositionMap.put("4", "5");
 		game1.setPlayersPositionMap(playersPositionMap);

@@ -16,12 +16,15 @@ import client.view.Application;
 import xml.Message;
 
 public class TestCreateGameController {
+	/**@author Ruochen Shi; 
+	 * This is responsible for testing "Create Game" Controller*/
 	Model model=new Model();
 	Application client=new Application(model);
 	MockServerAccess mockServer=new MockServerAccess("localhost");
 	
 	@Before
 	public void set()
+	/**This is the setting for the test*/
 	{
 		// FIRST thing to do is register the protocol being used.
 		if (!Message.configure("wordsweeper.xsd")) {
@@ -34,6 +37,11 @@ public class TestCreateGameController {
 	@Test
 	public void TestCreateGameProcess()
 	{
+		/**@author Ruochen Shi; 
+		 * This is responsible for testing the process "Create Game" Controller
+		 * Has two parts: 
+		 * 1.don't provide password
+		 * 2.provide password*/
 		//test create game process without password
 		String player_name = "player1";
 		model.getPlayer().setName(player_name);

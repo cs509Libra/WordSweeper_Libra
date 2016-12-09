@@ -8,12 +8,15 @@ import client.model.Cell;
 
 
 public class TestCell {
+	/**@author Ruochen Shi; 
+	 * This is responsible for testing "Cell" Entity class*/
 //test case about cell model
 
 	@Test
 	public void TestIsBonus()
 	//the test for set&get isBonus function
 	{
+		/**the test for checking if the cell is bonus function*/
 		Cell cell1=new Cell();
 		assertEquals(false,cell1.isBonus());
 		cell1.setBonus(true);
@@ -24,6 +27,7 @@ public class TestCell {
 	public void TestLocalPosition()
 	//the test for set&get local column &row function
 	{
+		/**the test about the cell's local position*/
 		Cell cell2=new Cell();
 		assertEquals(0,cell2.getLocalCol());
 		cell2.setLocalCol(3);
@@ -37,6 +41,7 @@ public class TestCell {
 	public void TestGlobalPosition()
 	//the test for set&get global  column &row function
 	{
+		/**the test about the cell's global position*/
 		Cell cell3=new Cell();
 		assertEquals(0,cell3.getGlobalCol());
 		cell3.setGlobalCol(5);
@@ -50,6 +55,7 @@ public class TestCell {
 	public void TestCellLetter()
 	//the test for set&get cell letter function
 	{
+		/**the test for getting and letters in cells*/
 		Cell cell4=new Cell();
 		assertEquals("",cell4.getLetter());
 		cell4.setLetter("R");
@@ -60,6 +66,7 @@ public class TestCell {
 	public void TestIsChosen()
 	//the test to know if the cell is chosen or not function
 	{
+		/**the test for checking and setting if the cell is chosen*/
 		Cell cell5=new Cell();
 		assertEquals(false,cell5.isChosen());
 		cell5.setAsChosen();

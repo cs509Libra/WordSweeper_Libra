@@ -15,6 +15,8 @@ import xml.Message;
 
 
 public class TestExitGameController {
+	/**@author Ruochen Shi; 
+	 * This is responsible for testing "Exit Game" Controller*/
 
 	Model model=new Model();
 	Application client=new Application(model);
@@ -23,6 +25,7 @@ public class TestExitGameController {
 	@Before
 	public void set()
 	{
+		/**this is the setting for the test*/
 		// FIRST thing to do is register the protocol being used.
 		if (!Message.configure("wordsweeper.xsd")) {
 			fail ("unable to configure protocol");
@@ -33,7 +36,8 @@ public class TestExitGameController {
 
 	@Test
 	public void TestExitGameProcess(){
-
+		/**@author Ruochen Shi; 
+		 * This is responsible for testing the process of "Exit Game" Controller*/
 		// set up model info before actually process
 		String player_name = "player1";
 		String game_id = "exitGame";

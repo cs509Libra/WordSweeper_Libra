@@ -5,9 +5,11 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class TestWord {
-	
+	/**@author Ruochen Shi; 
+	 * This is responsible for testing "Word" Entity class*/
 	@Test
 	public void testGetContent() {
+		/**the test for getting content function*/
 		Word w = new Word();
 		assertEquals("", w.getContent());
 		w.setContent("HelloWorld");
@@ -16,6 +18,7 @@ public class TestWord {
 
 	@Test
 	public void testSetContent() {
+		/**the test for setting content function*/
 		Word w = new Word();
 		assertFalse("HelloWorld" == w.getContent());
 		w.setContent("HelloWorld");
@@ -24,6 +27,7 @@ public class TestWord {
 
 	@Test
 	public void testSetScore() {
+		/**the test for setting word's score function*/
 		Word w = new Word();
 		assertFalse(10 == w.getScore());
 		w.setScore(20);
@@ -32,6 +36,7 @@ public class TestWord {
 
 	@Test
 	public void testGetScore() {
+		/**the test for getting word's score function*/
 		Word w = new Word();
 		assertFalse(10 == w.getScore());
 		w.setScore(20);
@@ -40,6 +45,7 @@ public class TestWord {
 
 	@Test
 	public void testSetlocalExpectedScore() {
+		/**the test for setting local expected score function*/
 		Word w = new Word();
 		assertFalse(10 == w.getlocalExpectedScore());
 		w.setlocalExpectedScore(20);
@@ -48,6 +54,7 @@ public class TestWord {
 
 	@Test
 	public void testGetlocalExpectedScore() {
+		/**the test for getting local expected score function*/
 		Word w = new Word();
 		assertFalse(10 == w.getlocalExpectedScore());
 		w.setlocalExpectedScore(20);
