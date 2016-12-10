@@ -2,9 +2,19 @@ package util;
 
 import java.util.HashMap;
 import java.util.Map;
+/**
+ * This class calculate local scores based on the word player submits.
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+ *
+ */
 
 public class CalculateLocalScore {
 	
+	/**
+	 * {@link #calculateLetterScore(String)} provides score of single letter with string format.
+	 * @param letter
+	 * @return
+	 */
 	public static Integer calculateLetterScore(String letter){
 		Integer score;
 		if(letter.length()==0){
@@ -20,10 +30,23 @@ public class CalculateLocalScore {
 		return score;
 	}
 	
+	/**
+	 * {@link #calculateLetterScore(char)} provides score of single letter with char format.
+	 * @param letter
+	 * @return
+	 */
+	
 	public static Integer calculateLetterScore(char letter){	
 		String upperLett = Character.toString(letter).toUpperCase();
 		return calculateLetterScore(upperLett);
 	}
+	/**
+	 * The {@link #calculateWordScore(String, Integer)} provides the score of a word.
+	 * @param word
+	 * @param wordLength
+	 * @return
+	 */
+	
 	
 	public static Integer calculateWordScore(String word, Integer wordLength){
 		if(wordLength == 0){
@@ -41,6 +64,11 @@ public class CalculateLocalScore {
 		}
 		return 0;
 	}
+	
+	/**
+	 * {@link #getLetterScoreDictionary()} provides the map of single letter as the key and its score as the value.
+	 * @return
+	 */
 	
 	public static Map<String, Integer> getLetterScoreDictionary(){
 		Map<String, Integer> letterScoreDictionary = new HashMap<String, Integer>();

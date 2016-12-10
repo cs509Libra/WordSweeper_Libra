@@ -25,7 +25,7 @@ import util.CalculateLocalScore;
  * This is the left panel GUI showing board information, letters and chosen letters information as well as the submission process GUIs.
  * 
  *
- * @author QQZhao
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
  *
  */
 
