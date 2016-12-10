@@ -72,15 +72,4 @@ public class CalculateLocalScore {
 		letterScoreDictionary.put("Z", (Integer)8);
 		return letterScoreDictionary;
 	}
-//	public static void main(String[] args) {
-//		test();
-//	}
-//	
-//	
-//	private static void test(){
-//		String a = "Quit";
-//		boolean isQuIn = a.contains("Qu");
-//		String b = a.replace("Qu", "Q");
-//		System.out.println(b);
-//	}
 }

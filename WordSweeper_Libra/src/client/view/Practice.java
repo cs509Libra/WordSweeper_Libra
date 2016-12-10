@@ -32,8 +32,8 @@ public class Practice extends JFrame {
 	private JPanel contentPane;
 	private JLabel messageLabel;
 	private JTextField expectscore;
-	private JTextField submission;
-	private JLabel myscore;
+	JTextField submission;
+	JLabel myscore;
 	private JPanel boardview;
 	private JPanel leftPanel;
 	private JScrollPane jScrollPane1;
@@ -41,14 +41,19 @@ public class Practice extends JFrame {
 	private Model model;
 	private Application app;
 	private ArrayList<JButton> chosenCells;
-	private ArrayList<JButton> allCells;
+	ArrayList<JButton> allCells;
+	JButton btnRefresh;
+	JButton clear;
+	JButton submit;
+	JButton quit;
+	
 
 	public Practice(Model model, Application app) {
 		this.model = model;
 		this.app = app;
 		initiate();
 	}
-
+	
 	/**
 	 * Add the chosen cell to a ArrayList<JButton> to store.
 	 */
@@ -138,7 +143,7 @@ public class Practice extends JFrame {
 	/**
 	 * One sub_method to determine if a button clicked is valid. Determine if
 	 * the clicked button is adjacent to previous chosen one.
-	 * 
+	 * changed to public method for test purpose.
 	 * @param A
 	 * @param B
 	 * @return
@@ -277,7 +282,7 @@ public class Practice extends JFrame {
 		btnDown.setEnabled(false);
 		leftPanel.add(btnDown);
 
-		JButton btnRefresh = new JButton("Refresh");
+		btnRefresh = new JButton("Refresh");
 		btnRefresh.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -333,7 +338,7 @@ public class Practice extends JFrame {
 		leftPanel.add(this.submission);
 		this.submission.setColumns(10);
 
-		JButton clear = new JButton("Clear");
+		clear = new JButton("Clear");
 		clear.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -347,7 +352,7 @@ public class Practice extends JFrame {
 		clear.setBounds(69, 430, 93, 23);
 		leftPanel.add(clear);
 
-		JButton submit = new JButton("Submit");
+		submit = new JButton("Submit");
 		submit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -367,7 +372,7 @@ public class Practice extends JFrame {
 		rightPanel.setLayout(null);
 		contentPane.add(rightPanel);
 
-		JButton quit = new JButton("Quit");
+		quit = new JButton("Quit");
 		quit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
