@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class TestWord {
-	/**@author Ruochen Shi; 
+	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
 	 * This is responsible for testing "Word" Entity class*/
 	@Test
 	public void testGetContent() {
@@ -62,3 +62,4 @@ public class TestWord {
 	}
 
 }
+//end of the test of Word entity

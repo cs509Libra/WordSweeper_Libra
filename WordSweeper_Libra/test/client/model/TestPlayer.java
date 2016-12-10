@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class TestPlayer {
-	/**@author Ruochen Shi; 
+	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
 	 * This is responsible for testing "Player" Entity class*/
 	@Test
 	public void testGetName() {
@@ -102,3 +102,4 @@ public class TestPlayer {
 	}
 
 }
+//end of the test of Player entity

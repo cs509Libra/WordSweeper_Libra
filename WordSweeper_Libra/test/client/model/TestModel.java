@@ -8,7 +8,7 @@ import java.util.Map;
 import org.junit.Test;
 
 public class TestModel {
-	/**@author Ruochen Shi; 
+	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
 	 * This is responsible for testing "Model" Entity class*/
 	Model testmodel1 = new Model();
 	// updateInfo and startPracticeGame in model is related to private
@@ -98,4 +98,4 @@ public class TestModel {
 
 	}
 }
-// end of TestModel
+// end of the test of Model entity

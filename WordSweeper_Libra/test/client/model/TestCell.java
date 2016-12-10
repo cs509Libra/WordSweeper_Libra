@@ -8,7 +8,7 @@ import client.model.Cell;
 
 
 public class TestCell {
-	/**@author Ruochen Shi; 
+	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
 	 * This is responsible for testing "Cell" Entity class*/
 //test case about cell model
 
@@ -75,4 +75,4 @@ public class TestCell {
 		assertEquals(false,cell5.isChosen());
 	}
 }
-//end of TestCell
+//end of the test of Cell entity

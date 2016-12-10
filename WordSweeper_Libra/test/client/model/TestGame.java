@@ -10,7 +10,7 @@ import org.junit.Test;
 
 
 public class TestGame {
-	/**@author Ruochen Shi; 
+	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
 	 * This is responsible for testing "Game" Entity class*/
 	Game game1=new Game();
 
@@ -114,4 +114,4 @@ public class TestGame {
 		assertEquals(playersPositionMap,game1.getPlayersPositionMap());
 	}
 }
-//end of TestGame
+//end of the test of Game entity

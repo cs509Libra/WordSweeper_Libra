@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 public class TestBoard {
-	/**@author Ruochen Shi; 
+	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
 	 * This is responsible for testing "Board" Entity class*/
 	@Test
 	/*
@@ -64,3 +64,4 @@ public class TestBoard {
 
 	}
 }
+//end of the test of Board entity

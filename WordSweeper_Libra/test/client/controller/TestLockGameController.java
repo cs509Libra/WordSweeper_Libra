@@ -13,7 +13,7 @@ import xml.Message;
 
 
 public class TestLockGameController {
-	/**@author Ruochen Shi; 
+	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
 	 * This is responsible for testing "Lock Game" Controller*/
 	Model model=new Model(); 
 	Application client=new Application(model); 

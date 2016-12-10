@@ -19,7 +19,7 @@ public class ListGameResponseController extends ControllerChain {
 	@Override
 	public boolean process(Message response) {
 		String type = response.contents.getFirstChild().getLocalName();
-		if (!type.equals ("listGameResponse")) {
+		if (!type.equals ("listGamesResponse")) {
 			return next.process(response);
 		}
 

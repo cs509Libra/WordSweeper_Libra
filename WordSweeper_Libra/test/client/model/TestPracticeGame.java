@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class TestPracticeGame {
-	/**@author Ruochen Shi; 
+	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
 	 * This is responsible for testing "PracticeGame" Entity class*/
 	@Test
 	public void testGenerateRandomCellInfo() {
@@ -15,3 +15,4 @@ public class TestPracticeGame {
 		assertEquals(16, str.length());
 	}
 }
+//end of the test of PracticeGame entity
