@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import client.MockServerAccess;
-import client.controller.requestController.CreateGameController;
 import client.controller.responseController.ExitGameResponseController;
 import client.model.Model;
 import client.view.Application;

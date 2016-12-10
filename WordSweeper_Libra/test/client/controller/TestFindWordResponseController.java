@@ -1,7 +1,6 @@
 package client.controller;
 
 import static org.junit.Assert.fail;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -11,7 +10,7 @@ import client.MockServerAccess;
 import client.controller.responseController.FindWordResponseController;
 import client.model.Model;
 import client.view.Application;
-import client.view.LeftBoardPanel;
+import client.view.MultiGame;
 import xml.Message;
 
 public class TestFindWordResponseController {
@@ -30,8 +29,18 @@ public class TestFindWordResponseController {
 		}
 		client.setVisible(true);
 		client.setServerAccess(mockServer);
+		
+		create_init_MultiGame();
 	}
 
+	public void create_init_MultiGame() {
+		String name="player1";
+		model.updateInfo("something different", "I don't know", "haha", 6, 7, "A,B,C,D,F,E,E,G,J,I,J,O,P,B,I,M", 55,
+				"6,6");
+		model.getPlayer().setName(name);
+		client.setMg(new MultiGame(model, client));
+	}
+	
 	@Test
 	public void TestFindWordResponseProcess(){
 		/**this is responsible for testing the process of "Find Word Response" controller*/
@@ -47,7 +56,7 @@ public class TestFindWordResponseController {
 		model.getGame().setGameID(gameID);
 		model.getPlayer().setName(name);
 		model.getPlayer().setScore(0);
-		
+
 		FindWordResponseController fwrc=new FindWordResponseController(client,model);
 		assertTrue(fwrc.process(m));
 	}
