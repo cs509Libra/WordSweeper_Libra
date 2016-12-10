@@ -7,9 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import client.MockServerAccess;
+import client.controller.requestController.CreateGameController;
 import client.controller.responseController.ExitGameResponseController;
 import client.model.Model;
 import client.view.Application;
+import client.view.MultiGame;
 import xml.Message;
 
 public class TestExitGameResponseController {
@@ -28,8 +30,18 @@ public class TestExitGameResponseController {
 		}
 		client.setVisible(true);
 		client.setServerAccess(mockServer);
+		
+		create_init_MultiGame();
 	}
 
+	public void create_init_MultiGame() {
+		String name="player1";
+		model.updateInfo("something different", "I don't know", "haha", 6, 7, "A,B,C,D,F,E,E,G,J,I,J,O,P,B,I,M", 55,
+				"6,6");
+		model.getPlayer().setName(name);
+		client.setMg(new MultiGame(model, client));
+	}
+	
 	@Test
 	public void TestExitGameResponseProcess()
 	{
@@ -39,9 +51,8 @@ public class TestExitGameResponseController {
 		model.getPlayer().setName(name);
 		model.getGame().setGameID(id);
 		String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><response id=\"someMessageID\" success=\"true\">"
-				+ "<exitGameResponse gameId=\"%s\" name=\"%s\"/>"
-				+ "</exitGameResponse></response>";
-		xml= String.format(xml,id, name);
+				+ "<exitGameResponse gameId=\"%s\"/></response>";
+		xml= String.format(xml,id);
 		Message m = new Message(xml);
 		ExitGameResponseController egrc=new ExitGameResponseController(client,model);
 		assertTrue(egrc.process(m));
