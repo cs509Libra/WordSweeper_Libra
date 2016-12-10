@@ -15,7 +15,7 @@ import xml.Message;
 
 
 public class TestExitGameController {
-	/**@author Ruochen Shi; 
+	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally) 
 	 * This is responsible for testing "Exit Game" Controller*/
 
 	Model model=new Model();
@@ -36,7 +36,7 @@ public class TestExitGameController {
 
 	@Test
 	public void TestExitGameProcess(){
-		/**@author Ruochen Shi; 
+		/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
 		 * This is responsible for testing the process of "Exit Game" Controller*/
 		// set up model info before actually process
 		String player_name = "player1";
@@ -67,3 +67,4 @@ public class TestExitGameController {
 	}
 
 }
+//end of TestExitGameController

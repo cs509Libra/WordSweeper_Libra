@@ -18,7 +18,7 @@ import xml.Message;
 
 public class TestBoardResponseController {
 
-/**@author Ruochen Shi; 
+/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally) 
  * This is responsible for testing "Board Response" Controller*/
 	Model model = new Model();
 	Application client = new Application(model);
@@ -37,8 +37,7 @@ public class TestBoardResponseController {
 
 	@Test
 	public void TestBoardResponseProcess1(){
-		/**@author Ruochen Shi; 
-		 * This is responsible for testing the process of "Board Response" Controller
+		/** This is responsible for testing the process of "Board Response" Controller
 		 * the situation is that the list is more than 1*/
 		String name="player1";
 		int col=2, row=1;
@@ -86,8 +85,7 @@ public class TestBoardResponseController {
 	}
 	@Test
 	public void testBoardResponseProcess2() {
-		/**@author Ruochen Shi; 
-		 * This is responsible for testing the process of "Board Response" Controller
+		/**This is responsible for testing the process of "Board Response" Controller
 		 * the situation is that the list is more than 1*/
 		String name1 = "player1", name2 = "player2";
 		int col1 = 4, col2 = 2, row1 = 1, row2 = 2;

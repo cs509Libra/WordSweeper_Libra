@@ -16,7 +16,7 @@ import client.view.Application;
 import xml.Message;
 
 public class TestFindWordController {
-	/**@author Ruochen Shi; 
+	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally) 
 	 * This is responsible for testing "Find Word" Controller*/
 	Model model=new Model();
 	Application client=new Application(model);
@@ -37,7 +37,7 @@ public class TestFindWordController {
 	@Test
 	public void TestFindWordProcess()
 	{
-		/**@author Ruochen Shi; 
+		/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally) 
 		 * This is responsible for testing the process of "Find Word" Controller*/
 		String player_name = "player1";
 		String game_id = "game1";

@@ -16,7 +16,7 @@ import client.view.Application;
 import xml.Message;
 
 public class TestJoinGameController {
-	/**@author Ruochen Shi; 
+	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
 	 * This is responsible for testing "Join Game" Controller*/
 	Model model=new Model();
 	Application client=new Application(model);
@@ -37,7 +37,7 @@ public class TestJoinGameController {
 	@Test
 	public void TestJoinGameProcess()
 	{
-		/**@author Ruochen Shi; 
+		/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally) 
 		 * This is responsible for testing the process of "Join Game" Controller
 		 * Has two parts:
 		 * 1.join game process without providing password

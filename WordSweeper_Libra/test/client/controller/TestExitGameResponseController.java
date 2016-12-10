@@ -14,7 +14,7 @@ import client.view.MultiGame;
 import xml.Message;
 
 public class TestExitGameResponseController {
-/**@author Ruochen Shi;
+/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
  * This is responsible for testing the controller of Exit Game Response" */
 	Model model = new Model();
 	Application client = new Application(model);

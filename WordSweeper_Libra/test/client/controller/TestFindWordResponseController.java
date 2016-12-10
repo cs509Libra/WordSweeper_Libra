@@ -14,7 +14,7 @@ import client.view.MultiGame;
 import xml.Message;
 
 public class TestFindWordResponseController {
-	/**@author Ruochen Shi; 
+	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
 	 * This is responsible for testing "Find Word Response" Controller*/
 	Model model = new Model();
 	Application client = new Application(model);

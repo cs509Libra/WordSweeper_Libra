@@ -16,7 +16,7 @@ import client.view.Application;
 import xml.Message;
 
 public class TestCreateGameController {
-	/**@author Ruochen Shi; 
+	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally) 
 	 * This is responsible for testing "Create Game" Controller*/
 	Model model=new Model();
 	Application client=new Application(model);
@@ -37,7 +37,7 @@ public class TestCreateGameController {
 	@Test
 	public void TestCreateGameProcess()
 	{
-		/**@author Ruochen Shi; 
+		/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally) 
 		 * This is responsible for testing the process "Create Game" Controller
 		 * Has two parts: 
 		 * 1.don't provide password
@@ -70,3 +70,4 @@ public class TestCreateGameController {
 		assertEquals(password, r2.contents.getFirstChild().getAttributes().getNamedItem("password").getNodeValue());
 	}
 }
+//end of TestCreateGameController
