@@ -14,7 +14,7 @@ import xml.Message;
 
 public class TestConnectResponseController {
 	/**@author Ruochen Shi; 
-	 * This is responsible for testing "connect response" Controller*/
+	 * This is responsible for testing "Connect Response" Controller*/
 	Model model = new Model();
 	Application client = new Application(model);
 	MockServerAccess mockServer = new MockServerAccess("localhost");
@@ -33,10 +33,12 @@ public class TestConnectResponseController {
 	@Test
 	public void TestConnectResponseProcess(){
 		/**this is the test for connect response process*/
+		String id= "Game1";
+		model.getGame().setGameID(id);
+
 		String xml= "<?xml version=\"1.0\" encoding=\"UTF-8\"?><response id=\"someMessageID\" success=\"true\">"
-		    + "<connectResponse id:\"game1\""
-		    +"</connectResponse></response>";
-		xml =String.format(xml);
+		    + "<connectResponse id=\"%s\"/></response>";
+		xml =String.format(xml,id);
 		Message m = new Message(xml);
 		ConnectResponseController crc=new ConnectResponseController(client,model);
 		assertTrue(crc.process(m));
