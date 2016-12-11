@@ -11,18 +11,17 @@ import client.view.Application;
 import client.model.Model; 
 import xml.Message; 
 
-
+/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+ * This is responsible for testing "Lock Game" Controller*/
 public class TestLockGameController {
-	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
-	 * This is responsible for testing "Lock Game" Controller*/
 	Model model=new Model(); 
 	Application client=new Application(model); 
 	MockServerAccess mockServer=new MockServerAccess("localhost"); 
 
+	/**the setting for the test*/
 	@Before 
 	public void set() 
 	{
-		/**the setting for the test*/
 		// FIRST thing to do is register the protocol being used. 
 		if (!Message.configure("wordsweeper.xsd")) { 
 			fail ("unable to configure protocol"); 
@@ -31,11 +30,10 @@ public class TestLockGameController {
 		client.setServerAccess(mockServer); 
 	}
 	 
-	 
+	/**This is responsible for testing the process of "Join Game" Controller*/
 	@Test
 	public void TestLockGameProcess() 
 	{
-		/**This is responsible for testing the process of "Join Game" Controller*/
 		String game_id = "lockGame"; 
 		model.getGame().setGameID(game_id); 
 		

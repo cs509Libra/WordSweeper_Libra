@@ -13,16 +13,16 @@ import client.view.Application;
 import client.view.MultiGame;
 import xml.Message;
 
+/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+ * This is responsible for testing "Find Word Response" Controller*/
 public class TestFindWordResponseController {
-	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
-	 * This is responsible for testing "Find Word Response" Controller*/
 	Model model = new Model();
 	Application client = new Application(model);
 	MockServerAccess mockServer = new MockServerAccess("localhost");
 
+	/**this is the setting for the test*/
 	@Before
 	public void set() {
-		/**this is the setting for the test*/
 		// FIRST thing to do is register the protocol being used.
 		if (!Message.configure("wordsweeper.xsd")) {
 			fail("unable to configure protocol");
@@ -41,9 +41,9 @@ public class TestFindWordResponseController {
 		client.setMg(new MultiGame(model, client));
 	}
 	
+	/**this is responsible for testing the process of "Find Word Response" controller*/
 	@Test
 	public void TestFindWordResponseProcess(){
-		/**this is responsible for testing the process of "Find Word Response" controller*/
 		String gameID="game";
 		String name="player";
 		int score= 5000;

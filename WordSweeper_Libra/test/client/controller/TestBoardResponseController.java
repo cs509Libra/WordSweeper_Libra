@@ -16,17 +16,17 @@ import client.model.Model;
 import client.view.Application;
 import xml.Message;
 
-public class TestBoardResponseController {
-
 /**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally) 
  * This is responsible for testing "Board Response" Controller*/
+public class TestBoardResponseController {
 	Model model = new Model();
 	Application client = new Application(model);
 	MockServerAccess mockServer = new MockServerAccess("localhost");
 
+	
+	/**this is the setting for the test*/
 	@Before
 	public void set() {
-		/**this is the setting for the test*/
 		// FIRST thing to do is register the protocol being used.
 		if (!Message.configure("wordsweeper.xsd")) {
 			fail("unable to configure protocol");
@@ -35,10 +35,10 @@ public class TestBoardResponseController {
 		client.setServerAccess(mockServer);
 	}
 
+	/** This is responsible for testing the process of "Board Response" Controller
+	 * the situation is that the list is more than 1*/
 	@Test
 	public void TestBoardResponseProcess1(){
-		/** This is responsible for testing the process of "Board Response" Controller
-		 * the situation is that the list is more than 1*/
 		String name="player1";
 		int col=2, row=1;
 		String bonus = "3,3";
@@ -83,10 +83,12 @@ public class TestBoardResponseController {
 		assertTrue(model.getPlayer().isManager());
 		
 	}
+	
+	
+	/**This is responsible for testing the process of "Board Response" Controller
+	 * the situation is that the list is more than 1*/
 	@Test
 	public void testBoardResponseProcess2() {
-		/**This is responsible for testing the process of "Board Response" Controller
-		 * the situation is that the list is more than 1*/
 		String name1 = "player1", name2 = "player2";
 		int col1 = 4, col2 = 2, row1 = 1, row2 = 2;
 		String bonus = "4,3";

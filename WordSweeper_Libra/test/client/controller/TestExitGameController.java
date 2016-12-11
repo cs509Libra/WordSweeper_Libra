@@ -14,18 +14,18 @@ import client.view.Application;
 import xml.Message;
 
 
+/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally) 
+ * This is responsible for testing "Exit Game" Controller*/
 public class TestExitGameController {
-	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally) 
-	 * This is responsible for testing "Exit Game" Controller*/
-
 	Model model=new Model();
 	Application client=new Application(model);
 	MockServerAccess mockServer=new MockServerAccess("localhost");
 	
+	
+	/**this is the setting for the test*/
 	@Before
 	public void set()
 	{
-		/**this is the setting for the test*/
 		// FIRST thing to do is register the protocol being used.
 		if (!Message.configure("wordsweeper.xsd")) {
 			fail ("unable to configure protocol");
@@ -34,10 +34,11 @@ public class TestExitGameController {
 		client.setServerAccess(mockServer);
 	}
 
+	
+	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+	 * This is responsible for testing the process of "Exit Game" Controller*/
 	@Test
 	public void TestExitGameProcess(){
-		/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
-		 * This is responsible for testing the process of "Exit Game" Controller*/
 		// set up model info before actually process
 		String player_name = "player1";
 		String game_id = "exitGame";

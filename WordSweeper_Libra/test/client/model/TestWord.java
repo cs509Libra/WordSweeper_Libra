@@ -4,57 +4,57 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+ * This is responsible for testing "Word" Entity class*/
 public class TestWord {
-	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
-	 * This is responsible for testing "Word" Entity class*/
+	/**the test for getting content function*/
 	@Test
 	public void testGetContent() {
-		/**the test for getting content function*/
 		Word w = new Word();
 		assertEquals("", w.getContent());
 		w.setContent("HelloWorld");
 		assertEquals("HelloWorld", w.getContent());
 	}
 
+	/**the test for setting content function*/
 	@Test
 	public void testSetContent() {
-		/**the test for setting content function*/
 		Word w = new Word();
 		assertFalse("HelloWorld" == w.getContent());
 		w.setContent("HelloWorld");
 		assertTrue("HelloWorld" == w.getContent());
 	}
 
+	/**the test for setting word's score function*/
 	@Test
 	public void testSetScore() {
-		/**the test for setting word's score function*/
 		Word w = new Word();
 		assertFalse(10 == w.getScore());
 		w.setScore(20);
 		assertTrue(20 == w.getScore());
 	}
 
+	/**the test for getting word's score function*/
 	@Test
 	public void testGetScore() {
-		/**the test for getting word's score function*/
 		Word w = new Word();
 		assertFalse(10 == w.getScore());
 		w.setScore(20);
 		assertTrue(20 == w.getScore());
 	}
 
+	/**the test for setting local expected score function*/
 	@Test
 	public void testSetlocalExpectedScore() {
-		/**the test for setting local expected score function*/
 		Word w = new Word();
 		assertFalse(10 == w.getlocalExpectedScore());
 		w.setlocalExpectedScore(20);
 		assertTrue(20 == w.getlocalExpectedScore());
 	}
 
+	/**the test for getting local expected score function*/
 	@Test
 	public void testGetlocalExpectedScore() {
-		/**the test for getting local expected score function*/
 		Word w = new Word();
 		assertFalse(10 == w.getlocalExpectedScore());
 		w.setlocalExpectedScore(20);

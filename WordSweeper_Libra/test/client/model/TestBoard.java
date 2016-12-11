@@ -6,14 +6,14 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+ * This is responsible for testing "Board" Entity class*/
 public class TestBoard {
-	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
-	 * This is responsible for testing "Board" Entity class*/
-	@Test
 	/**
 	 * Test initialization of Board, including constructor, getCol(), getRow()
 	 * and getBoardInfo()
 	 */
+	@Test
 	public void testBoardInitialization() {
 		/**the test for initializing a board*/
 		Board board = new Board();
@@ -24,10 +24,10 @@ public class TestBoard {
 		assertEquals("ABCDABCDABCDABCD", board.getBoardInfo());
 	}
 
-	@Test
 	/**
 	 * test the letter in every cell
 	 */
+	@Test
 	public void testBoardCells() {
 		/**the test for each cell in the board*/
 		Board board = new Board();
@@ -38,10 +38,10 @@ public class TestBoard {
 		}
 	}
 
-	@Test
-	/*
+	/**
 	 * test choosing cells , get chosen cells and clear chosen cells
 	 */
+	@Test
 	public void testChosenCells() {
 		/**the test for adding, clearing and checking chosen cells*/
 		Board board = new Board();

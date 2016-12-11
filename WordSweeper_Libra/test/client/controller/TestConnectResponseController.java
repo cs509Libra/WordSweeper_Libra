@@ -12,9 +12,10 @@ import client.model.Model;
 import client.view.Application;
 import xml.Message;
 
-public class TestConnectResponseController {
-	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
-	 * This is responsible for testing "Connect Response" Controller*/
+
+/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+ * This is responsible for testing "Connect Response" Controller*/
+public class TestConnectResponseController {	
 	Model model = new Model();
 	Application client = new Application(model);
 	MockServerAccess mockServer = new MockServerAccess("localhost");
@@ -30,9 +31,9 @@ public class TestConnectResponseController {
 		client.setServerAccess(mockServer);
 	}
 	
+	/**this is the test for connect response process*/
 	@Test
 	public void TestConnectResponseProcess(){
-		/**this is the test for connect response process*/
 		String id= "Game1";
 		model.getGame().setGameID(id);
 

@@ -13,16 +13,17 @@ import client.view.Application;
 import client.view.MultiGame;
 import xml.Message;
 
-public class TestExitGameResponseController {
 /**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
  * This is responsible for testing the controller of Exit Game Response" */
+public class TestExitGameResponseController {
 	Model model = new Model();
 	Application client = new Application(model);
 	MockServerAccess mockServer = new MockServerAccess("localhost");
 
+	
+	/**this is the preparation before the test.*/
 	@Before
 	public void set() {
-		/**this is the preparation before the test.*/
 		// FIRST thing to do is register the protocol being used.
 		if (!Message.configure("wordsweeper.xsd")) {
 			fail("unable to configure protocol");
@@ -41,10 +42,10 @@ public class TestExitGameResponseController {
 		client.setMg(new MultiGame(model, client));
 	}
 	
+	/**this is the test for the process of "Exit Game Response" process*/
 	@Test
 	public void TestExitGameResponseProcess()
 	{
-		/**this is the test for the process of "Exit Game Response" process*/
 		String name="Player";
 		String id="Exitgame";
 		model.getPlayer().setName(name);

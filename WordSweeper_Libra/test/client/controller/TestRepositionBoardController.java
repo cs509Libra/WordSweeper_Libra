@@ -15,17 +15,17 @@ import client.model.Model;
 import client.view.Application; 
 import xml.Message; 
 
+/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+ * This is responsible for testing "Reposition Board" Controller*/
 public class TestRepositionBoardController {
-	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
-	 * This is responsible for testing "Reposition Board" Controller*/
 	Model model=new Model(); 
 	Application client=new Application(model); 
 	MockServerAccess mockServer=new MockServerAccess("localhost"); 
-
+	
+	/**the setting for the test*/
 	@Before 
 	public void set() 
 	{
-		/**the setting for the test*/
 		// FIRST thing to do is register the protocol being used. 
 		if (!Message.configure("wordsweeper.xsd")) { 
 			fail ("unable to configure protocol"); 
@@ -34,10 +34,10 @@ public class TestRepositionBoardController {
 		client.setServerAccess(mockServer); 		
 	}
 	
+	/**this is the testing for the process of "Reposition Board" controller*/
 	@Test 
 	public void TestRepositionBoardProcess() 
 	{
-		/**this is the testing for the process of "Reposition Board" controller*/
 		String game_id = "Game1"; 
 		String name="Mike"; 
 		model.getGame().setGameID(game_id); 
@@ -63,22 +63,4 @@ public class TestRepositionBoardController {
 		assertEquals(rowChange,r.contents.getFirstChild().getAttributes().getNamedItem("rowChange").getNodeValue()); 	
 	}
 	//end of TestRepositionBoardController
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

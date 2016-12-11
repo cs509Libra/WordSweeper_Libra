@@ -7,29 +7,29 @@ import java.util.Map;
 
 import org.junit.Test;
 
+/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+ * This is responsible for testing "Model" Entity class*/
 public class TestModel {
-	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
-	 * This is responsible for testing "Model" Entity class*/
 	Model testmodel1 = new Model();
 	// updateInfo and startPracticeGame in model is related to private
 	// attributes,
 	// so we can't test it.
 	// any ideas???
 
+	/**the test for creating practice model*/
 	@Test
 	public void TestPracticeModel()
 	// the test for start the practice game function in model
 	{
-		/**the test for creating practice model*/
 		PracticeGame prac1 = testmodel1.startPracticeGame();
 		assertEquals(false, prac1 == null);
 	}
 
+	/**the test for update information function*/
 	@Test
 	public void TestUpdateInfo()
 	// the test for update information function in model
 	{
-		/**the test for update information function*/
 		testmodel1.updateInfo("game1", "Mike", "Mike", 2, 3, "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P", 2500, "2,3");
 		Game game1 = testmodel1.getGame();
 		Player player1 = testmodel1.getPlayer();
@@ -45,11 +45,11 @@ public class TestModel {
 
 	}
 
+	/**the test for setting and getting game information function in model*/
 	@Test
 	public void TestGameinModel()
 	// the test for set&get game in model
 	{
-		/**the test for setting and getting game information function in model*/
 		Game testGame1 = new Game();
 		testGame1.setGameID("testGame1");
 		testGame1.setLocked(true);
@@ -63,12 +63,12 @@ public class TestModel {
 		assertEquals(testGame1, testmodel1.getGame());
 	}
 
+	/**the test for setting and getting board information function in model
+	 * also contains a part of resetting game function in model*/
 	@Test
 	public void TestBoardinModel()
 	// the test for set&get board in model and part of reset game
 	{
-		/**the test for setting and getting board information function in model
-		 * also contains a part of resetting game function in model*/
 		Board testBoard1 = new Board();
 		testBoard1.setBonusCell("E");
 		testBoard1.addToChosenCellsByCellIndex(5);
@@ -80,12 +80,12 @@ public class TestModel {
 		assertEquals(testBoard1, testmodel1.getBoard());
 	}
 
+	/**the test for setting and getting players' information function in model
+	 * also contains a part of resetting game function in model*/
 	@Test
 	public void TestPlayerinModel()
 	// the test for set&get player in model and part of reset game
 	{
-		/**the test for setting and getting players' information function in model
-		 * also contains a part of resetting game function in model*/
 		Player testPlayer1 = new Player();
 		testPlayer1.setAsManager();
 		testPlayer1.setName("Mike");
@@ -95,7 +95,6 @@ public class TestModel {
 		testmodel1.resetGame();
 		testPlayer1.setScore(0);
 		assertEquals(testPlayer1, testmodel1.getPlayer());
-
 	}
 }
 // end of the test of Model entity

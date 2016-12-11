@@ -14,18 +14,17 @@ import client.model.Model;
 import client.view.Application; 
 import xml.Message; 
 
-
+/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+ * This is responsible for testing "Reset Game" Controller*/
 public class TestResetGameController {
-	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
-	 * This is responsible for testing "Reset Game" Controller*/
 	Model model=new Model(); 
 	Application client=new Application(model); 
 	MockServerAccess mockServer=new MockServerAccess("localhost"); 
 
+	/**the setting for the test*/
 	@Before 
 	public void set() 
 	{
-		/**the setting for the test*/
 		// FIRST thing to do is register the protocol being used. 
 		if (!Message.configure("wordsweeper.xsd")) { 
 			fail ("unable to configure protocol"); 
@@ -34,10 +33,10 @@ public class TestResetGameController {
 		client.setServerAccess(mockServer); 	
 	}
 	
+	/**this is the test for the process of "Reset Game" controller*/
 	@Test 
 	public void TestResetGameProcess() 
 	{
-		/**this is the test for the process of "Reset Game" controller*/
 		String game_id = "resetGame"; 
 		model.getGame().setGameID(game_id); 
 		
@@ -53,16 +52,5 @@ public class TestResetGameController {
 		assertEquals(game_id, r.contents.getFirstChild().getAttributes().getNamedItem("gameId").getNodeValue());	
 	}
 	// end of TestResetGameController
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
 

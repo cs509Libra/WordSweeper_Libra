@@ -13,16 +13,16 @@ import client.view.Application;
 import client.view.MultiGame;
 import xml.Message;
 
+/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+ * This is responsible for testing the controller of "List Game Response" controller */
 public class TestResetGameResponseController {
-	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
-	 * This is responsible for testing the controller of "List Game Response" controller */
 		Model model = new Model();
 		Application client = new Application(model);
 		MockServerAccess mockServer = new MockServerAccess("localhost");
 
+		/**this is the preparation before the test.*/
 		@Before
 		public void set() {
-			/**this is the preparation before the test.*/
 			// FIRST thing to do is register the protocol being used.
 			if (!Message.configure("wordsweeper.xsd")) {
 				fail("unable to configure protocol");
@@ -41,10 +41,10 @@ public class TestResetGameResponseController {
 			client.setMg(new MultiGame(model, client));
 		}
 		
+		/**this is the test for the process of "Reset Game Response" controller*/
 		@Test
 		public void TestResetGameResponseProcess()
 		{
-			/**this is the test for the process of "Reset Game Response" controller*/
 			String gameid="Game1";
 			model.getGame().setGameID(gameid);
 			String xml="<?xml version=\"1.0\" encoding=\"UTF-8\"?><response id=\"someMessageID\" success=\"true\">"

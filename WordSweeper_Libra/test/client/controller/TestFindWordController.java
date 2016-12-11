@@ -15,17 +15,17 @@ import client.model.Model;
 import client.view.Application;
 import xml.Message;
 
+/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally) 
+ * This is responsible for testing "Find Word" Controller*/
 public class TestFindWordController {
-	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally) 
-	 * This is responsible for testing "Find Word" Controller*/
 	Model model=new Model();
 	Application client=new Application(model);
 	MockServerAccess mockServer=new MockServerAccess("localhost");
 	
+	/**this is the setting for the test*/
 	@Before
 	public void set()
 	{
-		/**this is the setting for the test*/
 		// FIRST thing to do is register the protocol being used.
 		if (!Message.configure("wordsweeper.xsd")) {
 			fail ("unable to configure protocol");
@@ -33,12 +33,12 @@ public class TestFindWordController {
 		client.setVisible(true);
 		client.setServerAccess(mockServer);
 	}
-
+	
+	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally) 
+	 * This is responsible for testing the process of "Find Word" Controller*/
 	@Test
 	public void TestFindWordProcess()
 	{
-		/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally) 
-		 * This is responsible for testing the process of "Find Word" Controller*/
 		String player_name = "player1";
 		String game_id = "game1";
 		String wordContent="SO";
