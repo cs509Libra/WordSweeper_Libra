@@ -82,13 +82,7 @@ public class LeftBoardPanel extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// refreshBoard();
-				try {
-					Thread.sleep(300);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-				if (model.isWaitingResponse == true) {
+				if (isDisconnected(model.isWaitingResponse) == true) {
 					messageLabel.setText("Disconnected  from  the  server !!!");
 				} else {
 					newRow = model.getBoard().getRow();
@@ -120,13 +114,7 @@ public class LeftBoardPanel extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// refreshBoard();
-				try {
-					Thread.sleep(300);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-				if (model.isWaitingResponse == true) {
+				if (isDisconnected(model.isWaitingResponse) == true) {
 					messageLabel.setText("Disconnected  from  the  server !!!");
 				} else {
 					newCol = model.getBoard().getCol();
@@ -157,13 +145,7 @@ public class LeftBoardPanel extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// refreshBoard();
-				try {
-					Thread.sleep(300);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-				if (model.isWaitingResponse == true) {
+				if (isDisconnected(model.isWaitingResponse) == true) {
 					messageLabel.setText("Disconnected  from  the  server !!!");
 				} else {
 					newCol = model.getBoard().getCol();
@@ -194,13 +176,7 @@ public class LeftBoardPanel extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// refreshBoard();
-				try {
-					Thread.sleep(300);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-				if (model.isWaitingResponse == true) {
+				if (isDisconnected(model.isWaitingResponse) == true) {
 					messageLabel.setText("Disconnected  from  the  server !!!");
 				} else {
 					newRow = model.getBoard().getRow();
@@ -309,12 +285,7 @@ public class LeftBoardPanel extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				try {
-					Thread.sleep(300);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-				if (model.isWaitingResponse == true) {
+				if (isDisconnected(model.isWaitingResponse) == true) {
 					messageLabel.setText("Disconnected  from  the  server !!!");
 				} else {
 					playerNewScore = model.getPlayer().getWordscore();
@@ -357,6 +328,7 @@ public class LeftBoardPanel extends JPanel {
 			changeBonusColor();
 		}
 		boardview.repaint();
+		messageLabel.setText("");
 	}
 
 	private void removeCellBtnsColors() {
@@ -576,6 +548,20 @@ public class LeftBoardPanel extends JPanel {
 		}
 		Integer wordLength = chosenCellBtns.size();
 		return CalculateLocalScore.calculateWordScore(word, wordLength);
+	}
+	
+	public boolean isDisconnected(boolean b){
+		for(int i=0;i<20;i++){
+			if(b==false)
+				return false;
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return true;
 	}
 
 }

@@ -43,6 +43,7 @@ public class ExitGameResponseController extends ControllerChain {
 		// <xs:attribute name='gameId' type='xs:string' use='required'/>
 		app.getMg().dispose();
 		app.enableInputs();
+		model.getPlayer().resetManager();
 
 		// app.setVisible(true);
 

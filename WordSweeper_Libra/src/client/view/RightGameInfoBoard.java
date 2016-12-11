@@ -19,6 +19,7 @@ import client.controller.requestController.LockGameController;
 import client.controller.requestController.ResetGameController;
 import client.controller.responseController.SampleClientMessageHandler;
 import client.model.Model;
+import client.view.LeftBoardPanel;
 
 /**
  * Right part of the GUI. This class is initialized in {@link MultiGame}.
@@ -88,14 +89,8 @@ public class RightGameInfoBoard extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new ExitGameController(app, model).process();
-				try {/* sleep for a while to wait for response from server */
-					Thread.sleep(300);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-
 				/* notify the player that the server is offline */
-				if (model.isWaitingResponse == true) {//
+				if (((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).isDisconnected(model.isWaitingResponse) == true) {
 					((LeftBoardPanel) app.getMg().getLeftBoardPanel()).getMessageLabel()
 							.setText("You are offline! Please close the game.");
 					((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();
@@ -192,12 +187,7 @@ public class RightGameInfoBoard extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new ResetGameController(app, model).process();
-				try {
-					Thread.sleep(300);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-				if (model.isWaitingResponse == true) {
+				if (((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).isDisconnected(model.isWaitingResponse) == true) {
 					((LeftBoardPanel) app.getMg().getLeftBoardPanel()).getMessageLabel()
 							.setText("Disconnected  from  the  server! Unable to reset!");
 					((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();
@@ -212,13 +202,8 @@ public class RightGameInfoBoard extends JPanel {
 		lockBtn.addActionListener(new ActionListener() {// lock game button
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new LockGameController(app, model).process();
-				try {
-					Thread.sleep(300);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-				if (model.isWaitingResponse == true) {
+				new LockGameController(app, model).process();				
+				if (((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).isDisconnected(model.isWaitingResponse) == true) {
 					((LeftBoardPanel) app.getMg().getLeftBoardPanel()).getMessageLabel()
 							.setText("Disconnected  from  the  server! Unable to lock!");
 					((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();

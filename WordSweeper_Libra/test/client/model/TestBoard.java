@@ -10,7 +10,7 @@ public class TestBoard {
 	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
 	 * This is responsible for testing "Board" Entity class*/
 	@Test
-	/*
+	/**
 	 * Test initialization of Board, including constructor, getCol(), getRow()
 	 * and getBoardInfo()
 	 */
@@ -25,7 +25,7 @@ public class TestBoard {
 	}
 
 	@Test
-	/*
+	/**
 	 * test the letter in every cell
 	 */
 	public void testBoardCells() {
