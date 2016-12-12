@@ -31,7 +31,7 @@ public class StringFileIterator implements Iterator<String> {
 		sc = new Scanner(f);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see java.util.Iterator#hasNext()
 	 */
@@ -41,7 +41,7 @@ public class StringFileIterator implements Iterator<String> {
 		return sc.hasNextLine();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see java.util.Iterator#next()
 	 */
@@ -61,7 +61,7 @@ public class StringFileIterator implements Iterator<String> {
 		return s;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see java.util.Iterator#remove()
 	 */

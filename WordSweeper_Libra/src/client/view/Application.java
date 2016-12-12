@@ -22,6 +22,12 @@ import client.controller.requestController.CreateGameController;
 import client.controller.requestController.JoinGameController;
 import client.model.Model;
 
+/**
+ * This is the GUI class for game login interface.
+ * 
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+ *
+ */
 public class Application extends JFrame {
 
 	public Model model;
@@ -84,12 +90,16 @@ public class Application extends JFrame {
 		this.playerName = name;
 	}// for test
 
+	/**Application constructor
+	 * @param model
+	 */
 	public Application(Model model) {
 		this.model = model;
 		this.error_messege = "";
 		initiate();
 	}
 
+	/**make all the fields uneditable.*/
 	private void disableInputs() {
 		btnPractice.setEnabled(false);
 		btnCreateGame.setEnabled(false);
@@ -99,6 +109,7 @@ public class Application extends JFrame {
 		passWordField.setEditable(false);
 	}
 
+	/**make all the fields editable.*/
 	public void enableInputs() {
 		btnPractice.setEnabled(true);
 		btnCreateGame.setEnabled(true);
@@ -108,6 +119,7 @@ public class Application extends JFrame {
 		passWordField.setEditable(true);
 	}
 
+	/**initiate all the objects in login GUI.*/
 	private void initiate() {
 		this.setTitle("WordSweeper Login");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -152,6 +164,8 @@ public class Application extends JFrame {
 
 		btnPractice = new JButton("Practice");
 		btnPractice.addActionListener(new ActionListener() {
+			
+		/**monitor the practice button.*/
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Practice pg = new Practice(model, Application.this);
@@ -164,6 +178,10 @@ public class Application extends JFrame {
 
 		btnCreateGame = new JButton("Create Game");
 		btnCreateGame.addMouseListener(new MGMouseListener() {
+			
+			/**make sure if the player input his/her name.
+			 * @return 
+			 */
 			public boolean notHasPlayerName() {
 				playerName = playerNameField.getText();
 				if (playerName.length() == 0) {
@@ -186,6 +204,10 @@ public class Application extends JFrame {
 				}
 			}
 
+			/**set multi mode game.
+			 * @param e
+			 * @return
+			 */
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				if (!notHasPlayerName()) {
@@ -216,6 +238,9 @@ public class Application extends JFrame {
 
 		btnJoinGame = new JButton("Join Game");
 		btnJoinGame.addMouseListener(new MGMouseListener() {
+			/**make sure if the player input his/her name and gameid when player is going to join a game.
+			 * @return 
+			 */
 			public boolean notHasPlayerNameAndGameId() {
 				gameNumber = gameNumberField.getText();
 				playerName = playerNameField.getText();

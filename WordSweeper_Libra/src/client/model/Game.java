@@ -8,6 +8,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+/**
+ * Game entity class, which contains all the info and functions about the game.  
+ * 
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+ *
+ */
 public class Game {
 
 	private String gameID;
@@ -16,6 +22,7 @@ public class Game {
 	private Map<String, String> playersPositionMap;
 	private boolean isLocked;
 
+	/**Game constructor*/
 	public Game() {
 		gameID = "";
 		managingUser = null;
@@ -56,6 +63,10 @@ public class Game {
 		this.isLocked = isLocked;
 	}
 
+	/**
+	 * Sort the player list by join time, player who joins early will be on the front part.  
+	 * @return
+	 */
 	public String getPlayersListByJoinTime() {
 		String allPlayersList = "";
 		int i = 1;
@@ -67,6 +78,10 @@ public class Game {
 		return allPlayersList;
 	}
 
+	/**
+	 * Sort the player list by temporary total score in descending order.  
+	 * @return
+	 */
 	public String getPlayersListByScore() {
 		String allPlayersInfoSortedByScore = "";
 
@@ -88,7 +103,11 @@ public class Game {
 
 		return allPlayersInfoSortedByScore;
 	}
-
+    
+	/**
+	 * Sort the player list by letters of name in order of ascll.  
+	 * @return
+	 */
 	public String getPlayersListByName() {
 		String allPlayersInfoSortedByName = "";
 

@@ -29,7 +29,6 @@ import util.CalculateLocalScore;
  *
  */
 
-
 public class LeftBoardPanel extends JPanel {
 
 	private Model model;
@@ -48,6 +47,7 @@ public class LeftBoardPanel extends JPanel {
 	private ArrayList<JButton> chosenCellBtns;
 	private ArrayList<JButton> allCellBtns;
 
+	/**LeftBoardPanel constructor*/
 	public LeftBoardPanel(Model model, Application app, JPanel rightGameInfoBoard) {
 		this.model = model;
 		this.app = app;
@@ -61,6 +61,7 @@ public class LeftBoardPanel extends JPanel {
 		return this.messageLabel;
 	}
 
+	/**This method initiate the swing units in LeftBoardPanel*/
 	private void initiate() {
 		setBounds(5, 5, 370, 470);
 		setLayout(null);
@@ -70,6 +71,9 @@ public class LeftBoardPanel extends JPanel {
 			int previousRow;
 			int newRow;
 
+			/**control the function of reposition to upper place
+			 * @param e 
+			 */
 			@Override
 			public void mousePressed(MouseEvent e) {
 				clearAllChosen();
@@ -102,6 +106,9 @@ public class LeftBoardPanel extends JPanel {
 			int previousCol;
 			int newCol;
 
+			/**control the function of reposition to left place
+			 * @param e 
+			 */
 			@Override
 			public void mousePressed(MouseEvent e) {
 				clearAllChosen();
@@ -133,6 +140,9 @@ public class LeftBoardPanel extends JPanel {
 			int previousCol;
 			int newCol;
 
+			/**control the function of reposition to right place
+			 * @param e 
+			 */
 			@Override
 			public void mousePressed(MouseEvent e) {
 				clearAllChosen();
@@ -164,6 +174,9 @@ public class LeftBoardPanel extends JPanel {
 			int previousRow;
 			int newRow;
 
+			/**control the function of reposition to down place
+			 * @param e 
+			 */
 			@Override
 			public void mousePressed(MouseEvent e) {
 				clearAllChosen();
@@ -256,6 +269,9 @@ public class LeftBoardPanel extends JPanel {
 			long playerNewScore;
 			Integer localExpectedWordScore;
 
+			/**control the function of submit, when player click submit, client will define the word he chose.
+			 * @param e 
+			 */
 			@Override
 			public void mousePressed(MouseEvent e) {
 
@@ -307,6 +323,8 @@ public class LeftBoardPanel extends JPanel {
 		refreshBoard();
 	}
 
+	/**refresh the board GUI part. 
+	 */
 	public void refreshBoard() {
 		this.isBoardChanged = !this.previousBoard.equals(this.model.getBoard().getBoardInfo());
 		this.previousBoard = this.model.getBoard().getBoardInfo();
@@ -331,6 +349,8 @@ public class LeftBoardPanel extends JPanel {
 		messageLabel.setText("");
 	}
 
+	/**remove all the cell buttons' colors. 
+	 */
 	private void removeCellBtnsColors() {
 		for (int i = 0; i < 16; i++) {
 			Component c = this.boardview.getComponent(i);
@@ -339,6 +359,8 @@ public class LeftBoardPanel extends JPanel {
 		boardview.repaint();
 	}
 
+	/**clear all the chosen cell buttons. 
+	 */
 	private void clearAllChosen() {
 		// messageLabel.setText("");
 		localExpectedScoreField.setText("0");
@@ -350,6 +372,8 @@ public class LeftBoardPanel extends JPanel {
 		changeBonusColor();
 	}
 
+	/**add all the cell buttons to cell button list. 
+	 */
 	private void addAllCellBtnsToCellBtnsList() {
 
 		ActionListener cellChosenListener = new ActionListener() {
@@ -452,6 +476,12 @@ public class LeftBoardPanel extends JPanel {
 		return false;
 	}
 
+	/**
+	 * check if the target cell is bonus.
+	 * 
+	 * @param index
+	 * @return
+	 */
 	private boolean isBonusCell(int index) {
 		String bonusCell = this.model.getBoard().getBonusCell();
 		int x = Character.getNumericValue(bonusCell.charAt(0)) - this.model.getBoard().getCol() + 1;
@@ -463,7 +493,6 @@ public class LeftBoardPanel extends JPanel {
 			return true;
 		else
 			return false;
-
 	}
 
 	/**
@@ -541,6 +570,11 @@ public class LeftBoardPanel extends JPanel {
 		return false;
 	}
 
+	/**
+	 * calculate the local score for chosen word.
+	 * @param word
+	 * @return
+	 */
 	private Integer calculateWordScoreFromLocalLib(String word) {
 		if (word.length() <= 1) {
 			messageLabel.setText("Choose at least 2 letters");
@@ -550,6 +584,11 @@ public class LeftBoardPanel extends JPanel {
 		return CalculateLocalScore.calculateWordScore(word, wordLength);
 	}
 	
+	/**
+	 * check if it is disconnected now.
+	 * @param b
+	 * @return
+	 */
 	public boolean isDisconnected(boolean b){
 		for(int i=0;i<20;i++){
 			if(b==false)

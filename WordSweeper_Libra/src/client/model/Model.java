@@ -1,5 +1,12 @@
 package client.model;
 
+
+/**
+ * Model entity class, which plays a role as a manager of entity.  
+ * 
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+ *
+ */
 public class Model {
 
 	private Game game;
@@ -9,6 +16,7 @@ public class Model {
 	public boolean existedGame;
 	public boolean isWaitingResponse;
 
+	/**Model constructor*/
 	public Model() {
 		this.game = new Game();
 		this.practiceGame = new PracticeGame();
@@ -18,10 +26,23 @@ public class Model {
 		this.isWaitingResponse = false;
 	}
 
+	/**get the PracticeGame info
+	 *@return
+	 */
 	public PracticeGame startPracticeGame() {
 		return this.practiceGame;
 	}
 
+	/**update all the info about Model class.
+	 *@param gameID
+	 *@param managingUser
+	 *@param playerName
+	 *@param newStartingCol
+	 *@param newStaringRow
+	 *@param boardInfo
+	 *@param score
+	 *@param bonusCell
+	 */
 	public void updateInfo(String gameID, String managingUser, String playerName, int newStartingCol, int newStaringRow,
 			String boardInfo, long score, String bonusCell) {
 		this.game.setGameID(gameID);
@@ -62,6 +83,8 @@ public class Model {
 		this.player = player;
 	}
 
+	/**reset the game and all the data of the game.
+	 */
 	public void resetGame() {
 		this.getPlayer().resetPlayerScore();
 		this.getBoard().empltyChosenCells();

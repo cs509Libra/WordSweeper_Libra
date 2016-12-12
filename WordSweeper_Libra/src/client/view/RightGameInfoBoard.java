@@ -31,7 +31,7 @@ import client.view.LeftBoardPanel;
  * the server, Controllers will first change the according attributes in models,
  * then call {@link #updateGameInfoBoard()} to update the GUI.
  * 
- * @author HanBao
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
  * 
  */
 public class RightGameInfoBoard extends JPanel {

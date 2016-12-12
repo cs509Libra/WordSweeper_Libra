@@ -1,5 +1,12 @@
 package client.model;
 
+
+/**
+ * Cell entity class, which contains all the info and functions about the Cell.  
+ * 
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+ *
+ */
 public class Cell {
 	private int localRow;
     private int localCol;
@@ -10,6 +17,7 @@ public class Cell {
     private boolean isChosen;
     private boolean isBonus;
     
+    /**Cell constructor*/
     public Cell(){
     	localRow = 0;       
     	localCol = 0;

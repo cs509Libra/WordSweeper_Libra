@@ -6,6 +6,12 @@ import javax.swing.border.EmptyBorder;
 
 import client.model.Model;
 
+/**
+ * The GUI of multi-players mode game.
+ * 
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+ *
+ */
 public class MultiGame extends JFrame {
 	
 	private JPanel contentPane;
@@ -15,6 +21,7 @@ public class MultiGame extends JFrame {
 	private Model model;
 	private Application app;
 	
+	/**MultiGame constructor*/
 	public MultiGame (Model model, Application app) {
 		this.model = model;
 		this.app = app;	
@@ -25,6 +32,9 @@ public class MultiGame extends JFrame {
 		
 	}
 	
+	/**initiate the GUI object for multi mode.<br>
+	 * This GUI consists of leftBoardPanel and rightGameInfoPanel.
+	 */
 	private void initiate(){		
 		setTitle("Wordsweeper");		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,13 +45,9 @@ public class MultiGame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-//		rightGameInfoPanel = new RightGameInfoBoard(model, app);
+	
 		contentPane.add(rightGameInfoPanel);	
-		
-//		leftBoardPanel = new LeftBoardPanel(model, app, rightGameInfoPanel);
 		contentPane.add(leftBoardPanel);
-
 	}
 
 	public JPanel getLeftBoardPanel() {
@@ -51,6 +57,5 @@ public class MultiGame extends JFrame {
 	public JPanel getRightGameInfoPanel() {
 		return this.rightGameInfoPanel;
 	}
-	
 	
 }

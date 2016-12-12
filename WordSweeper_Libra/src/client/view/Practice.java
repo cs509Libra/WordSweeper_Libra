@@ -25,7 +25,7 @@ import util.CalculateLocalScore;
 /**
  * The GUI of Practice mode game.
  * 
- * @author HanBao
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
  *
  */
 public class Practice extends JFrame {

@@ -3,7 +3,14 @@ package client.model;
 import java.util.ArrayList;
 
 import util.CalculateLocalScore;
+import xml.Message;
 
+/**
+ * Board entity class, which contains all the info and functions about the board.  
+ * 
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+ *
+ */
 public class Board {
 	private ArrayList<Cell> cells;
 	private ArrayList<Cell> chosenCells;
@@ -16,6 +23,7 @@ public class Board {
 	private Integer chosenLettersScore;
 	private String bonusCell;
 
+	/**Board constructor*/
 	public Board() {
 		cells = new ArrayList<Cell>();
 		chosenCells = new ArrayList<Cell>();
@@ -39,14 +47,25 @@ public class Board {
 		}
 	}
 
+	/**get the globalStartingRow attribute 
+	 * @return
+	 */
 	public int getRow() {
 		return this.globalStartingRow;
 	}
-
+	
+	/** get the globalStartingCol attribute 
+	 * @return
+	 */
 	public int getCol() {
 		return this.globalStartingCol;
 	}
-
+	
+	/** update the board information
+  	 * @param newStartingCol
+  	 * @param newStaringRow
+	 * @param NewBoardInfo
+	 */
 	public void updateBoard(int newStartingCol, int newStaringRow, String NewBoardInfo) {
 		this.globalStartingCol = newStartingCol;
 		this.globalStartingRow = newStaringRow;
@@ -57,13 +76,19 @@ public class Board {
 		updateBoardByAllLetters(NewBoardInfo);
 	}
 
+	/** update the board information, especially on letters.
+  	 * @param cellsLetters
+	 */
 	private void updateBoardByAllLetters(String cellsLetters) {
 		String[] cellInforList = cellsLetters.split(",");
 		for (int i = 0; i < 16; i++) {
 			this.cells.get(i).setLetter("" + cellInforList[i]);
 		}
-	}// change a little
+	}
 
+	/** get the board info 
+	 * @return
+	 */
 	public String getBoardInfo() {
 		String allCellLetters = "";
 		for (Cell cell : cells) {
@@ -73,15 +98,19 @@ public class Board {
 	}
 
 	/**
-	 * Provide 16 letters String to view
+	 * the getter for cells attribute.
 	 * 
 	 * @return
 	 */
-
 	public ArrayList<Cell> getCells() {
 		return cells;
 	}
 
+	/**
+	 * get the XML format of String which consists of chosen cells.
+	 * 
+	 * @return
+	 */
 	public String getChosenCellsXMLString() {
 		String chosenCellsString = "";
 		for (Cell cell : chosenCells) {
@@ -91,21 +120,31 @@ public class Board {
 		return chosenCellsString;
 	}
 
+	/**
+	 * the getter for word attribute.
+	 * 
+	 * @return
+	 */
 	public Word getWord() {
 		return this.word;
 	}
 
+	/**
+	 * add the new chosen cell to chosen cell list.
+	 * @param index 
+	 */
 	public void addToChosenCellsByCellIndex(int index) {
 		cells.get(index).setAsChosen();
 		chosenCells.add(cells.get(index));
 		word.setContent(getChosenCellsLetters());
 		word.setlocalExpectedScore(
 				CalculateLocalScore.calculateWordScore(getChosenCellsLetters(), this.chosenCells.size()));
-		// System.out.println("word: " + word.getContent() +
-		// chosenCells.size());
-
 	}
 
+	/**
+	 * get the cell letters that has been chosen.
+	 * @return 
+	 */
 	public String getChosenCellsLetters() {
 		String chosenLetters = "";
 		for (Cell cell : chosenCells)
@@ -113,6 +152,10 @@ public class Board {
 		return chosenLetters;
 	}
 
+	/**
+	 * get the score, according to cell letters that has been chosen.
+	 * @return 
+	 */
 	public Integer getChosenLettersScore() {
 		for (Cell cell : this.chosenCells) {
 			this.chosenLettersScore += CalculateLocalScore.calculateLetterScore(cell.getLetter());
@@ -120,6 +163,9 @@ public class Board {
 		return this.chosenLettersScore;
 	}
 
+	/**
+	 * clear all the cells that has been chosen.
+	 */
 	public void clearChosenCells() {
 		for (Cell cell : this.chosenCells) {
 			cell.setAsUnchosen();
@@ -128,30 +174,60 @@ public class Board {
 		word.setContent(getChosenCellsLetters());
 	}
 
+	/**
+	 * the getter for RequestColChange attribute.
+	 * 
+	 * @return
+	 */
 	public Integer getRequestColChange() {
 		return requestColChange;
 	}
 
+	/**
+	 * the setter for RequestColChange attribute.
+	 * @param requestColChange
+	 */
 	public void setRequestColChange(Integer requestColChange) {
 		this.requestColChange = requestColChange;
 	}
 
+	/**
+	 * the getter for RequestRowChange attribute.
+	 * 
+	 * @return
+	 */
 	public Integer getRequestRowChange() {
 		return requestRowChange;
 	}
 
+	/**
+	 * the setter for RequestRowChange attribute.
+	 * @param requestRowChange
+	 */
 	public void setRequestRowChange(Integer requestRowChange) {
 		this.requestRowChange = requestRowChange;
 	}
 
+	/**
+	 * remove all the chosen cells.
+	 */
 	public void empltyChosenCells() {
 		this.chosenCells.removeAll(chosenCells);
 	}
 
+	/**
+	 * the getter for BonusCell attribute.
+	 * 
+	 * @return
+	 */
 	public String getBonusCell() {
 		return this.bonusCell;
 	}
 
+	/**
+	 * the setter for BonusCell attribute.
+	 * @param bonusCell
+	 */
 	public void setBonusCell(String bonusCell) {
 		this.bonusCell = bonusCell;
 	}
