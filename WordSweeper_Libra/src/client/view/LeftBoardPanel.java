@@ -22,10 +22,12 @@ import client.model.Model;
 import util.CalculateLocalScore;
 
 /**
- * This is the left panel GUI showing board information, letters and chosen letters information as well as the submission process GUIs.
+ * This is the left panel GUI showing board information, letters and chosen
+ * letters information as well as the submission process GUIs.
  * 
  *
- * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute
+ *         equally)
  *
  */
 public class LeftBoardPanel extends JPanel {
@@ -43,10 +45,17 @@ public class LeftBoardPanel extends JPanel {
 	private JTextField submissionField;
 	private JPanel boardview;
 
+	JButton btnUp;
+	JButton btnLeft;
+	JButton btnDown;
+	JButton btnRight;
+	JButton clear;
+	JButton submit;
+
 	private ArrayList<JButton> chosenCellBtns;
 	private ArrayList<JButton> allCellBtns;
 
-	/**LeftBoardPanel constructor*/
+	/** LeftBoardPanel constructor */
 	public LeftBoardPanel(Model model, Application app, JPanel rightGameInfoBoard) {
 		this.model = model;
 		this.app = app;
@@ -60,18 +69,20 @@ public class LeftBoardPanel extends JPanel {
 		return this.messageLabel;
 	}
 
-	/**This method initiate the swing units in LeftBoardPanel*/
+	/** This method initiate the swing units in LeftBoardPanel */
 	private void initiate() {
 		setBounds(5, 5, 370, 470);
 		setLayout(null);
 
-		JButton btnUp = new JButton("^");
+		btnUp = new JButton("^");
 		btnUp.addMouseListener(new MGMouseListener() {
 			int previousRow;
 			int newRow;
 
-			/**control the function of reposition to upper place
-			 * @param e 
+			/**
+			 * control the function of reposition to upper place
+			 * 
+			 * @param e
 			 */
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -100,13 +111,15 @@ public class LeftBoardPanel extends JPanel {
 		btnUp.setEnabled(true);
 		add(btnUp);
 
-		JButton btnLeft = new JButton("<");
+		btnLeft = new JButton("<");
 		btnLeft.addMouseListener(new MGMouseListener() {
 			int previousCol;
 			int newCol;
 
-			/**control the function of reposition to left place
-			 * @param e 
+			/**
+			 * control the function of reposition to left place
+			 * 
+			 * @param e
 			 */
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -134,13 +147,15 @@ public class LeftBoardPanel extends JPanel {
 		btnLeft.setEnabled(true);
 		add(btnLeft);
 
-		JButton btnRight = new JButton(">");
+		btnRight = new JButton(">");
 		btnRight.addMouseListener(new MGMouseListener() {
 			int previousCol;
 			int newCol;
 
-			/**control the function of reposition to right place
-			 * @param e 
+			/**
+			 * control the function of reposition to right place
+			 * 
+			 * @param e
 			 */
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -168,13 +183,15 @@ public class LeftBoardPanel extends JPanel {
 		btnRight.setEnabled(true);
 		add(btnRight);
 
-		JButton btnDown = new JButton("v");
+		btnDown = new JButton("v");
 		btnDown.addMouseListener(new MGMouseListener() {
 			int previousRow;
 			int newRow;
 
-			/**control the function of reposition to down place
-			 * @param e 
+			/**
+			 * control the function of reposition to down place
+			 * 
+			 * @param e
 			 */
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -249,7 +266,7 @@ public class LeftBoardPanel extends JPanel {
 		submissionField.setColumns(10);
 		add(submissionField);
 
-		JButton clear = new JButton("Clear");
+		clear = new JButton("Clear");
 		clear.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -263,13 +280,16 @@ public class LeftBoardPanel extends JPanel {
 		clear.setBounds(69, 430, 93, 23);
 		add(clear);
 
-		JButton submit = new JButton("Submit");
+		submit = new JButton("Submit");
 		submit.addMouseListener(new MGMouseListener() {
 			long playerNewScore;
 			Integer localExpectedWordScore;
 
-			/**control the function of submit, when player click submit, client will define the word he chose.
-			 * @param e 
+			/**
+			 * control the function of submit, when player click submit, client
+			 * will define the word he chose.
+			 * 
+			 * @param e
 			 */
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -303,7 +323,7 @@ public class LeftBoardPanel extends JPanel {
 				if (isDisconnected() == true) {
 					messageLabel.setText("Disconnected  from  the  server!!!");
 				} else {
-				    try {
+					try {
 						Thread.sleep(100);
 					} catch (InterruptedException e1) {
 						// TODO Auto-generated catch block
@@ -328,7 +348,8 @@ public class LeftBoardPanel extends JPanel {
 		refreshBoard();
 	}
 
-	/**refresh the board GUI part. 
+	/**
+	 * refresh the board GUI part.
 	 */
 	public void refreshBoard() {
 		this.isBoardChanged = !this.previousBoard.equals(this.model.getBoard().getBoardInfo());
@@ -354,7 +375,8 @@ public class LeftBoardPanel extends JPanel {
 		messageLabel.setText("");
 	}
 
-	/**remove all the cell buttons' colors. 
+	/**
+	 * remove all the cell buttons' colors.
 	 */
 	private void removeCellBtnsColors() {
 		for (int i = 0; i < 16; i++) {
@@ -364,7 +386,8 @@ public class LeftBoardPanel extends JPanel {
 		boardview.repaint();
 	}
 
-	/**clear all the chosen cell buttons. 
+	/**
+	 * clear all the chosen cell buttons.
 	 */
 	private void clearAllChosen() {
 		// messageLabel.setText("");
@@ -377,7 +400,8 @@ public class LeftBoardPanel extends JPanel {
 		changeBonusColor();
 	}
 
-	/**add all the cell buttons to cell button list. 
+	/**
+	 * add all the cell buttons to cell button list.
 	 */
 	private void addAllCellBtnsToCellBtnsList() {
 
@@ -577,6 +601,7 @@ public class LeftBoardPanel extends JPanel {
 
 	/**
 	 * calculate the local score for chosen word.
+	 * 
 	 * @param word
 	 * @return
 	 */
@@ -588,15 +613,16 @@ public class LeftBoardPanel extends JPanel {
 		Integer wordLength = chosenCellBtns.size();
 		return CalculateLocalScore.calculateWordScore(word, wordLength);
 	}
-	
+
 	/**
 	 * check if it is disconnected now.
+	 * 
 	 * @param b
 	 * @return
 	 */
-	public boolean isDisconnected(){
-		for(int i=0;i<40;i++){
-			if(model.isWaitingResponse==false)
+	public boolean isDisconnected() {
+		for (int i = 0; i < 40; i++) {
+			if (model.isWaitingResponse == false)
 				return false;
 			try {
 				Thread.sleep(50);
@@ -606,6 +632,10 @@ public class LeftBoardPanel extends JPanel {
 			}
 		}
 		return true;
+	}
+
+	public ArrayList<JButton> getAllCellBtns() {
+		return this.allCellBtns;
 	}
 
 }
