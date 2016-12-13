@@ -35,7 +35,6 @@ public class CalculateLocalScore {
 	 * @param letter
 	 * @return
 	 */
-	
 	public static Integer calculateLetterScore(char letter){	
 		String upperLett = Character.toString(letter).toUpperCase();
 		return calculateLetterScore(upperLett);

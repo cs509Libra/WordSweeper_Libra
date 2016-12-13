@@ -35,7 +35,7 @@ public class TestExitGameController {
 	}
 
 	
-	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
+	/**
 	 * This is responsible for testing the process of "Exit Game" Controller*/
 	@Test
 	public void TestExitGameProcess(){

@@ -36,7 +36,7 @@ public class TestCreateGameController {
 	}
 
 	
-	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally) 
+	/**
 	 * This is responsible for testing the process "Create Game" Controller
 	 * Has two parts: 
 	 * 1.don't provide password

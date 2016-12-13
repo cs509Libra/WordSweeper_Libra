@@ -90,7 +90,7 @@ public class RightGameInfoBoard extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				new ExitGameController(app, model).process();
 				/* notify the player that the server is offline */
-				if (((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).isDisconnected(model.isWaitingResponse) == true) {
+				if (((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).isDisconnected() == true) {
 					((LeftBoardPanel) app.getMg().getLeftBoardPanel()).getMessageLabel()
 							.setText("You are offline! Please close the game.");
 					((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();
@@ -187,7 +187,7 @@ public class RightGameInfoBoard extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new ResetGameController(app, model).process();
-				if (((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).isDisconnected(model.isWaitingResponse) == true) {
+				if (((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).isDisconnected() == true) {
 					((LeftBoardPanel) app.getMg().getLeftBoardPanel()).getMessageLabel()
 							.setText("Disconnected  from  the  server! Unable to reset!");
 					((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();
@@ -203,7 +203,7 @@ public class RightGameInfoBoard extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new LockGameController(app, model).process();				
-				if (((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).isDisconnected(model.isWaitingResponse) == true) {
+				if (((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).isDisconnected() == true) {
 					((LeftBoardPanel) app.getMg().getLeftBoardPanel()).getMessageLabel()
 							.setText("Disconnected  from  the  server! Unable to lock!");
 					((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();

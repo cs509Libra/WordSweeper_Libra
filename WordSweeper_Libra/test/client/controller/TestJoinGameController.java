@@ -35,7 +35,7 @@ public class TestJoinGameController {
 		client.setServerAccess(mockServer);
 	}
 
-	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally) 
+	/**
 	 * This is responsible for testing the process of "Join Game" Controller
 	 * Has two parts:
 	 * 1.join game process without providing password

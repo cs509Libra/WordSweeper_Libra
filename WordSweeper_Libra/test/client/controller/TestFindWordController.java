@@ -34,7 +34,7 @@ public class TestFindWordController {
 		client.setServerAccess(mockServer);
 	}
 	
-	/**@author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally) 
+	/**
 	 * This is responsible for testing the process of "Find Word" Controller*/
 	@Test
 	public void TestFindWordProcess()

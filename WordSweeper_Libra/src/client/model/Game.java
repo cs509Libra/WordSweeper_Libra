@@ -85,7 +85,7 @@ public class Game {
 	public String getPlayersListByScore() {
 		String allPlayersInfoSortedByScore = "";
 
-		List<Entry<String, Integer>> allPlayersListSortedByScore = new LinkedList<>(this.playersInfoMap.entrySet());
+		List<Entry<String, Integer>> allPlayersListSortedByScore = new LinkedList<Entry<String, Integer>>(this.playersInfoMap.entrySet());
 		Collections.sort(allPlayersListSortedByScore, new Comparator<Object>() {
 			@Override
 			@SuppressWarnings("unchecked")
@@ -111,7 +111,7 @@ public class Game {
 	public String getPlayersListByName() {
 		String allPlayersInfoSortedByName = "";
 
-		List<Entry<String, Integer>> allPlayersListSortedByScore = new LinkedList<>(this.playersInfoMap.entrySet());
+		List<Entry<String, Integer>> allPlayersListSortedByScore = new LinkedList<Entry<String, Integer>>(this.playersInfoMap.entrySet());
 		Collections.sort(allPlayersListSortedByScore, new Comparator<Object>() {
 			@Override
 			@SuppressWarnings("unchecked")

@@ -28,7 +28,6 @@ import util.CalculateLocalScore;
  * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute equally)
  *
  */
-
 public class LeftBoardPanel extends JPanel {
 
 	private Model model;
@@ -86,7 +85,7 @@ public class LeftBoardPanel extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				if (isDisconnected(model.isWaitingResponse) == true) {
+				if (isDisconnected() == true) {
 					messageLabel.setText("Disconnected  from  the  server !!!");
 				} else {
 					newRow = model.getBoard().getRow();
@@ -121,7 +120,7 @@ public class LeftBoardPanel extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				if (isDisconnected(model.isWaitingResponse) == true) {
+				if (isDisconnected() == true) {
 					messageLabel.setText("Disconnected  from  the  server !!!");
 				} else {
 					newCol = model.getBoard().getCol();
@@ -155,7 +154,7 @@ public class LeftBoardPanel extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				if (isDisconnected(model.isWaitingResponse) == true) {
+				if (isDisconnected() == true) {
 					messageLabel.setText("Disconnected  from  the  server !!!");
 				} else {
 					newCol = model.getBoard().getCol();
@@ -189,7 +188,7 @@ public class LeftBoardPanel extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				if (isDisconnected(model.isWaitingResponse) == true) {
+				if (isDisconnected() == true) {
 					messageLabel.setText("Disconnected  from  the  server !!!");
 				} else {
 					newRow = model.getBoard().getRow();
@@ -301,9 +300,15 @@ public class LeftBoardPanel extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				if (isDisconnected(model.isWaitingResponse) == true) {
-					messageLabel.setText("Disconnected  from  the  server !!!");
+				if (isDisconnected() == true) {
+					messageLabel.setText("Disconnected  from  the  server!!!");
 				} else {
+				    try {
+						Thread.sleep(100);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					playerNewScore = model.getPlayer().getWordscore();
 					scoreFromServerField.setText(String.valueOf(playerNewScore));
 					rightGameInfoBoard.updateGameInfoBoard();
@@ -589,9 +594,9 @@ public class LeftBoardPanel extends JPanel {
 	 * @param b
 	 * @return
 	 */
-	public boolean isDisconnected(boolean b){
-		for(int i=0;i<20;i++){
-			if(b==false)
+	public boolean isDisconnected(){
+		for(int i=0;i<40;i++){
+			if(model.isWaitingResponse==false)
 				return false;
 			try {
 				Thread.sleep(50);

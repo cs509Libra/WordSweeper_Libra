@@ -51,8 +51,8 @@ public class BoardResponseController extends ControllerChain {
 		String bonusCell = map.getNamedItem("bonus").getNodeValue();
 		NodeList list = boardResponse.getChildNodes();
 
-		Map<String, Integer> allPlayersInfo = new HashMap<>();
-		Map<String, String> allPlayersPositionInfo = new HashMap<>();
+		Map<String, Integer> allPlayersInfo = new HashMap<String, Integer>();
+		Map<String, String> allPlayersPositionInfo = new HashMap<String, String>();
 		this.model.getBoard().positions.clear();
 
 		for (int i = 0; i < list.getLength(); i++) {

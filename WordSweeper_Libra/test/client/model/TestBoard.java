@@ -54,6 +54,7 @@ public class TestBoard {
 		// index at 0, 5, 10, 15 should be A, B, C, D
 		assertEquals("ABCD", board.getChosenCellsLetters());
 		assertEquals("ABCD", board.getWord().getContent());
+		//assertEquals(Integer(12), board.getChosenLettersScore());
 
 		// clear all chosen cells
 		board.clearChosenCells();
@@ -62,6 +63,11 @@ public class TestBoard {
 		assertEquals("", board.getChosenCellsLetters());
 		assertEquals("", board.getWord().getContent());
 
+	}
+
+	private Object Integer(int i) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 //end of the test of Board entity
