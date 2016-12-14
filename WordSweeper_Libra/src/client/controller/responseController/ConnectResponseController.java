@@ -4,9 +4,6 @@ import client.model.Model;
 import client.view.Application;
 import xml.Message;
 
-
-
-
 /**
  * Connect response information sent from server should be received once a player is trying to connect to the server.
  * This class deals with the connect response information based on xml transmission protocol.
@@ -32,8 +29,6 @@ public class ConnectResponseController extends ControllerChain {
 		if (!type.equals("connectResponse")) {
 			return next.process(response);
 		}
-
-		// app.getResponseArea().append(response.toString() + "\n");
 		return true;
 	}
 

@@ -48,14 +48,14 @@ public class Board {
 	}
 
 	/**get the globalStartingRow attribute 
-	 * @return
+	 * @return int
 	 */
 	public int getRow() {
 		return this.globalStartingRow;
 	}
 	
 	/** get the globalStartingCol attribute 
-	 * @return
+	 * @return int
 	 */
 	public int getCol() {
 		return this.globalStartingCol;
@@ -87,7 +87,7 @@ public class Board {
 	}
 
 	/** get the board info 
-	 * @return
+	 * @return String
 	 */
 	public String getBoardInfo() {
 		String allCellLetters = "";
@@ -100,7 +100,7 @@ public class Board {
 	/**
 	 * the getter for cells attribute.
 	 * 
-	 * @return
+	 * @return ArrayList<Cell>
 	 */
 	public ArrayList<Cell> getCells() {
 		return cells;
@@ -109,7 +109,7 @@ public class Board {
 	/**
 	 * get the XML format of String which consists of chosen cells.
 	 * 
-	 * @return
+	 * @return String
 	 */
 	public String getChosenCellsXMLString() {
 		String chosenCellsString = "";
@@ -123,7 +123,7 @@ public class Board {
 	/**
 	 * the getter for word attribute.
 	 * 
-	 * @return
+	 * @return Word
 	 */
 	public Word getWord() {
 		return this.word;
@@ -143,7 +143,7 @@ public class Board {
 
 	/**
 	 * get the cell letters that has been chosen.
-	 * @return 
+	 * @return String
 	 */
 	public String getChosenCellsLetters() {
 		String chosenLetters = "";
@@ -154,7 +154,7 @@ public class Board {
 
 	/**
 	 * get the score, according to cell letters that has been chosen.
-	 * @return 
+	 * @return Integer
 	 */
 	public Integer getChosenLettersScore() {
 		for (Cell cell : this.chosenCells) {
@@ -177,7 +177,7 @@ public class Board {
 	/**
 	 * the getter for RequestColChange attribute.
 	 * 
-	 * @return
+	 * @return Integer
 	 */
 	public Integer getRequestColChange() {
 		return requestColChange;
@@ -194,7 +194,7 @@ public class Board {
 	/**
 	 * the getter for RequestRowChange attribute.
 	 * 
-	 * @return
+	 * @return Integer
 	 */
 	public Integer getRequestRowChange() {
 		return requestRowChange;
@@ -218,7 +218,7 @@ public class Board {
 	/**
 	 * the getter for BonusCell attribute.
 	 * 
-	 * @return
+	 * @return String
 	 */
 	public String getBonusCell() {
 		return this.bonusCell;

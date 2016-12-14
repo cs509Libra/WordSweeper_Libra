@@ -32,7 +32,6 @@ public class ResetGameResponseController extends ControllerChain {
 			return next.process(response);
 		}
 
-		// app.getResponseArea().append(response.toString() + "\n");
 		model.resetGame();
 
 		((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();

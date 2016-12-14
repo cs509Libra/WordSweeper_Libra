@@ -85,7 +85,7 @@ public class RightGameInfoBoard extends JPanel {
 		add(gameIdLabel);
 
 		JButton quit = new JButton("Quit");
-		quit.addActionListener(new ActionListener() {// quit game button
+		quit.addActionListener(new ActionListener() {              // quit game button
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new ExitGameController(app, model).process();
@@ -183,7 +183,7 @@ public class RightGameInfoBoard extends JPanel {
 		resetBtn.setBounds(80, 70, 110, 30);
 		managerPower.add(resetBtn);
 
-		resetBtn.addActionListener(new ActionListener() {// reset game button
+		resetBtn.addActionListener(new ActionListener() {          // reset game button
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new ResetGameController(app, model).process();
@@ -199,7 +199,7 @@ public class RightGameInfoBoard extends JPanel {
 			}
 		});
 
-		lockBtn.addActionListener(new ActionListener() {// lock game button
+		lockBtn.addActionListener(new ActionListener() {            // lock game button
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new LockGameController(app, model).process();				
@@ -230,7 +230,7 @@ public class RightGameInfoBoard extends JPanel {
 		myScoreFromSever.setText(String.valueOf(model.getPlayer().getScore()));
 		playersListArea.setText(model.getGame().getPlayersListByName());
 		managerName.setText(model.getGame().getManagingUser());
-		if (model.getPlayer().isManager()) {// check manager player
+		if (model.getPlayer().isManager()) {            // check manager player
 			lockBtn.setEnabled(true);
 			resetBtn.setEnabled(true);
 		}

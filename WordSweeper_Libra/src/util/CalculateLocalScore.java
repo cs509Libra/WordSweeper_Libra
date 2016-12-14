@@ -13,7 +13,7 @@ public class CalculateLocalScore {
 	/**
 	 * {@link #calculateLetterScore(String)} provides score of single letter with string format.
 	 * @param letter
-	 * @return
+	 * @return Integer
 	 */
 	public static Integer calculateLetterScore(String letter){
 		Integer score;
@@ -33,7 +33,7 @@ public class CalculateLocalScore {
 	/**
 	 * {@link #calculateLetterScore(char)} provides score of single letter with char format.
 	 * @param letter
-	 * @return
+	 * @return Integer
 	 */
 	public static Integer calculateLetterScore(char letter){	
 		String upperLett = Character.toString(letter).toUpperCase();
@@ -43,10 +43,8 @@ public class CalculateLocalScore {
 	 * The {@link #calculateWordScore(String, Integer)} provides the score of a word.
 	 * @param word
 	 * @param wordLength
-	 * @return
+	 * @return Integer
 	 */
-	
-	
 	public static Integer calculateWordScore(String word, Integer wordLength){
 		if(wordLength == 0){
 			return 0;
@@ -66,7 +64,7 @@ public class CalculateLocalScore {
 	
 	/**
 	 * {@link #getLetterScoreDictionary()} provides the map of single letter as the key and its score as the value.
-	 * @return
+	 * @return Map<String, Integer>
 	 */
 	
 	public static Map<String, Integer> getLetterScoreDictionary(){

@@ -27,7 +27,7 @@ public class Model {
 	}
 
 	/**get the PracticeGame info
-	 *@return
+	 *@return PracticeGame
 	 */
 	public PracticeGame startPracticeGame() {
 		return this.practiceGame;

@@ -33,7 +33,6 @@ public class LockGameResponseController extends ControllerChain {
 			return next.process(response);
 		}
 
-		// app.getResponseArea().append(response.toString() + "\n");
 		model.getGame().setLocked(true);
 
 		((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();

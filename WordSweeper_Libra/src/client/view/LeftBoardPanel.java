@@ -458,7 +458,7 @@ public class LeftBoardPanel extends JPanel {
 	 * display
 	 * 
 	 * @param chosenCells
-	 * @return
+	 * @return String
 	 */
 	private String obtainChosenLettDisplay(ArrayList<JButton> chosenCells) {
 		String lettDisplay = "";
@@ -473,7 +473,7 @@ public class LeftBoardPanel extends JPanel {
 	 * Determine if a button clicked is valid.
 	 * 
 	 * @param tempBtn
-	 * @return
+	 * @return boolean
 	 */
 	private boolean isCellValidateToChoose(JButton tempBtn) {
 		if (this.chosenCellBtns.size() == 0) {
@@ -494,7 +494,7 @@ public class LeftBoardPanel extends JPanel {
 	 * the clicked button has been chosen before or not.
 	 * 
 	 * @param tempBtn
-	 * @return
+	 * @return boolean
 	 */
 	private boolean hasBeenChosen(JButton tempBtn) {
 		for (JButton previous : this.chosenCellBtns) {
@@ -509,7 +509,7 @@ public class LeftBoardPanel extends JPanel {
 	 * check if the target cell is bonus.
 	 * 
 	 * @param index
-	 * @return
+	 * @return boolean
 	 */
 	private boolean isBonusCell(int index) {
 		String bonusCell = this.model.getBoard().getBonusCell();
@@ -578,7 +578,7 @@ public class LeftBoardPanel extends JPanel {
 	 * 
 	 * @param A
 	 * @param B
-	 * @return
+	 * @return boolean
 	 */
 	private boolean isAdjacent(int A, int B) {
 		int[] arrayWithBorder = new int[] { -1, -1, -1, -1, -1, -1, -1, 0, 1, 2, 3, -1, -1, 4, 5, 6, 7, -1, -1, 8, 9,
@@ -603,7 +603,7 @@ public class LeftBoardPanel extends JPanel {
 	 * calculate the local score for chosen word.
 	 * 
 	 * @param word
-	 * @return
+	 * @return Integer
 	 */
 	private Integer calculateWordScoreFromLocalLib(String word) {
 		if (word.length() <= 1) {
@@ -617,8 +617,7 @@ public class LeftBoardPanel extends JPanel {
 	/**
 	 * check if it is disconnected now.
 	 * 
-	 * @param b
-	 * @return
+	 * @return boolean
 	 */
 	public boolean isDisconnected() {
 		for (int i = 0; i < 40; i++) {

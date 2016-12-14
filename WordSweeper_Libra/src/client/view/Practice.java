@@ -93,7 +93,7 @@ public class Practice extends JFrame {
 	 * display
 	 * 
 	 * @param chosenCells
-	 * @return
+	 * @return String
 	 */
 	private String obtainChosenLettDisplay(ArrayList<JButton> chosenCells) {
 		String lettDisplay = "";
@@ -108,7 +108,7 @@ public class Practice extends JFrame {
 	 * Determine if a button clicked is valid.
 	 * 
 	 * @param tempBtn
-	 * @return
+	 * @return boolean
 	 */
 	private boolean isCellValidateToChoose(JButton tempBtn) {
 		if (this.chosenCells.size() == 0) {
@@ -129,7 +129,7 @@ public class Practice extends JFrame {
 	 * the clicked button has been chosen before or not.
 	 * 
 	 * @param tempBtn
-	 * @return
+	 * @return boolean
 	 */
 	private boolean hasBeenChosen(JButton tempBtn) {
 		for (JButton previous : this.chosenCells) {
@@ -146,7 +146,7 @@ public class Practice extends JFrame {
 	 * changed to public method for test purpose.
 	 * @param A
 	 * @param B
-	 * @return
+	 * @return boolean
 	 */
 	private boolean isAdjacent(int A, int B) {
 		int[] arrayWithBorder = new int[] { -1, -1, -1, -1, -1, -1, -1, 0, 1, 2, 3, -1, -1, 4, 5, 6, 7, -1, -1, 8, 9,
@@ -213,7 +213,7 @@ public class Practice extends JFrame {
 	 * Calculate the score of the chosen word
 	 * 
 	 * @param word
-	 * @return
+	 * @return Integer
 	 */
 	private Integer calculateWordScoreFromLib(String word) {
 		if (word.length() <= 1) {

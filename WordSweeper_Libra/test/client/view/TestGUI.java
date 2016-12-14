@@ -14,6 +14,11 @@ import client.controller.responseController.BoardResponseController;
 import client.model.Model;
 import xml.Message;
 
+
+/**
+ * @author You Zhou, Qingquan Zhao, Han Bao, Ruochen Shi (Authors contribute
+ *         equally) This is responsible for testing "leftboard" and "rightboard" Boundary class
+ */
 public class TestGUI {
 	Model model = new Model();
 	Application app = new Application(model);

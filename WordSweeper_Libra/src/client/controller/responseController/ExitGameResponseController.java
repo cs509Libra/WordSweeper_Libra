@@ -40,15 +40,9 @@ public class ExitGameResponseController extends ControllerChain {
 		}
 		this.model.existedGame = false;
 
-		// <xs:attribute name='gameId' type='xs:string' use='required'/>
 		app.getMg().dispose();
 		app.enableInputs();
 		model.getPlayer().resetManager();
-
-		// app.setVisible(true);
-
-		// app.getResponseArea().append(response.toString());
-		// app.getResponseArea().append("\n");
 		return true;
 	}
 }

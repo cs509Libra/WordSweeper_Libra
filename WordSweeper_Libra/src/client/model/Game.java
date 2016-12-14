@@ -65,7 +65,7 @@ public class Game {
 
 	/**
 	 * Sort the player list by join time, player who joins early will be on the front part.  
-	 * @return
+	 * @return String
 	 */
 	public String getPlayersListByJoinTime() {
 		String allPlayersList = "";
@@ -80,7 +80,7 @@ public class Game {
 
 	/**
 	 * Sort the player list by temporary total score in descending order.  
-	 * @return
+	 * @return String
 	 */
 	public String getPlayersListByScore() {
 		String allPlayersInfoSortedByScore = "";
@@ -106,7 +106,7 @@ public class Game {
     
 	/**
 	 * Sort the player list by letters of name in order of ascll.  
-	 * @return
+	 * @return String
 	 */
 	public String getPlayersListByName() {
 		String allPlayersInfoSortedByName = "";

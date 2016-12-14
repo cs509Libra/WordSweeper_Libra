@@ -48,8 +48,6 @@ public class FindWordResponseController extends ControllerChain {
 		String score = map.getNamedItem("score").getNodeValue();
 		String pname = map.getNamedItem("name").getNodeValue();
 
-		// app.getResponseArea().append("Board Message received for game:" +
-		// boardResponse.toString() + "\n");
 		model.getPlayer().setWordscore(Integer.valueOf(score));
 		((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).getMessageLabel().setText("Good job!");
 		((LeftBoardPanel) app.getMultiGame().getLeftBoardPanel()).refreshBoard();

@@ -29,10 +29,10 @@ public class CreateGameController {
 
 		String xmlString;
 
-		if (this.app.getPassword() == null) {// No password.
+		if (this.app.getPassword() == null) {           // No password.
 			xmlString = Message.requestHeader()
 					+ String.format("<createGameRequest name='%s'/></request>", this.app.getPlayerName());
-		} else {// There is a password.
+		} else {                                        // There is a password.
 			xmlString = Message.requestHeader()
 					+ String.format("<createGameRequest name='%s' password='%s'/></request>", this.app.getPlayerName(),
 							this.app.getPassword());
@@ -43,7 +43,7 @@ public class CreateGameController {
 		app.getRequestArea().append("\n");
 		app.getServerAccess().sendRequest(m);
 
-		model.getGame().setLocked(false);// reset the lock flag
+		model.getGame().setLocked(false);               // reset the lock flag
 
 	}
 }
